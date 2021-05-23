@@ -26,7 +26,7 @@
         <input id='hiddenId' name='antech_id' type="hidden" value='<?php echo $antech_id ; ?>' />
         <div>
             <label for='hosp_name'>Hospital Name </label>
-            <input name = 'hosp_name'  value=<?php echo $hosp_name ?> >
+            <input name = 'hosp_name'  value='<?php echo $hosp_name ?>' >
         </div>
         <div>
             <label for='weight'>Pet Weight </label>
@@ -47,6 +47,7 @@
     <p>Shipping : <?php echo $shipCost ?> </p>
     <p>Cremation : <?php echo $cremCost ?> </p>
     <p>Total : <?php echo $totalCost ?> </p>
+    <p>AC : <?php echo $area_code ?> </p>
 
     <form id='order' method='post'>
     <input type ='submit' name='order' value='order'>
@@ -60,7 +61,7 @@
     var antech_id='';
     var weight= document.getElementById('weight')
     var newWeight = '';
-    
+    console.log 
     function updateValue(e){
         console.log('update')
         console.log(e.type)
@@ -88,8 +89,7 @@
     }
 
     var option_tags = document.getElementsByTagName('option');
-    var area = "<?php echo $area_code; ?>"
-    console.log("area " + area)
+    var area = <?php echo $this->session->userdata('area_code'); ?>
 
     for (var option of option_tags){
         if(option.getAttribute('code') == area){
