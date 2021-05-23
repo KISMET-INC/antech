@@ -86,22 +86,19 @@ class Calculator extends CI_Controller {
     //************************************************* */
     public function clear() 
     {
-        $session_data = array(
-            'antech_id',
-            'hospital_name',
-            'area_code',
-            'weight',
-            'necroCost',
-            'cremCost',
-            'shipCost',
-            'total',
-            'orderValid'
-        );
 
-        $this->session->unset_userdata($session_data);
+            // foreach($this->session->all_userdata() as $key => $value){
+            //     $this->session->unset_userdata($key);
+            // }
+
         var_dump($this->session->all_userdata());
 
-        redirect('/');
+
+        echo $this->session->userdata('form_data')['address'];
+
+       // redirect('/');
+
+        
 
     }
     
@@ -225,6 +222,31 @@ class Calculator extends CI_Controller {
                 }
 
                 break;
+            case 'approval':
+                $form_data = $this->input->post();
+
+                $this->session->set_userdata('form_data', $form_data);
+                //var_dump($this->session->userdata('form_data'));
+                var_dump($this->session->all_userdata());
+
+                $this->form_validation->set_rules("address", "address", "trim|required");
+                if($this->form_validation->run() === FALSE)
+                {
+                    $errors = $this->view_data["errors"] = "All fields are required!";
+                    $this->session->set_flashdata('errors', $errors);
+
+                    
+                } else {
+                    $errors = $this->view_data["errors"] = "Goodjob";
+                    $this->session->set_flashdata('errors', $errors);
+
+                    redirect('/order/submit');
+                }
+                
+    
+                echo $this->session->userdata('form_data')['hosp_name'];
+                redirect('/order');
+                break;
         }
 
         
@@ -256,7 +278,10 @@ class Calculator extends CI_Controller {
             'shipCost'=> $this->session->userdata('shipCost'),
             'cremCost'=> $this->session->userdata('cremCost'),
             'totalCost' => $this->session->userdata('total'),
+            
         );
+
+
 
         $this->load->view('calculator_view',$view_data);
 	}

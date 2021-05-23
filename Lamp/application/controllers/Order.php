@@ -17,6 +17,7 @@ class Order extends CI_Controller {
             'shipCost'=> $this->session->userdata('shipCost'),
             'cremCost'=> $this->session->userdata('cremCost'),
             'totalCost' => $this->session->userdata('total'),
+            'form_data'=> $this->session->userdata('form_data'),
         );
 
         
@@ -27,9 +28,43 @@ class Order extends CI_Controller {
 
     public function submit()
     {
-        echo '<script type="text/JavaScript"> 
-        prompt("GeeksForGeeks");
-        </script>';
+
+        
+        $myform = $this->session->userdata('form_data');
+
+        echo "<script type='text/JavaScript'> 
+        var formData = new FormData();    
+        var hat = 'my hat';
+        </script>";
+    
+
+        foreach($myform as $key => $value){
+            echo nl2br($key . ": " . $value . "\n");
+            echo "<script type='text/JavaScript'> 
+             console.log('{$key}');
+             formData.append('{$key}', '{$value}');
+            </script>";
+
+        };
+    
+
+        echo "<script type='text/JavaScript'> 
+        console.log(formData);
+        // fetch('https://formspree.io/f/mzbyeakg', {
+        //     method: 'POST',
+        //     body: formData,
+        //     headers: {
+        //         'Accept': 'application/json'
+        //     }
+        // }).then(response => {
+        //     console.log('it worked1')
+        // }).catch(error => {
+            
+        //     console.log('no bueno')
+        // });
+
+        
+        </script>";
     }
 
 }

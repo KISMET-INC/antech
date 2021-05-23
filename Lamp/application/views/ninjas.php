@@ -23,7 +23,7 @@
     <form name = 'form' method='Post'>
     <label for='firstName'>First Name</label>
     <input name='first_name'/>
-    <p class='error'><?php echo $list2[0]; ?></p>
+    <!-- <p class='error'><?php echo $list2[0]; ?></p>
 
     <label for='lastName'>Last Name</label>
     <input name='last_name'/>
@@ -31,6 +31,9 @@
     <label for='email'>Last Name</label>
     <input name='email'/>
     <h1 class='error'> <?php echo $list2[2]; ?></h1>
+    <p><?php echo $dog['name']; ?><p>
+    <p><?php echo $this->session->userdata('dog')['favorite_toy'] ?><p> -->
+    
     
     
     <input name = 'form' type ='submit' value="submit">

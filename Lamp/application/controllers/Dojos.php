@@ -34,11 +34,40 @@ class Dojos extends CI_Controller {
             redirect('/welcome');
         }
 
+        $dog = array(
+            'name' => "barney",
+            'favorite_toy' => 'ball',
+        );
+        $this->session->set_userdata('dog', $dog);
+        
+
         $view_data = array(
             'topic'=> "topic",
             'description' => "Rock on Description!",
-            'list2' => $list,
+            'list2' => 'list',
+            'dog'=> $dog,
         );
+
+        // foreach($view_data as $value){
+        //     if( gettype($value) === 'array'){
+        //         foreach($value as $innerValue){
+        //             echo nl2br("$innerValue ");
+        //         }
+        //         break;
+        //     }
+        //     echo nl2br("$value \n");
+        // }
+
+
+        foreach($view_data as $key => $value){
+            if( gettype($value) === 'array'){
+                foreach($value as $innerKey => $innerValue){
+                    echo nl2br($innerKey . ": " . $innerValue . "\n");
+                }
+                break;
+            }
+            echo nl2br($key . ": " . $value . "\n");
+        }
         $this->load->view('ninjas', $view_data);
 	}
 

@@ -8,11 +8,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type='text/php' src="<?php echo base_url(); ?>js/scripts.php"></script>
     <title>Necropsy Calculator</title>
-    <link rel = "stylesheet" type = "text/css" 
-   href = "<?php echo base_url(); ?>css/style.css">
+    <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/style.css">
 </head>
 <body>
     <h1>Antech Full Body Necropsy Calculator </h1>
+    <!-- Lookup form -->
     <form name ='lookup' action='/Lamp/index.php/calculator/validate/lookup' method='post' >
         <div>
             <label for='antech_id'>Antech ID </label>
@@ -20,7 +20,7 @@
             <input type='submit'value="Lookup IDx"/>
         </div>
     </form>
-  
+    <!-- Calculate Form -->
     <form id='calculate' name='calculate' action='/Lamp/index.php/calculator/validate/calculate' method='post'>
         <input id='hidden' name='antech_id' type="hidden" value='<?php echo $antech_id ; ?>' />
         <div>
@@ -41,12 +41,14 @@
         <span><?php echo $errors ;?></span>
     </form>
 
+    <!-- Costs Display -->
     <h3>Costs </h3>
     <p>Necropsy : <?php echo $necroCost ?> </p>
     <p>Shipping : <?php echo $shipCost ?> </p>
     <p>Cremation : <?php echo $cremCost ?> </p>
     <p>Total : <?php echo $totalCost ?> </p>
 
+    <!-- Proceed with Order-->
     <form action='/Lamp/index.php/calculator/validate/order' method='post'>
         <input type='hidden' name = 'weight' value='<?php echo $weight ?>'>
         <input type='hidden' name = 'necroCost' value='<?php echo $necroCost ?>'>
@@ -55,9 +57,10 @@
         <input type='hidden' name = 'totalCost' value='<?php echo $totalCost ?>'>
         <input type='hidden' name = 'hosp_name' value='<?php echo $hosp_name ?>'>
         <input type='hidden' name = 'antech_id' value='<?php echo $antech_id ?>'>
-    <button type='submit'>Approve and Order </button>
+        <button type='submit'>Approve and Order </button>
     </form>
-   
+    
+    <!-- Clear Session Data -->
     <a href='/Lamp/index.php/calculator/clear'>Clear </a>
 </body>
 

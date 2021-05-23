@@ -5,12 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Approval</title>
+    <style>
+        .flex {
+            display:flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 300px;
+        }
+        .width100 {
+            width: 100%;
+        }
+
+        *{
+            margin:0px;
+            padding:0px;
+        }
+    </style>
 </head>
+
 <body>
     <h2> Order Approval </h2>
 
-    <form id='approval_form' action = '/Lamp/index.php/approval/validations' method="POST"> 
-        <section id='details'>
+    <form id='approval_form' action='/Lamp/index.php/calculator/validate/approval' method="POST"> 
+        <section id='details' class='flex width100'>
             <section id='hospital_info'>
                 <h2> Hospital Info </h2>
                 <div>
@@ -23,7 +40,7 @@
                 <div>
                 <div>
                     <label for='address'>Hospital Address </label>
-                    <input type='text' name = 'address'>
+                    <input value = '<?php echo $form_data['address'] ?>' type='text' name = 'address'>
                 <div>
                 <div>
                     <label for='phone'>Hospital Phone # </label>
@@ -92,27 +109,28 @@
             </div> 
             <div>
                 <label for='summary'>A summarization is REQUIRED</label>
-                <textarea id='summary'></textarea>
+                <textarea id='summary' name='summary'></textarea>
             </div>
         </section>
-        <section id='costs'>
-            <div id='necroCost'>
+        <section id='costs' >
+            <h2>Cost Summary </h2>
+            <div id='necroCost'  class='flex'>
                 <p>NecroCost: <?php echo $necroCost ?></p>
                 <label for="necro"> Approved</label><br>
-                <input checked type="checkbox" id="necro" name="necro" value=" Necropsy Cost Approved">
+                <input checked disabled type="checkbox" id="necro" name="necro" value=" Necropsy Cost Approved">
             </div>
-            <div id='shipCost'>
+            <div id='shipCost' class='flex'>
                 <p>Ambulance Delivery: <?php echo $shipCost ?></p>
                 <label for="ship"> Approved</label><br>
                 <input type="checkbox" id="ship" name="ship" value=" Delivery Cost Approved">
             </div>
-            <div id='cremCost'>
+            <div id='cremCost' class='flex'>
                 <p>Cremation: <?php echo $cremCost ?></p>
                 <label for="crem"> Approved</label><br>
                 <input type="checkbox" id="crem" name="crem" value=" Cremation Cost Approved">
             </div>
-            <div id='totalCost'>
-                <p>Cremation: <?php echo $totalCost ?></p>
+            <div id='totalCost' class='flex'>
+                <p>Total: <?php echo $totalCost ?></p>
                 <label for="total"> Approved</label><br>
                 <input type="checkbox" id="total" name="total" value=" Total Cost Approved">
             </div>
@@ -122,34 +140,13 @@
         <p id="my-form-status"></p>
     </form>
     <input type='button' value='Cancel'>
+      <!-- Clear Session Data -->
+      <a href='/Lamp/index.php/calculator/clear'>Clear </a>
 
 
     <script>
-        var form = document.getElementById("approval_form");
-        
-        async function handleSubmit(event) {
-        e.preventDefault();
-        console.log(event.target)
-        var data = new FormData(event.target);
-        }
-        
 
-        // var status = document.getElementById("my-form-status");
-        // var data = new FormData(event.target);
-        // fetch(event.target.action, {
-        //     method: form.method,
-        //     body: data,
-        //     headers: {
-        //         'Accept': 'application/json'
-        //     }
-        // }).then(response => {
-        //     status.innerHTML = "Thanks for your submission!";
-        //     form.reset()
-        // }).catch(error => {
-        //     status.innerHTML = "Oops! There was a problem submitting your form"
-        // });
-        // }
-        //form.addEventListener("submit", handleSubmit)
+        
    </script>
 
 </body>
