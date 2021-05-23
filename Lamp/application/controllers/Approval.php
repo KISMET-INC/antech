@@ -36,16 +36,17 @@ class Approval extends CI_Controller {
         $this->form_validation->set_rules("hosp_name", "Hospital Name", "trim|required");
         $this->form_validation->set_rules("totalCost", "Estimate Calculation", "trim|required");
     
-        if($this->form_validation->run() === FALSE)
+        if($this->form_validation->run() === FALSE && $this->session->userdata('isValid')=== FALSE)
         {
             $errors = $this->view_data["errors"] = validation_errors();
             $this->session->set_flashdata('errors', $errors);
-           redirect('/');
+            $this->session->set_userdata('isValid', FALSE);
+            redirect('/');
         } 
 
 
     
-
+        $this->session->set_userdata('isValid', TRUE);
 
         $view_data = array(
             'hosp_name'=> $this->session->userdata('hospital_name'),
