@@ -23,14 +23,14 @@
     </form>
   
     <form id='calculate' name='calculate' action='/Lamp/index.php/calculator/calculate' method='post'>
-        <input id='hiddenId' name='antech_id' type="hidden" value='<?php echo $antech_id ; ?>' />
+        <input id='hidden' name='antech_id' type="hidden" value='<?php echo $antech_id ; ?>' />
         <div>
             <label for='hosp_name'>Hospital Name </label>
-            <input name = 'hosp_name'  value='<?php echo $hosp_name ?>' >
+            <input onkeypress='updateValue(event)' onchange='updateValue(event)' name = 'hosp_name'  value='<?php echo $hosp_name ?>' >
         </div>
         <div>
             <label for='weight'>Pet Weight </label>
-            <input onkeypress='updateValue(event)'  id ='weight' type = 'text' name ='weight' value='<?php echo $weight ;?>'>
+            <input onchange='updateValue(event)' onkeypress='updateValue(event)'  id ='weight' type = 'text' name ='weight' value='<?php echo $weight ;?>'>
         </div>
 
         <label for="area_code">Area Code:</label>
@@ -47,36 +47,55 @@
     <p>Shipping : <?php echo $shipCost ?> </p>
     <p>Cremation : <?php echo $cremCost ?> </p>
     <p>Total : <?php echo $totalCost ?> </p>
-    <p>AC : <?php echo $area_code ?> </p>
 
-    <form id='order' method='post'>
-    <input type ='submit' name='order' value='order'>
-</form>
-
+    <form action='/Lamp/index.php/approval/' method='post'>
+        <input type='hidden' name = 'weight' value='<?php echo $weight ?>'>
+        <input type='hidden' name = 'necroCost' value='<?php echo $necroCost ?>'>
+        <input type='hidden' name = 'shipCost' value='<?php echo $shipCost ?>'>
+        <input type='hidden' name = 'cremCost' value='<?php echo $cremCost ?>'>
+        <input type='hidden' name = 'totalCost' value='<?php echo $totalCost ?>'>
+        <input type='hidden' name = 'hosp_name' value='<?php echo $hosp_name ?>'>
+        <input type='hidden' name = 'antech_id' value='<?php echo $antech_id ?>'>
+    <button type='submit'>Approve and Order </button>
+    </form>
+   
     <a href='/Lamp/index.php/calculator/clear'>Clear </a>
 </body>
 <script>
     var area_codes = [818,747,310,626,323,213,714,949,951,909,760,562,619,858]
     var select = document.getElementById('area_code')
-    var antech_id='';
-    var weight= document.getElementById('weight')
-    var newWeight = '';
+    var antech_id='<?php echo $this->session->userdata('antech_id'); ?>';
+    var hosp_name="<?php echo $this->session->userdata('hosp_name'); ?>";
+    var weight='<?php echo $this->session->userdata('weight'); ?>';
+    
     console.log 
     function updateValue(e){
         console.log('update')
         console.log(e.type)
-       switch(e.type){
-           case "keypress":
-                antech_id += e.key;
-                var hiddent = document.getElementById('hiddenId').value = antech_id;
-                console.log(hiddent)
+        console.log(e)
+
+        getAndUpdate(e)
+
+    }
+
+    function getAndUpdate(e){
+        var input_list = document.getElementsByName(e.target.name)
+        var field = e.target.name
+        console.log(input_list)
+        switch(e.type){
+            case "keypress":
+                value += e.key;
+                for (var input of input_list){
+                    input.value = value;
+                }
                 break;
             case "change":
-                var hiddent = document.getElementById('hiddenId').value = e.target.value;
-                console.log(hiddent)
+                for (var input of input_list){
+                    input.value = e.target.value
+                }
                 break;
-                
-       }
+        }
+
     }
 
 
@@ -89,7 +108,7 @@
     }
 
     var option_tags = document.getElementsByTagName('option');
-    var area = <?php echo $this->session->userdata('area_code'); ?>
+    var area = "<?php echo $this->session->userdata('area_code'); ?>"
 
     for (var option of option_tags){
         if(option.getAttribute('code') == area){

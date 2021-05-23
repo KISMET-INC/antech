@@ -139,6 +139,7 @@ class Calculator extends CI_Controller {
                     'total' => $total
                 );
                 $this->session->set_flashdata($calculations);
+                $this->session->keep_flashdata('weight');
                 $date = date("m-d-Y");
                 $time = date("h:i A");
 
@@ -197,13 +198,13 @@ Full Necropsy Total:     " . $total . "
             $this->session->set_userdata('area_code', 'N/A');
         }
         
-        
+
         $view_data = array(
             'hosp_name'=> $this->session->userdata('hospital_name'),
             'antech_id' =>$this->session->userdata('antech_id'),
             'area_code' => $this->session->userdata('area_code'),
             'errors' => $this->session->flashdata('errors'),
-            'weight'=> $this->session->flashdata('weight'),
+            'weight'=> $this->session->userdata('weight'),
             'necroCost'=> $this->session->userdata('necroCost'),
             'shipCost'=> $this->session->userdata('shipCost'),
             'cremCost'=> $this->session->userdata('cremCost'),
