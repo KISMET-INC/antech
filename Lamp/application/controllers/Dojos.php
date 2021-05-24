@@ -7,6 +7,7 @@ class Dojos extends CI_Controller {
         $this->load->view('hello');
 	}
 
+
     public function ninjas()
 	{   
         $err = '';
@@ -39,8 +40,16 @@ class Dojos extends CI_Controller {
             'favorite_toy' => 'ball',
         );
         $this->session->set_userdata('dog', $dog);
-        
 
+        
+        $more_dog = $this->session->userdata('dog');
+
+        $more_dog += array('breed'=> 'poodle');
+        $this->session->set_userdata('dog', $more_dog);
+        
+        var_dump($this->session->userdata('hospital'));
+
+       
         $view_data = array(
             'topic'=> "topic",
             'description' => "Rock on Description!",
@@ -59,15 +68,17 @@ class Dojos extends CI_Controller {
         // }
 
 
-        foreach($view_data as $key => $value){
-            if( gettype($value) === 'array'){
-                foreach($value as $innerKey => $innerValue){
-                    echo nl2br($innerKey . ": " . $innerValue . "\n");
-                }
-                break;
-            }
-            echo nl2br($key . ": " . $value . "\n");
-        }
+        // foreach($view_data as $key => $value){
+        //     if( gettype($value) === 'array'){
+        //         foreach($value as $innerKey => $innerValue){
+        //             echo nl2br($innerKey . ": " . $innerValue . "\n");
+        //         }
+        //         break;
+        //     }
+        //     echo nl2br($key . ": " . $value . "\n");
+        // }
+
+     
         $this->load->view('ninjas', $view_data);
 	}
 

@@ -80,6 +80,20 @@ class Hospital extends CI_Model {
         return $this->db->query($query, $values);
     }
 
+    function template(){
+        $template = array(
+            'hosp_name' => '',
+            'area_code' => '0',
+            'antech_id' => '',
+            'address' => '',
+            'phone' => '',
+            'email' => '',
+            'doctor' => '',
+        );
+
+        return $template;
+    }
+
     // CREATE
     function add_hospital($hospital)
     {

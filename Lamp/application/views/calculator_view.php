@@ -13,10 +13,10 @@
 <body>
     <h1>Antech Full Body Necropsy Calculator </h1>
     <!-- Lookup form -->
-    <form name ='lookup' action='/Lamp/index.php/calculator/validate/lookup' method='post' >
+    <form name ='lookup' action='/Lamp/index.php/calculator/lookup' method='post' >
         <div>
             <label for='antech_id'>Antech ID </label>
-            <input onkeypress='updateValue(event)' onchange='updateValue(event)' id='antech_id' name = 'antech_id' value='<?php echo $antech_id ;?>' >
+            <input onkeypress='updateValue(event)' onchange='updateValue(event)' id='antech_id' name = 'antech_id' value='<?php echo $hospital['antech_id'] ;?>' >
             <input type='submit'value="Lookup IDx"/>
         </div>
     </form>
@@ -25,7 +25,7 @@
         <input id='hidden' name='antech_id' type="hidden" value='<?php echo $antech_id ; ?>' />
         <div>
             <label for='hosp_name'>Hospital Name </label>
-            <input onkeypress='updateValue(event)' onchange='updateValue(event)' name = 'hosp_name'  value='<?php echo $hosp_name ?>' >
+            <input onkeypress='updateValue(event)' onchange='updateValue(event)' name = 'hosp_name'  value='<?php echo $hospital['hosp_name'] ?>' >
         </div>
         <div>
             <label for='weight'>Pet Weight </label>

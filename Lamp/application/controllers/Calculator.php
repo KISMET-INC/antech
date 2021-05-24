@@ -2,14 +2,29 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Calculator extends CI_Controller {
 
+    private function updateSession($target,$key, $value){
+        echo "append";
+    
+        $update_array = $this->session->userdata($target);
+        $update_array[$key] = $value;
+        $this->session->set_userdata($target, $update_array);
+    }
+
     //************************************************* */
     // LOOK UP ID IN DB
     //************************************************* */
     public function lookup() {
-
+        $this->load->model('Hospital');
+        $antech_id = $this->input->post('antech_id');
+        $result  = $this->Hospital->validate_lookup($antech_id);
+        $this->updateSession('hospital', 'antech_id', $antech_id );
+        //var_dump($this->session->userdata('hospital'));
+        // var_dump($this->input->post());
+        
+        if($result == 'valid'){
+            
             echo 'checkingDB';
             // Get Id from Session
-            $antech_id = $this->session->userdata('antech_id');
 
             // Set ID to Search for
             $search_id = 92220;
@@ -26,16 +41,23 @@ class Calculator extends CI_Controller {
                 if($search_id == $current_id){
 
                     // Extract Important Info from lines
-                    $hosp = substr($fdata[$i-1],25);
-                    $area = substr($fdata[$i+5],25);
-        
+                    $hosp_name = substr($fdata[$i-1],25);
+                    $area_code = substr($fdata[$i+5],25);
+
                     // Set into Session
-                    $this->session->set_userdata('hospital_name', $hosp);
-                    $this->session->set_userdata('area_code', $area);
+                    if (strlen($area_code) != 2){
+                        $this->updateSession('hospital', 'area_code', $area_code );     
+                    } 
+                    $this->updateSession('hospital', 'hosp_name', $hosp_name );
 
                 }
 
             }
+        } else {
+            $errors = validation_errors();
+            $this->session->set_flashdata('errors', $errors);
+            echo 'errors found';
+        }
         
         redirect('/');
 
@@ -47,6 +69,7 @@ class Calculator extends CI_Controller {
     //************************************************* */
     public function calculate() {
 
+       
         // Get Data from Session
         $area_code = $this->session->userdata('area_code');
         $weight = $this->session->userdata('weight');
@@ -81,22 +104,23 @@ class Calculator extends CI_Controller {
 
     }
 
+
     //************************************************* */
     //  CLEAR SESSION DATA
     //************************************************* */
     public function clear() 
     {
 
-            // foreach($this->session->all_userdata() as $key => $value){
-            //     $this->session->unset_userdata($key);
-            // }
+        foreach($this->session->all_userdata() as $key => $value){
+            $this->session->unset_userdata($key);
+        }
 
         var_dump($this->session->all_userdata());
 
 
-        echo $this->session->userdata('form_data')['address'];
 
-       // redirect('/');
+
+      redirect('/');
 
         
 
@@ -148,29 +172,6 @@ class Calculator extends CI_Controller {
                 }
                 break;
 
-            //************************************************* */
-            // VALIDATE BEFORE LOOKING UP ANTECH ID
-            //************************************************* */
-            case "lookup":
-
-                // Get Post Data and set into session
-                $antech_id = $this->input->post('antech_id');
-                $this->session->set_userdata('antech_id', $antech_id);
-
-                // Set Validation Rules
-                $this->form_validation->set_rules("antech_id", "Antech Id", "trim|required");
-                if($this->form_validation->run() === FALSE)
-                {
-                    $errors = $this->view_data["errors"] = validation_errors();
-                    $this->session->set_flashdata('errors', $errors);
-                    redirect('/');
-
-                } else {
-                    // No errors, proceed to lookup id in DB
-                    redirect('/calculator/lookup');
-
-                }
-                break;
             
             //************************************************* */
             // VALIDATE BEFORE MOVING TO ORDER PAGE
@@ -262,14 +263,16 @@ class Calculator extends CI_Controller {
 
 
         $this->load->helper('url');
-        if (!$this->session->userdata('area_code')){
-            $this->session->set_userdata('area_code', '0');
-        }
+        $this->load->model('Hospital');
         
+        if(!$this->session->userdata('hospital')){
+            $template = $this->Hospital->template();
+            $this->session->set_userdata('hospital',$template);
+        };
         //echo $this->session->userdata('antech_id');
 
         $view_data = array(
-            'hosp_name'=> $this->session->userdata('hospital_name'),
+            'hospital'=> $this->session->userdata('hospital'),
             'antech_id' =>$this->session->userdata('antech_id'),
             'area_code' => $this->session->userdata('area_code'),
             'errors' => $this->session->flashdata('errors'),

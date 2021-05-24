@@ -42,7 +42,7 @@ for(var code of area_codes){
 // ACTIVATE CURRENT AREA CODE BASED ON SESSION
 //************************************************* */
 var option_tags = document.getElementsByTagName('option');
-var area = <?php echo $area_code ?> 
+var area = <?php echo $hospital['area_code'] ?> 
     for (var option of option_tags){
     if(option.getAttribute('code') == area){
         option.selected = true;
