@@ -16,47 +16,69 @@
     <form name ='lookup' action='/Lamp/index.php/calculator/lookup' method='post' >
         <div>
             <label for='antech_id'>Antech ID </label>
-            <input onkeypress='updateValue(event)' onchange='updateValue(event)' id='antech_id' name = 'antech_id' value='<?php echo $hospital['antech_id'] ;?>' >
+            <input 
+                id='antech_id' 
+                name = 'antech_id' 
+                value='<?php echo $hospital['antech_id'] ;?>'
+                onkeypress='updateValue(event)' 
+                onchange='updateValue(event)' 
+            >
             <input type='submit'value="Lookup IDx"/>
         </div>
     </form>
     <!-- Calculate Form -->
-    <form id='calculate' name='calculate' action='/Lamp/index.php/calculator/validate/calculate' method='post'>
-        <input id='hidden' name='antech_id' type="hidden" value='<?php echo $antech_id ; ?>' />
+    <form id='calculate' name='calculate' action='/Lamp/index.php/calculator/calculate' method='post'>
+        <input id='hidden' name='antech_id' type="hidden" value='<?php echo $hospital['antech_id'] ; ?>' />
         <div>
             <label for='hosp_name'>Hospital Name </label>
-            <input onkeypress='updateValue(event)' onchange='updateValue(event)' name = 'hosp_name'  value='<?php echo $hospital['hosp_name'] ?>' >
+            <input 
+                id='hosp_name'
+                name = 'hosp_name'  
+                onkeypress='updateValue(event)' 
+                onchange='updateValue(event)' 
+                value='<?php echo $hospital['hosp_name'] ?>' 
+                >
         </div>
         <div>
             <label for='weight'>Pet Weight </label>
-            <input onchange='updateValue(event)' onkeypress='updateValue(event)'  id ='weight' type = 'text' name ='weight' value='<?php echo $weight ;?>'>
+            <input 
+                id ='weight'
+                name ='weight' 
+                onchange='updateValue(event)'
+                onkeypress='updateValue(event)' 
+                type = 'text'
+                value='<?php echo $estimate['weight'] ;?>'
+                >
         </div>
 
         <label for="area_code">Area Code:</label>
-
-        <select name="area_code" id="area_code">    
-        <option value='0'>N/A</option>
+        <select 
+            id="area_code"  
+            name="area_code"
+            >    
+            <option value='0'>N/A</option>
         </select>
+
         <input type='submit' name = 'calculate' value="Calculate"/>
         <span><?php echo $errors ;?></span>
     </form>
 
     <!-- Costs Display -->
     <h3>Costs </h3>
-    <p>Necropsy : <?php echo $necroCost ?> </p>
-    <p>Shipping : <?php echo $shipCost ?> </p>
-    <p>Cremation : <?php echo $cremCost ?> </p>
-    <p>Total : <?php echo $totalCost ?> </p>
+    <p>Necropsy : <?php echo $estimate['necroCost'] ?> </p>
+    <p>Shipping : <?php echo $estimate['shipCost'] ?> </p>
+    <p>Cremation : <?php echo $estimate['cremCost'] ?> </p>
+    <p>Total : <?php echo $estimate['totalCost'] ?> </p>
 
     <!-- Proceed with Order-->
-    <form action='/Lamp/index.php/calculator/validate/order' method='post'>
-        <input type='hidden' name = 'weight' value='<?php echo $weight ?>'>
-        <input type='hidden' name = 'necroCost' value='<?php echo $necroCost ?>'>
-        <input type='hidden' name = 'shipCost' value='<?php echo $shipCost ?>'>
-        <input type='hidden' name = 'cremCost' value='<?php echo $cremCost ?>'>
-        <input type='hidden' name = 'totalCost' value='<?php echo $totalCost ?>'>
-        <input type='hidden' name = 'hosp_name' value='<?php echo $hosp_name ?>'>
-        <input type='hidden' name = 'antech_id' value='<?php echo $antech_id ?>'>
+    <form action='/Lamp/index.php/calculator/start_order' method='post'>
+        <input type='hidden' name = 'weight' value='<?php echo $estimate['weight'] ?>'>
+        <input type='hidden' name = 'necroCost' value='<?php echo $estimate['necroCost'] ?>'>
+        <input type='hidden' name = 'shipCost' value='<?php echo $estimate['shipCost'] ?>'>
+        <input type='hidden' name = 'cremCost' value='<?php echo $estimate['cremCost'] ?>'>
+        <input type='hidden' name = 'totalCost' value='<?php echo $estimate['totalCost'] ?>'>
+        <input type='hidden' name = 'hosp_name' value='<?php echo $hospital['hosp_name'] ?>'>
+        <input type='hidden' name = 'antech_id' value='<?php echo $hospital['antech_id'] ?>'>
         <button type='submit'>Approve and Order </button>
     </form>
     

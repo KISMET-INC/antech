@@ -3,12 +3,89 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Calculator extends CI_Controller {
 
     private function updateSession($target,$key, $value){
-        echo "append";
-    
         $update_array = $this->session->userdata($target);
-        $update_array[$key] = $value;
+
+        if($value != null){
+            $update_array[$key] = $value;
+        }
+
         $this->session->set_userdata($target, $update_array);
     }
+
+    private function updateMultiKey($target,$array){
+        $update_array = $this->session->userdata($target);
+
+        foreach($array as $key => $value){
+            if($value != null){
+                $update_array[$key] = $value;
+            }
+        }
+        $this->session->set_userdata($target, $update_array);
+    }
+
+    public function printArr($title, $array){
+        echo nl2br("\n" . $title ."\n");
+        foreach($array as $key => $value){
+            
+                if( gettype($value) === 'array'){
+                    foreach($value as $innerKey => $innerValue){
+                        echo nl2br($innerKey . ": " . $innerValue . "\n");
+                    }
+                    break;
+                }
+                echo nl2br($key . ":  &nbsp;&nbsp&nbsp;&nbsp;" . $value . "\n");
+        }
+    }
+    
+    
+    //************************************************* */
+    // APPROVE AND START ORDER
+    //************************************************* */
+    public function start_order()
+    {
+        $this->load->model('Hospital');
+        $this->load->model('Estimate');
+
+        $this->updateSession('hospital', 'antech_id', $this->input->post('antech_id'));
+        $this->updateSession('hospital', 'hosp_name', $this->input->post('hosp_name'));
+        $this->updateSession('hospital', 'area_code', $this->input->post('area_code'));
+
+        $this->updateSession('estimate', 'weight', $this->input->post('weight'));
+        $this->updateSession('estimate', 'necroCost', $this->input->post('necroCOst'));
+        $this->updateSession('estimate', 'shipCost', $this->input->post('shipCost'));
+        $this->updateSession('estimate', 'cremCost', $this->input->post('cremCost'));
+        $this->updateSession('estimate', 'totalCost', $this->input->post('totalCost'));
+
+        if($this->input->post('shipCost') > 0){
+            $this->updateSession('estimate', 'shipApproved', "TRUE");
+        }
+        if($this->input->post('cremCost') > 0){
+            $this->updateSession('estimate', 'cremApproved', "TRUE");
+        }
+    
+
+    
+        $hosp_result = $this->Hospital->validate_calculate($this->input->post());
+        $est_result = $this->Estimate->validate_start_order($this->input->post());
+
+        if($hosp_result=='valid' && $est_result=='valid'){
+
+            echo 'Good Job';
+            redirect('/order');
+
+        } else {
+            $errors = validation_errors();
+            $this->session->set_flashdata('errors', $errors);
+            echo 'errors found';
+            var_dump($errors);
+            redirect('/');
+        };
+
+        $this->printArr('ESTIMATE', $this->session->userdata('estimate'));
+        $this->printArr('HOSPITAL', $this->session->userdata('hospital'));
+
+    }
+
 
     //************************************************* */
     // LOOK UP ID IN DB
@@ -18,8 +95,6 @@ class Calculator extends CI_Controller {
         $antech_id = $this->input->post('antech_id');
         $result  = $this->Hospital->validate_lookup($antech_id);
         $this->updateSession('hospital', 'antech_id', $antech_id );
-        //var_dump($this->session->userdata('hospital'));
-        // var_dump($this->input->post());
         
         if($result == 'valid'){
             
@@ -69,35 +144,52 @@ class Calculator extends CI_Controller {
     //************************************************* */
     public function calculate() {
 
-       
-        // Get Data from Session
-        $area_code = $this->session->userdata('area_code');
-        $weight = $this->session->userdata('weight');
+        $this->load->model('Hospital');
+        $this->load->model('Estimate');
+
+        $hosp_result  = $this->Hospital->validate_calculate($this->input->post());
+        $est_result  = $this->Estimate->validate_calculate($this->input->post());
+
+        $this->updateSession('hospital', 'antech_id', $this->input->post('antech_id'));
+        $this->updateSession('hospital', 'hosp_name', $this->input->post('hosp_name'));
+        $this->updateSession('hospital', 'area_code', $this->input->post('area_code'));
+
+        $this->updateSession('estimate', 'weight', $this->input->post('weight'));
+
+        echo nl2br("ESTIMATE: \n");
+        // var_dump($this->session->userdata('estimate'));
+
+        if($hosp_result == 'valid' && $est_result == 'valid'){
+            // Get Data from Session
+            $area_code = $this->session->userdata('hospital')['area_code'];
+            $weight = $this->session->userdata('estimate')['weight'];
+            
+
+            // Calculations
+            $necroCost = $weight * 2;
+            $cremCost = $weight + 10;
+            $shipCost = $area_code != '0' ? $area_code + 1 : 0;
+            $totalCost = $shipCost + $necroCost + $cremCost;
+            echo 'calculating';
+
+            // Set Calculations into Session
+            $calculations = array(
+                'weight' => $weight,
+                'necroCost'=> $necroCost,
+                'cremCost'=> $cremCost,
+                'shipCost' => $shipCost,
+                'totalCost' => $totalCost
+            );
+            $this->updateMultiKey('estimate',$calculations);
+            $this->printArr('ESTIMTATE', $this->session->userdata('estimate'));
         
-        // Declare initial Variables
-        $shipCost = 0;
-        $necroCost=0;
-        $cremCost=0;
-        $errors='';
-        $validEntries = FALSE;
-        $calculated = FALSE;
-
-        // Calculations
-        $necroCost = $weight * 2;
-        $cremCost = $weight + 10;
-        $shipCost = $area_code != '0' ? $area_code + 1 : 0;
-        $total = $shipCost + $necroCost + $cremCost;
-        echo 'calculating';
-
-        // Set Calculations into Session
-        $calculations = array(
-            'weight' => $weight,
-            'necroCost'=> $necroCost,
-            'cremCost'=> $cremCost,
-            'shipCost' => $shipCost,
-            'total' => $total
-        );
-        $this->session->set_userdata($calculations);
+        } else {
+            $errors = validation_errors();
+            $this->session->set_flashdata('errors', $errors);
+            echo 'errors found';
+            var_dump($errors);
+        };
+    // }
 
         // Return to main page
         redirect('/');
@@ -118,9 +210,7 @@ class Calculator extends CI_Controller {
         var_dump($this->session->all_userdata());
 
 
-
-
-      redirect('/');
+        redirect('/');
 
         
 
@@ -135,44 +225,6 @@ class Calculator extends CI_Controller {
 
         switch($route){
 
-            //************************************************* */
-            // VALIDATE BEFORE CALCULATING COSTS
-            //************************************************* */
-            case "calculate":
-
-                // Get Post Data
-                $antech_id = $this->input->post('antech_id');
-                $area_code = $this->input->post('area_code');
-                $weight = $this->input->post('weight');
-                $hosp_name = $this->input->post('hosp_name');
-
-                // Store post data to array then set in session
-                $session_data = array(
-                    'antech_id' => $antech_id,
-                    'hospital_name' => $hosp_name,
-                    'area_code' => $area_code,
-                    'weight'=>$weight,
-                );
-                $this->session->set_userdata($session_data);
-            
-                //Set Required Validations
-                $this->form_validation->set_rules("antech_id", "Antech Id", "trim|required");
-                $this->form_validation->set_rules("weight", "Pet Weight", "trim|required");
-                $this->form_validation->set_rules("hosp_name", "Hospital Name", "trim|required");
-
-                if($this->form_validation->run() === FALSE)
-                {
-                    $errors = $this->view_data["errors"] = validation_errors();
-                    $this->session->set_flashdata('errors', $errors);
-                    redirect('/');
-
-                } else {
-                    // No errors  move on to caluclation function
-                    redirect('/calculator/calculate');
-                }
-                break;
-
-            
             //************************************************* */
             // VALIDATE BEFORE MOVING TO ORDER PAGE
             //************************************************* */
@@ -264,24 +316,23 @@ class Calculator extends CI_Controller {
 
         $this->load->helper('url');
         $this->load->model('Hospital');
+        $this->load->model('Estimate');
         
         if(!$this->session->userdata('hospital')){
             $template = $this->Hospital->template();
             $this->session->set_userdata('hospital',$template);
         };
+
+        if(!$this->session->userdata('estimate')){
+            $template = $this->Estimate->template();
+            $this->session->set_userdata('estimate',$template);
+        };
         //echo $this->session->userdata('antech_id');
 
         $view_data = array(
             'hospital'=> $this->session->userdata('hospital'),
-            'antech_id' =>$this->session->userdata('antech_id'),
-            'area_code' => $this->session->userdata('area_code'),
+            'estimate'=> $this->session->userdata('estimate'),
             'errors' => $this->session->flashdata('errors'),
-            'weight'=> $this->session->userdata('weight'),
-            'necroCost'=> $this->session->userdata('necroCost'),
-            'shipCost'=> $this->session->userdata('shipCost'),
-            'cremCost'=> $this->session->userdata('cremCost'),
-            'totalCost' => $this->session->userdata('total'),
-            
         );
 
 

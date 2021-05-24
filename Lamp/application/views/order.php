@@ -10,10 +10,14 @@
             display:flex;
             align-items: center;
             justify-content: space-between;
-            width: 300px;
+            width: 500px;
         }
         .width100 {
             width: 100%;
+        }
+
+        .unchecked {
+            color: grey;
         }
 
         *{
@@ -32,58 +36,114 @@
                 <h2> Hospital Info </h2>
                 <div>
                     <label for='hosp_name'>Hospital Name </label>
-                    <input name = 'hosp_name' value ='<?php echo $hosp_name ?>'>
+                    <input
+                        id ='hosp_name'
+                        name = 'hosp_name' 
+                        value ='<?php echo $hospital['hosp_name'] ?>'
+                        >
                 <div>
                 <div>
                     <label for='antech_id'>Antech ID# </label>
-                    <input name = 'antech_id' value ='<?php echo $antech_id ?>'>
+                    <input
+                        id='antech_id'
+                        name = 'antech_id' 
+                        value ='<?php echo $hospital['antech_id'] ?>'
+                        >
                 <div>
                 <div>
                     <label for='address'>Hospital Address </label>
-                    <input value = '<?php echo $form_data['address'] ?>' type='text' name = 'address'>
+                    <input
+                        id='address'
+                        name = 'address'
+                        value = '<?php echo $hospital['address'] ?>' 
+                        type='text' 
+                        >
                 <div>
                 <div>
                     <label for='phone'>Hospital Phone # </label>
-                    <input type='text' name = 'phone'>
+                    <input 
+                        id='phone'
+                        name = 'phone'
+                        type='text' 
+                        value = '<?php echo $hospital['phone'] ?>' 
+                        >
                 <div>
                 <div>
                     <label for='doctor'>Doctor's Name</label>
-                    <input type='text' name = 'doctor'>
+                    <input
+                        id='doctor'
+                        name = 'doctor'
+                        value = '<?php echo $hospital['doctor'] ?>' 
+                        type='text'
+                        >
                 <div>
                 <div>
                     <label for='email'>Email</label>
-                    <input type='text' name = 'email'>
+                    <input
+                        id='email' 
+                        name = 'email'
+                        type='text'
+                        value = '<?php echo $hospital['email'] ?>' 
+                        >
                 <div>
             </section>
             <section id='pet_info'>
                 <h2> Pet Info </h2>
                 <div>
                     <label for='pet_name'>Pet's Name</label>
-                    <input type='text' name = 'pet_name'>
+                    <input
+                        id='pet_name'
+                        name = 'pet_name'
+                        type='text'
+                        value = '<?php echo $estimate['pet_name'] ?>' 
+                        >
                 <div>
                 <div>
                     <label for ='species'>Species: </label>
-                    <select name = 'species'>
-                    <option>Dog</option>
-                    <option>Cat</option>
+                    <select
+                        id='species' 
+                        name = 'species'
+                        >
+                        <option>Dog</option>
+                        <option>Cat</option>
                     </select>
                 </div>
                 <div>
                     <label for='breed'>Breed</label>
-                    <input type='text' name = 'breed'>
+                    <input
+                        id='breed'
+                        name = 'breed'
+                        type='text'
+                        value = '<?php echo $estimate['breed'] ?>' 
+                        >
                 </div>
                 <div>
                     <label for='sex'>Sex</label>
-                    <input type='text' name = 'sex'>
+                    <input
+                        id='sex'
+                        name = 'sex'
+                        type='text'
+                        value = '<?php echo $estimate['sex'] ?>' 
+                        >
                 </div>
 
                 <div>
                     <label for='age'>Age</label>
-                    <input type='text' name = 'age'>
+                    <input
+                        id='age'
+                        name = 'age'
+                        type='text'
+                        value = '<?php echo $estimate['age'] ?>' 
+                        >
                 <div>
                 <div>
                     <label for='weight'>Weight</label>
-                    <input name = 'weight' value ='<?php echo $weight ?>'>
+                    <input
+                        id='weight'
+                        name = 'weight'
+                        type='text'
+                        value = '<?php echo $estimate['weight'] ?>' 
+                        >
                 </div>
             </section>
         </section>
@@ -114,25 +174,97 @@
         </section>
         <section id='costs' >
             <h2>Cost Summary </h2>
+            <!-- NECROPSY -->
             <div id='necroCost'  class='flex'>
-                <p>NecroCost: <?php echo $necroCost ?></p>
+                <label>Necropsy:  <input
+                        id='necroCost'
+                        name = 'necroCost'
+                        type='text'
+                        readonly
+                        value = '<?php echo $estimate['necroCost'] ?>' 
+                        >
+                </label>
                 <label for="necro"> Approved</label><br>
                 <input checked disabled type="checkbox" id="necro" name="necro" value=" Necropsy Cost Approved">
             </div>
-            <div id='shipCost' class='flex'>
-                <p>Ambulance Delivery: <?php echo $shipCost ?></p>
-                <label for="ship"> Approved</label><br>
-                <input type="checkbox" id="ship" name="ship" value=" Delivery Cost Approved">
+            <!-- SHIPPING  -->
+            <div id='SCost' class='flex'>
+                <label name='shipCost'>Shipping:  <input
+                        id='shipCost'
+                        name = 'shipCost'
+                        type='text'
+                        readonly
+                        value = '<?php echo $estimate['shipCost'] ?>' 
+                        >
+                </label>
+                <label name = 'shipCost' for="ship_check"> Approved</label><br>
+                <input 
+                    type="checkbox" 
+                    onchange="toggleChecks(this)"
+                    id="ship_check" 
+                    name="shipCost" 
+                    value=" Delivery Cost Approved"
+                    <?php 
+                    if($estimate['shipApproved']=== "TRUE"){
+                        echo 'checked';
+                    }
+                    ?>
+                >
             </div>
-            <div id='cremCost' class='flex'>
-                <p>Cremation: <?php echo $cremCost ?></p>
-                <label for="crem"> Approved</label><br>
-                <input type="checkbox" id="crem" name="crem" value=" Cremation Cost Approved">
+            <!-- CREMATION -->
+            <div id='CCost' class='flex'>
+                <label name= 'cremCost'>Cremation:  <input
+                        id='cremCost'
+                        name = 'cremCost'
+                        type='text'
+                        readonly
+                        value = '<?php echo $estimate['cremCost'] ?>' 
+                        >
+                </label>
+                <label
+                    name='cremCost'
+                    for="crem_check"> Approved</label><br>
+                <input 
+                    type="checkbox" 
+                    id="crem_check" 
+                    name="cremCost" 
+                    value=" Cremation Cost Approved"
+                    onchange="toggleChecks(this)"
+                    <?php 
+                        if($estimate['cremApproved']=== "TRUE"){
+                            echo 'checked';
+                        }
+                    ?>
+                    >
             </div>
-            <div id='totalCost' class='flex'>
-                <p>Total: <?php echo $totalCost ?></p>
-                <label for="total"> Approved</label><br>
-                <input type="checkbox" id="total" name="total" value=" Total Cost Approved">
+            <!-- TOTAL -->
+            <div id='TCost' class='flex'>
+                <label>Total:  
+                        <input
+                            id='totalCost'
+                            name = 'totalCost'
+                            type='text'
+                            readonly
+                            value = '<?php echo $estimate['totalCost'] ?>'
+                            <?php 
+                                if($estimate['totalApproved']=== "TRUE"){
+                                    echo 'checked';
+                                }
+                            ?>
+                            >
+                </label>
+                <label for="total_check">Approved</label><br>
+                    <input 
+                        type="checkbox" 
+                        id="total_check" 
+                        name="totalCost" 
+                        value=" Total Cost Approved"
+                        <?php 
+                            if($estimate['totalApproved']=== "TRUE"){
+                                echo 'checked';
+                            }
+                        ?>
+                        >
             </div>
         </section>
         <input type='submit' value='Submit Neropsy Request'>
@@ -145,7 +277,55 @@
 
 
     <script>
+        var ship_check = document.getElementById('ship_check');
+        var total_check = document.getElementById('total_check');
+        var crem_check = document.getElementById('crem_check');
+        
+        var totalCost = document.getElementById('totalCost');
+        var shipCost = document.getElementById('shipCost');
+        var cremCost = document.getElementById('cremCost');
+        var necroCost= document.getElementById('necroCost');
 
+        function toggleChecks(element){
+           // console.log(element.name);
+            var cost = document.getElementById(element.name)
+            console.log(total_check);
+            if(!element.checked){
+                console.log('Checked');
+               // console.log(cost);
+                var total = parseInt(totalCost.value) - parseInt(cost.value)
+                totalCost.value = total
+                cost.style.textDecoration = 'line-through';
+                cost.style.color = 'grey';
+
+                var texts = document.getElementsByName(element.name);
+                //console.log(texts);
+
+                for( text of texts){
+                    text.classList.add('unchecked')
+                   // console.log(text);
+                }
+            } else {
+                var total = parseInt(totalCost.value) + parseInt(cost.value)
+    
+                totalCost.value = total
+                
+                var texts = document.getElementsByName(element.name);
+                //console.log(texts);
+
+                for( text of texts){
+                    text.classList.remove('unchecked')
+                   // console.log(text);
+                }
+                cost.style.textDecoration = 'unset';
+                cost.style.color = 'unset';
+            }
+
+            total_check.checked = false;
+            console.log(total_check);
+        }
+
+        
         
    </script>
 

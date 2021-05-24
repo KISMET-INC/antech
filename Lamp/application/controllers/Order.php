@@ -4,20 +4,19 @@ class Order extends CI_Controller {
 
     public function index() 
     {
-        $this->load->library("form_validation");
+        // var_dump($this->session->userdata('hospital'));
+        // var_dump($this->session->userdata('estimate'));
+
+        $this->load->library('array_helper');
+        // $this->array_helper->printHospital();
+        // $this->array_helper->printEstimate();
+    
 
 
         $view_data = array(
-            'hosp_name'=> $this->session->userdata('hospital_name'),
-            'antech_id' =>$this->session->userdata('antech_id'),
-            'area_code' => $this->session->userdata('area_code'),
+            'hospital'=> $this->session->userdata('hospital'),
+            'estimate' =>$this->session->userdata('estimate'),
             'errors' => $this->session->flashdata('errors'),
-            'weight'=> $this->session->userdata('weight'),
-            'necroCost'=> $this->session->userdata('necroCost'),
-            'shipCost'=> $this->session->userdata('shipCost'),
-            'cremCost'=> $this->session->userdata('cremCost'),
-            'totalCost' => $this->session->userdata('total'),
-            'form_data'=> $this->session->userdata('form_data'),
         );
 
         

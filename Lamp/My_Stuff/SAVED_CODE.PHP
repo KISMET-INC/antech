@@ -126,3 +126,29 @@
     }
 
 }
+
+
+
+       // foreach($view_data as $value){
+        //     if( gettype($value) === 'array'){
+        //         foreach($value as $innerValue){
+        //             echo nl2br("$innerValue ");
+        //         }
+        //         break;
+        //     }
+        //     echo nl2br("$value \n");
+        // }
+
+
+        // foreach($view_data as $key => $value){
+        //     if( gettype($value) === 'array'){
+        //         foreach($value as $innerKey => $innerValue){
+        //             echo nl2br($innerKey . ": " . $innerValue . "\n");
+        //         }
+        //         break;
+        //     }
+        //     echo nl2br($key . ": " . $value . "\n");
+        // }
+
+
+        echo nl2br($key . ": " . $value . "\n");
