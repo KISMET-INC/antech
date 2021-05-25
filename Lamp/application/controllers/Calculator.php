@@ -91,6 +91,7 @@ class Calculator extends CI_Controller {
     // LOOK UP ID IN DB
     //************************************************* */
     public function lookup() {
+        $this->load->library('array_helper');
         $this->load->model('Hospital');
         $antech_id = $this->input->post('antech_id');
         $result  = $this->Hospital->validate_lookup($antech_id);
@@ -98,40 +99,34 @@ class Calculator extends CI_Controller {
         
         if($result == 'valid'){
             
-            echo 'checkingDB';
-            // Get Id from Session
+            //echo 'checkingDB';
 
-            // Set ID to Search for
-            $search_id = 92220;
+            if($this->Hospital->find_hospital_in_text($antech_id) == TRUE)
+            {
+                echo "FOUND";
+                
+            } else {
+                $query2 = $this->Hospital->find_hospital_by_id($antech_id);
 
-            // Load Txt File
-            $fdata = file('smallquotes.txt');
+                var_dump($query2);
 
-            // Antech ID's Appear every 14 Lines
-            for($i = 4; $i < count($fdata); $i=$i+14){
-
-                // Extract ID from line
-                $current_id = substr($fdata[$i],10);
-
-                if($search_id == $current_id){
-
-                    // Extract Important Info from lines
-                    $hosp_name = substr($fdata[$i-1],25);
-                    $area_code = substr($fdata[$i+5],25);
-
-                    // Set into Session
-                    if (strlen($area_code) != 2){
-                        $this->updateSession('hospital', 'area_code', $area_code );     
-                    } 
-                    $this->updateSession('hospital', 'hosp_name', $hosp_name );
-
-                }
-
+                if ($query2 != NULL){
+                    $this->array_helper->updateMultiKey('hospital', $query2);
+                    $this->array_helper->printHospital();
+                    
+                    echo $query2['antech_id'];
+                    
+                } else {
+                    $errors = "NO PREVIOUS HISTORY FOUND";
+                    $this->session->set_flashdata('errors', $errors);
+                    echo 'errors found';
+                } 
             }
+            
         } else {
             $errors = validation_errors();
             $this->session->set_flashdata('errors', $errors);
-            echo 'errors found';
+            echo 'errors found in validation';
         }
         
         redirect('/');

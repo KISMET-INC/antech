@@ -22,7 +22,7 @@ class Array_Helper {
         $update_array = $CI->session->userdata($target);
 
         foreach($array as $key => $value){
-            if($value != null){
+            if($value != null && array_key_exists($key, $update_array)){
                 $update_array[$key] = $value;
             }
         }
@@ -41,6 +41,22 @@ class Array_Helper {
                 }
                 echo nl2br($key . ":  &nbsp;&nbsp&nbsp;&nbsp;" . $value . "\n");
         }
+    }
+
+    
+
+    public function printQuery($title,$query){
+        echo nl2br("\n" . $title ."\n");
+        foreach ($query as $row)
+        {
+            echo nl2br("\n\n");
+            foreach($row as $key => $value){
+            
+                echo nl2br($key . "&nbsp;&nbsp&nbsp;&nbsp; " . $value . "\n");
+            }
+            
+        }
+                
     }
 
     public function printHospital(){

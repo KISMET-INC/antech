@@ -94,3 +94,11 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+// $db['default']['hostname'] = 'localhost';
+// $db['default']['username'] = 'root';
+// // default password is root for Mac and an empty string ('') for PCs
+// $db['default']['password'] = '12345Melrose';
+// // this will be your schema name
+// $db['default']['database'] = 'antech';
+// $db['default']['dbdriver'] = 'mysqli';
