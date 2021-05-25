@@ -1,69 +1,29 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Calculator extends CI_Controller {
-
-    private function updateSession($target,$key, $value){
-        $update_array = $this->session->userdata($target);
-
-        if($value != null){
-            $update_array[$key] = $value;
-        }
-
-        $this->session->set_userdata($target, $update_array);
-    }
-
-    private function updateMultiKey($target,$array){
-        $update_array = $this->session->userdata($target);
-
-        foreach($array as $key => $value){
-            if($value != null){
-                $update_array[$key] = $value;
-            }
-        }
-        $this->session->set_userdata($target, $update_array);
-    }
-
-    public function printArr($title, $array){
-        echo nl2br("\n" . $title ."\n");
-        foreach($array as $key => $value){
-            
-                if( gettype($value) === 'array'){
-                    foreach($value as $innerKey => $innerValue){
-                        echo nl2br($innerKey . ": " . $innerValue . "\n");
-                    }
-                    break;
-                }
-                echo nl2br($key . ":  &nbsp;&nbsp&nbsp;&nbsp;" . $value . "\n");
-        }
-    }
-    
     
     //************************************************* */
     // APPROVE AND START ORDER
     //************************************************* */
     public function start_order()
     {
+        $this->load->library('array_helper');
         $this->load->model('Hospital');
         $this->load->model('Estimate');
 
-        $this->updateSession('hospital', 'antech_id', $this->input->post('antech_id'));
-        $this->updateSession('hospital', 'hosp_name', $this->input->post('hosp_name'));
-        $this->updateSession('hospital', 'area_code', $this->input->post('area_code'));
+        $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
+        $estimate = $this->array_helper->buildPostArray('estimate', $this->input->post());
 
-        $this->updateSession('estimate', 'weight', $this->input->post('weight'));
-        $this->updateSession('estimate', 'necroCost', $this->input->post('necroCOst'));
-        $this->updateSession('estimate', 'shipCost', $this->input->post('shipCost'));
-        $this->updateSession('estimate', 'cremCost', $this->input->post('cremCost'));
-        $this->updateSession('estimate', 'totalCost', $this->input->post('totalCost'));
+        $this->array_helper->updateMultiKey('hospital', $hospital);
+        $this->array_helper->updateMultiKey('estimate', $estimate);
+
 
         if($this->input->post('shipCost') > 0){
-            $this->updateSession('estimate', 'shipApproved', "TRUE");
+            $this->array_helper->updateSession('estimate', 'shipApproved', "TRUE");
         }
         if($this->input->post('cremCost') > 0){
-            $this->updateSession('estimate', 'cremApproved', "TRUE");
+            $this->array_helper->updateSession('estimate', 'cremApproved', "TRUE");
         }
-    
-
     
         $hosp_result = $this->Hospital->validate_calculate($this->input->post());
         $est_result = $this->Estimate->validate_start_order($this->input->post());
@@ -81,8 +41,8 @@ class Calculator extends CI_Controller {
             redirect('/');
         };
 
-        $this->printArr('ESTIMATE', $this->session->userdata('estimate'));
-        $this->printArr('HOSPITAL', $this->session->userdata('hospital'));
+        $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
+        $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
 
     }
 
@@ -93,28 +53,24 @@ class Calculator extends CI_Controller {
     public function lookup() {
         $this->load->library('array_helper');
         $this->load->model('Hospital');
-        $antech_id = $this->input->post('antech_id');
-        $result  = $this->Hospital->validate_lookup($antech_id);
-        $this->updateSession('hospital', 'antech_id', $antech_id );
-        
+
+        $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
+        $this->array_helper->updateMultiKey('hospital', $hospital);
+
+        $result  = $this->Hospital->validate_lookup($this->input->post());
         if($result == 'valid'){
             
-            //echo 'checkingDB';
 
-            if($this->Hospital->find_hospital_in_text($antech_id) == TRUE)
+            if($this->Hospital->find_hospital_in_text($hospital['antech_id']) == TRUE)
             {
                 echo "FOUND";
                 
             } else {
-                $query2 = $this->Hospital->find_hospital_by_id($antech_id);
 
-                var_dump($query2);
-
-                if ($query2 != NULL){
-                    $this->array_helper->updateMultiKey('hospital', $query2);
+                $query = $this->Hospital->find_hospital_by_id($hospital['antech_id']);
+                if ($query != NULL){
+                    $this->array_helper->updateMultiKey('hospital', $query);
                     $this->array_helper->printHospital();
-                    
-                    echo $query2['antech_id'];
                     
                 } else {
                     $errors = "NO PREVIOUS HISTORY FOUND";
@@ -139,20 +95,18 @@ class Calculator extends CI_Controller {
     //************************************************* */
     public function calculate() {
 
+        $this->load->library('array_helper');
         $this->load->model('Hospital');
         $this->load->model('Estimate');
 
+        $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
+        $estimate = $this->array_helper->buildPostArray('estimate', $this->input->post());
+
+        $this->array_helper->updateMultiKey('hospital', $hospital);
+        $this->array_helper->updateMultiKey('estimate', $estimate);
+
         $hosp_result  = $this->Hospital->validate_calculate($this->input->post());
         $est_result  = $this->Estimate->validate_calculate($this->input->post());
-
-        $this->updateSession('hospital', 'antech_id', $this->input->post('antech_id'));
-        $this->updateSession('hospital', 'hosp_name', $this->input->post('hosp_name'));
-        $this->updateSession('hospital', 'area_code', $this->input->post('area_code'));
-
-        $this->updateSession('estimate', 'weight', $this->input->post('weight'));
-
-        echo nl2br("ESTIMATE: \n");
-        // var_dump($this->session->userdata('estimate'));
 
         if($hosp_result == 'valid' && $est_result == 'valid'){
             // Get Data from Session
@@ -175,8 +129,8 @@ class Calculator extends CI_Controller {
                 'shipCost' => $shipCost,
                 'totalCost' => $totalCost
             );
-            $this->updateMultiKey('estimate',$calculations);
-            $this->printArr('ESTIMTATE', $this->session->userdata('estimate'));
+
+            $this->array_helper->updateMultiKey('estimate',$calculations);
         
         } else {
             $errors = validation_errors();
@@ -210,95 +164,6 @@ class Calculator extends CI_Controller {
         
 
     }
-    
-    
-    //************************************************* */
-    //  ALL VALIDATIONS
-    //************************************************* */
-    public function validate($route){
-        $this->load->library("form_validation");
-
-        switch($route){
-
-            //************************************************* */
-            // VALIDATE BEFORE MOVING TO ORDER PAGE
-            //************************************************* */
-            case "order":
-
-                // Get Post Data and set into Session
-                $antech_id = $this->input->post('antech_id');
-                $area_code = $this->input->post('area_code');
-                $weight = $this->input->post('weight');
-                $hosp_name = $this->input->post('hosp_name');
-                $necroCost = $this->input->post('necroCost');
-                $cremCost = $this->input->post('cremCost');
-                $shipCost = $this->input->post('shipCost');
-                $totalCost = $this->input->post('totalCost');
-
-                $session_data = array(
-                    'antech_id' => $antech_id,
-                    'hospital_name' => $hosp_name,
-                    'area_code' => $area_code,
-                    'weight'=>$weight,
-                    'necroCost'=>$necroCost,
-                    'cremCost'=>$cremCost,
-                    'shipCost'=>$shipCost,
-                    'totalCost'=>$totalCost,
-                );
-
-                $this->session->set_userdata($session_data);
-
-                
-                
-                // Set Validation Rules
-                $this->form_validation->set_rules("antech_id", "Antech Id", "trim|required");
-                $this->form_validation->set_rules("weight", "Pet Weight", "trim|required");
-                $this->form_validation->set_rules("hosp_name", "Hospital Name", "trim|required");
-                $this->form_validation->set_rules("necroCost", "Calculation", "trim|required");
-                    
-                if($this->form_validation->run() === FALSE)
-                {
-                    $errors = $this->view_data["errors"] = validation_errors();
-                    $this->session->set_flashdata('errors', $errors);
-
-                    redirect('/');
-        
-                } else {
-
-                    // NO errors, move on to Order page
-                    redirect('/order');
-                }
-
-                break;
-            case 'approval':
-                $form_data = $this->input->post();
-
-                $this->session->set_userdata('form_data', $form_data);
-                //var_dump($this->session->userdata('form_data'));
-                var_dump($this->session->all_userdata());
-
-                $this->form_validation->set_rules("address", "address", "trim|required");
-                if($this->form_validation->run() === FALSE)
-                {
-                    $errors = $this->view_data["errors"] = "All fields are required!";
-                    $this->session->set_flashdata('errors', $errors);
-
-                    
-                } else {
-                    $errors = $this->view_data["errors"] = "Goodjob";
-                    $this->session->set_flashdata('errors', $errors);
-
-                    redirect('/order/submit');
-                }
-                
-    
-                echo $this->session->userdata('form_data')['hosp_name'];
-                redirect('/order');
-                break;
-        }
-
-        
-    } // END VALIDATIONS
 
 
     //************************************************* */
