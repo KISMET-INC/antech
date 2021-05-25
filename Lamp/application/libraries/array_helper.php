@@ -6,25 +6,27 @@ class Array_Helper {
         echo 'hello';
     }
 
-    private function updateSession($target,$key, $value){
-        $update_array = $this->session->userdata($target);
+    public function updateSession($target,$key, $value){
+        $CI =& get_instance();
+        $update_array = $CI->session->userdata($target);
 
         if($value != null){
             $update_array[$key] = $value;
         }
 
-        $this->session->set_userdata($target, $update_array);
+        $CI->session->set_userdata($target, $update_array);
     }
 
-    private function updateMultiKey($target,$array){
-        $update_array = $this->session->userdata($target);
+    public function updateMultiKey($target,$array){
+        $CI =& get_instance();
+        $update_array = $CI->session->userdata($target);
 
         foreach($array as $key => $value){
             if($value != null){
                 $update_array[$key] = $value;
             }
         }
-        $this->session->set_userdata($target, $update_array);
+        $CI->session->set_userdata($target, $update_array);
     }
 
     public function printArr($title, $array){

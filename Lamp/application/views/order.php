@@ -29,10 +29,11 @@
 
 <body>
     <h2> Order Approval </h2>
+    <form id='approval_form' action='/Lamp/index.php/order/submit' method="POST"> 
 
-    <form id='approval_form' action='/Lamp/index.php/calculator/validate/approval' method="POST"> 
         <section id='details' class='flex width100'>
-            <section id='hospital_info'>
+        <!-- HOSPITAL INFO -->
+            <fieldset id='hospital_info'>
                 <h2> Hospital Info </h2>
                 <div>
                     <label for='hosp_name'>Hospital Name </label>
@@ -86,8 +87,9 @@
                         value = '<?php echo $hospital['email'] ?>' 
                         >
                 <div>
-            </section>
-            <section id='pet_info'>
+            </fieldset>
+            <!-- PET INFO -->
+            <fieldset id='pet_info'>
                 <h2> Pet Info </h2>
                 <div>
                     <label for='pet_name'>Pet's Name</label>
@@ -96,6 +98,15 @@
                         name = 'pet_name'
                         type='text'
                         value = '<?php echo $estimate['pet_name'] ?>' 
+                        >
+                <div>
+                <div>
+                    <label for='owner'>Owner's Name</label>
+                    <input
+                        id='owner'
+                        name = 'owner'
+                        type='text'
+                        value = '<?php echo $estimate['owner'] ?>' 
                         >
                 <div>
                 <div>
@@ -126,7 +137,6 @@
                         value = '<?php echo $estimate['sex'] ?>' 
                         >
                 </div>
-
                 <div>
                     <label for='age'>Age</label>
                     <input
@@ -145,37 +155,48 @@
                         value = '<?php echo $estimate['weight'] ?>' 
                         >
                 </div>
-            </section>
+            </fieldset>
         </section>
-        <section id='history'>
+
+        <!-- PET HISTORY-->
+        <fieldset id='history'>
             <h2>History</h2>
+
             <div id='euth'>
+            <!-- EUTHANIZED -->
                 <p>Euthanized?</p>
                 <label for="yes">Yes</label>
-                <input type="radio" name="euth" id='yes' value="yes">
+                <input type="radio" name="euth" id='euth_yes' value="yes">
+
                 <label for="no">No</label>
-                <input type="radio" name="euth" id='no' value="no">
+                <input type="radio" name="euth" id='euth_no' value="no">
             </div>
+            <!-- FROZEN -->
             <div id='frozen'>
                 <p>Is the body frozen?</p>
                 <label for="yes">Yes</label>
-                <input type="radio" name="frozen" id='yes' value="yes">
+                <input type="radio" name="frozen" id='frozen_yes' value="yes">
+
                 <label for="no">No</label>
-                <input type="radio" name="frozen" id='no' value="no">
+                <input type="radio" name="frozen" id='frozen_no' value="no">
             </div>
+
+            <!-- DEATH -->
             <div id='death_date'>
                 <label for='date'>Date of death: </label>
-                <input id='date'type='date'>
-            </div> 
+                <input name='death' id='date'type='date' value = '<?php echo $estimate['death']?>'>
+            </div>
+
+             <!--SUMMARY  -->
             <div>
                 <label for='summary'>A summarization is REQUIRED</label>
-                <textarea id='summary' name='summary'></textarea>
+                <textarea id='summary' name='summary'><?php echo $estimate['summary'] ?></textarea>
             </div>
-        </section>
-        <section id='costs' >
+        </fieldset>
+        <fieldset id='costs' >
             <h2>Cost Summary </h2>
             <!-- NECROPSY -->
-            <div id='necroCost'  class='flex'>
+            <div id='necropsy'  class='flex'>
                 <label>Necropsy:  <input
                         id='necroCost'
                         name = 'necroCost'
@@ -188,46 +209,52 @@
                 <input checked disabled type="checkbox" id="necro" name="necro" value=" Necropsy Cost Approved">
             </div>
             <!-- SHIPPING  -->
-            <div id='SCost' class='flex'>
-                <label name='shipCost'>Shipping:  <input
+            <div id='shipping' class='flex'>
+                <label class='shipCost'>Shipping:  
+                    <input
                         id='shipCost'
+                        class = 'shipCost'
                         name = 'shipCost'
                         type='text'
                         readonly
                         value = '<?php echo $estimate['shipCost'] ?>' 
                         >
                 </label>
-                <label name = 'shipCost' for="ship_check"> Approved</label><br>
+                <!-- CHECKBOX -->
+                <label class='shipCost' for="ship_check"> Approved</label><br>
                 <input 
-                    type="checkbox" 
+                    id="ship_check"
+                    class = 'shipCost'
+                    name="ship_check" 
                     onchange="toggleChecks(this)"
-                    id="ship_check" 
-                    name="shipCost" 
                     value=" Delivery Cost Approved"
                     <?php 
-                    if($estimate['shipApproved']=== "TRUE"){
-                        echo 'checked';
-                    }
-                    ?>
+                        if($estimate['shipApproved']=== "TRUE"){
+                            echo 'checked';
+                        }
+                        ?>
+                    type="checkbox" 
                 >
             </div>
             <!-- CREMATION -->
-            <div id='CCost' class='flex'>
-                <label name= 'cremCost'>Cremation:  <input
+            <div id='cremation' class='flex'>
+                <label  class ='cremCost' name= 'cremCost'>Cremation:  
+                    <input
                         id='cremCost'
                         name = 'cremCost'
+                        class='cremCost'
                         type='text'
                         readonly
                         value = '<?php echo $estimate['cremCost'] ?>' 
                         >
                 </label>
-                <label
-                    name='cremCost'
-                    for="crem_check"> Approved</label><br>
+                <!-- CHECKBOX -->
+                <label class='cremCost' for="crem_check"> Approved</label><br>
                 <input 
-                    type="checkbox" 
+                    type="checkbox"
+                    class='cremCost' 
                     id="crem_check" 
-                    name="cremCost" 
+                    name="crem_check" 
                     value=" Cremation Cost Approved"
                     onchange="toggleChecks(this)"
                     <?php 
@@ -238,7 +265,7 @@
                     >
             </div>
             <!-- TOTAL -->
-            <div id='TCost' class='flex'>
+            <div id='total' class='flex'>
                 <label>Total:  
                         <input
                             id='totalCost'
@@ -257,7 +284,7 @@
                     <input 
                         type="checkbox" 
                         id="total_check" 
-                        name="totalCost" 
+                        name="total_check" 
                         value=" Total Cost Approved"
                         <?php 
                             if($estimate['totalApproved']=== "TRUE"){
@@ -266,14 +293,17 @@
                         ?>
                         >
             </div>
-        </section>
+        </fieldset>
+        <!-- BUTTONS AND ERRORS -->
         <input type='submit' value='Submit Neropsy Request'>
         <span><?php echo $errors ;?></span>
         <p id="my-form-status"></p>
     </form>
+
     <input type='button' value='Cancel'>
-      <!-- Clear Session Data -->
-      <a href='/Lamp/index.php/calculator/clear'>Clear </a>
+    <!-- Clear Session Data -->
+    <a href='/Lamp/index.php/calculator/clear'>Clear </a>
+
 
 
     <script>
@@ -286,10 +316,23 @@
         var cremCost = document.getElementById('cremCost');
         var necroCost= document.getElementById('necroCost');
 
+        var euth = "<?php echo $estimate['euth'] ?>"
+        if(euth === 'yes'){
+            document.getElementById('euth_yes').checked = true;
+        } else if (euth == 'no'){
+            document.getElementById('euth_no').checked = true;
+        }
+
+        var frozen = "<?php echo $estimate['frozen'] ?>"
+        if(frozen === 'yes'){
+            document.getElementById('frozen_yes').checked = true;
+        } else if (frozen == 'no'){
+            document.getElementById('frozen_no').checked = true;
+        }
+
         function toggleChecks(element){
-           // console.log(element.name);
-            var cost = document.getElementById(element.name)
-            console.log(total_check);
+            console.log(element.classList[0]);
+            var cost = document.getElementById(element.classList[0])
             if(!element.checked){
                 console.log('Checked');
                // console.log(cost);
@@ -298,7 +341,7 @@
                 cost.style.textDecoration = 'line-through';
                 cost.style.color = 'grey';
 
-                var texts = document.getElementsByName(element.name);
+                var texts = document.getElementsByClassName(element.classList[0]);
                 //console.log(texts);
 
                 for( text of texts){
@@ -306,15 +349,15 @@
                    // console.log(text);
                 }
             } else {
-                var total = parseInt(totalCost.value) + parseInt(cost.value)
+                var total = parseInt(totalCost.value) + parseInt(cost.value);
     
-                totalCost.value = total
+                totalCost.value = total;
                 
-                var texts = document.getElementsByName(element.name);
+                var texts = document.getElementsByClassName(element.classList[0]);
                 //console.log(texts);
 
                 for( text of texts){
-                    text.classList.remove('unchecked')
+                    text.classList.remove('unchecked');
                    // console.log(text);
                 }
                 cost.style.textDecoration = 'unset';
@@ -322,8 +365,10 @@
             }
 
             total_check.checked = false;
-            console.log(total_check);
+            
         }
+
+      
 
         
         
