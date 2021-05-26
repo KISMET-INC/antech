@@ -23,6 +23,9 @@
                 onkeypress='updateValue(event)' 
                 onchange='updateValue(event)' 
             >
+            <input type='hidden' name = 'hosp_name' value='<?php echo $hospital['hosp_name'] ?>'>
+            <input type='hidden' name = 'area_code' value='<?php echo $hospital['area_code'] ?>'>
+            <input type='hidden' name = 'weight' value='<?php echo $estimate['weight'] ?>'>
             <input type='submit'value="Lookup IDx"/>
         </div>
     </form>

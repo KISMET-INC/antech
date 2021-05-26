@@ -4,8 +4,7 @@ class Order extends CI_Controller {
 
     public function index() 
     {
-        // var_dump($this->session->userdata('hospital'));
-        // var_dump($this->session->userdata('estimate'));
+        
 
         $this->load->library('array_helper');
         // $this->array_helper->printHospital();
@@ -28,46 +27,26 @@ class Order extends CI_Controller {
     public function submit()
     {
         $this->load->library('array_helper');
+        $this->load->library('array_helper');
+        $this->load->model('Hospital');
+        $this->load->model('Estimate');
 
-        $this->array_helper->printArr('POST',$this->input->post());
-        
-        $hospital = array(
-            "antech_id" => $this->input->post('antech_id'),
-            "hosp_name" => $this->input->post('hosp_name'),
-            "address" => $this->input->post('address'),
-            "phone" => $this->input->post('phone'),
-            "doctor" => $this->input->post('doctor'),
-            "email" => $this->input->post('email'),
-        );
-
-        $estimate = array(
-            "weight" => $this->input->post('weight'),
-            "owner" => $this->input->post('owner'),
-            "pet_name" => $this->input->post('pet_name'),
-            "species" => $this->input->post('species'),
-            "breed" => $this->input->post('breed'),
-            "sex" => $this->input->post('sex'),
-            "age" => $this->input->post('age'),
-            "frozen" => $this->input->post('frozen'),
-            "death" => $this->input->post('death'),
-            "euth" => $this->input->post('euth'),
-            "summary" => $this->input->post('summary'),
-            "necroCost" => $this->input->post('necroCost'),
-            "shipCost" => $this->input->post('shipCost'),
-            "cremCost" => $this->input->post('cremCost'),
-            "totalCost" => $this->input->post('totalCost'),
-            "shipApproved" => $this->input->post('shipApproved'),
-            "cremApproved" => $this->input->post('cremApproved'),
-            "totalApproved" => $this->input->post('totalApproved'),
-        );
-
-
+        $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
+        $estimate = $this->array_helper->buildPostArray('estimate', $this->input->post());
 
         $this->array_helper->updateMultiKey('hospital', $hospital);
         $this->array_helper->updateMultiKey('estimate', $estimate);
 
-        $this->load->model('Hospital');
-        $this->load->model('Estimate');
+        if(!array_key_exists('shipApproved', $this->input->post())){
+            $this->array_helper->updateSession('estimate', 'shipApproved', 'FALSE');
+        }
+        if(!array_key_exists('cremApproved',$this->input->post())){
+            $this->array_helper->updateSession('estimate', 'cremApproved', 'FALSE');
+        }
+
+        $this->array_helper->printArr('POST', $this->input->post());
+        $this->array_helper->printEstimate();
+
 
         $hosp_result = $this->Hospital->validate_submit($hospital);
         $est_result = $this->Estimate->validate_submit($estimate);
@@ -77,6 +56,7 @@ class Order extends CI_Controller {
         if($hosp_result=='valid' && $est_result=='valid'){
 
             echo 'Good Job';
+            $this->Estimate->update_estimate($this->session->userdata('estimate'));
             //redirect('/order');
 
             
@@ -91,8 +71,8 @@ class Order extends CI_Controller {
         foreach($myform as $key => $value){
             echo nl2br($key . ": " . $value . "\n");
             echo "<script type='text/JavaScript'> 
-             console.log('{$key}');
-             formData.append('{$key}', '{$value}');
+            console.log('{$key}');
+            formData.append('{$key}', '{$value}');
             </script>";
 
         };
@@ -115,6 +95,8 @@ class Order extends CI_Controller {
 
         
         </script>";
+        $this->session->unset_userdata('estimate');
+        redirect('/');
 
         } else {
             $errors = validation_errors();

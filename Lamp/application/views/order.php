@@ -225,9 +225,9 @@
                 <input 
                     id="ship_check"
                     class = 'shipCost'
-                    name="ship_check" 
+                    name="shipApproved" 
                     onchange="toggleChecks(this)"
-                    value=" Delivery Cost Approved"
+                    value="TRUE"
                     <?php 
                         if($estimate['shipApproved']=== "TRUE"){
                             echo 'checked';
@@ -254,8 +254,8 @@
                     type="checkbox"
                     class='cremCost' 
                     id="crem_check" 
-                    name="crem_check" 
-                    value=" Cremation Cost Approved"
+                    name="cremApproved" 
+                    value="TRUE"
                     onchange="toggleChecks(this)"
                     <?php 
                         if($estimate['cremApproved']=== "TRUE"){
@@ -273,19 +273,14 @@
                             type='text'
                             readonly
                             value = '<?php echo $estimate['totalCost'] ?>'
-                            <?php 
-                                if($estimate['totalApproved']=== "TRUE"){
-                                    echo 'checked';
-                                }
-                            ?>
-                            >
+                        >
                 </label>
                 <label for="total_check">Approved</label><br>
                     <input 
                         type="checkbox" 
                         id="total_check" 
-                        name="total_check" 
-                        value=" Total Cost Approved"
+                        name="totalApproved" 
+                        value="TRUE"
                         <?php 
                             if($estimate['totalApproved']=== "TRUE"){
                                 echo 'checked';

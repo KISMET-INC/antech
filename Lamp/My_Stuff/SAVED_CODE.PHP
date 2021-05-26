@@ -152,3 +152,9 @@
 
 
         echo nl2br($key . ": " . $value . "\n");
+
+        $date1 = date_create(date("Y-m-d,3:i"));
+        $date2 =  date_create(date("Y-m-d, 5:i"));
+
+        $interval = date_diff($date1,$date2);
+        echo $interval->format('%H:%i');
