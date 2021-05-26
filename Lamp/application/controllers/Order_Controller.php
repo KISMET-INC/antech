@@ -1,26 +1,16 @@
 
 <?php 
-class Order extends CI_Controller {
+class Order_Controller extends CI_Controller {
 
     public function index() 
     {
-        
-
-        $this->load->library('array_helper');
-        // $this->array_helper->printHospital();
-        // $this->array_helper->printEstimate();
-    
-
-
         $view_data = array(
             'hospital'=> $this->session->userdata('hospital'),
             'estimate' =>$this->session->userdata('estimate'),
             'errors' => $this->session->flashdata('errors'),
         );
-
         
-        
-        $this->load->view('order', $view_data);
+        $this->load->view('order_viewer', $view_data);
     }
 
 
@@ -55,7 +45,6 @@ class Order extends CI_Controller {
 
         if($hosp_result=='valid' && $est_result=='valid'){
 
-            echo 'Good Job';
             $this->Estimate->update_estimate($this->session->userdata('estimate'));
             //redirect('/order');
 
@@ -95,6 +84,7 @@ class Order extends CI_Controller {
 
         
         </script>";
+
         $this->session->unset_userdata('estimate');
         redirect('/');
 

@@ -1,15 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Calculator extends CI_Controller {
+class Estimate_Controller extends CI_Controller {
     
     //************************************************* */
     // APPROVE AND START ORDER
     //************************************************* */
     public function start_order()
     {
-        $this->load->library('array_helper');
-        $this->load->model('Hospital');
-        $this->load->model('Estimate');
 
         $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
         $estimate = $this->array_helper->buildPostArray('estimate', $this->input->post());
@@ -54,8 +51,6 @@ class Calculator extends CI_Controller {
     // LOOK UP ID IN DB
     //************************************************* */
     public function lookup() {
-        $this->load->library('array_helper');
-        $this->load->model('Hospital');
 
         $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
         $estimate = $this->array_helper->buildPostArray('estimate', $this->input->post());
@@ -77,7 +72,6 @@ class Calculator extends CI_Controller {
                 if ($query != NULL)
                 {
                     $this->array_helper->updateMultiKey('hospital', $query);
-                    $this->array_helper->printHospital();
                     
                 } else {
                     $errors = "NO PREVIOUS HISTORY FOUND";
@@ -101,11 +95,6 @@ class Calculator extends CI_Controller {
     //************************************************* */
     public function calculate() 
     {
-
-        $this->load->library('array_helper');
-        $this->load->model('Hospital');
-        $this->load->model('Estimate');
-        //$this->array_helper->printEstimate();
         $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
         $estimate = $this->array_helper->buildPostArray('estimate', $this->input->post());
 
@@ -168,7 +157,6 @@ class Calculator extends CI_Controller {
         redirect('/');
     }
 
- 
 
     //************************************************* */
     // MAIN CALCULATOR VIEW 
@@ -176,10 +164,7 @@ class Calculator extends CI_Controller {
     
     public function index()
 	{
-        $this->load->helper('url');
-        $this->load->model('Hospital');
-        $this->load->model('Estimate');
-        
+
         if(!$this->session->userdata('hospital'))
         {
             $template = $this->Hospital->template();
@@ -199,7 +184,7 @@ class Calculator extends CI_Controller {
             'errors' => $this->session->flashdata('errors'),
         );
 
-        $this->load->view('calculator_view',$view_data);
+        $this->load->view('estimate_viewer',$view_data);
 	}
 
 }

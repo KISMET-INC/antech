@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type='text/php' src="<?php echo base_url(); ?>js/scripts.php"></script>
+   
     <title>Necropsy Calculator</title>
     <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/style.css">
 </head>
 <body>
     <h1>Antech Full Body Necropsy Calculator </h1>
     <!-- Lookup form -->
-    <form name ='lookup' action='/Lamp/index.php/calculator/lookup' method='post' >
+    <form name ='lookup' action='lookup' method='post' >
         <div>
             <label for='antech_id'>Antech ID </label>
             <input 
@@ -30,7 +30,7 @@
         </div>
     </form>
     <!-- Calculate Form -->
-    <form id='calculate' name='calculate' action='/Lamp/index.php/calculator/calculate' method='post'>
+    <form id='calculate' name='calculate' action='calculate' method='post'>
         <input id='hidden' name='antech_id' type="hidden" value='<?php echo $hospital['antech_id'] ; ?>' />
         <div>
             <label for='hosp_name'>Hospital Name </label>
@@ -53,7 +53,6 @@
                 value='<?php echo $estimate['weight'] ;?>'
                 >
         </div>
-
         <label for="area_code">Area Code:</label>
         <select 
             id="area_code"  
@@ -74,7 +73,7 @@
     <p>Total : <?php echo $estimate['totalCost'] ?> </p>
 
     <!-- Proceed with Order-->
-    <form action='/Lamp/index.php/calculator/start_order' method='post'>
+    <form action='start_order' method='post'>
         <input type='hidden' name = 'weight' value='<?php echo $estimate['weight'] ?>'>
         <input type='hidden' name = 'necroCost' value='<?php echo $estimate['necroCost'] ?>'>
         <input type='hidden' name = 'shipCost' value='<?php echo $estimate['shipCost'] ?>'>
@@ -87,9 +86,9 @@
     
     <!-- Clear Session Data -->
     <a href='/Lamp/index.php/calculator/clear'>Clear </a>
+    <?php include "scripts/estimate_scripts.php"?>
 </body>
 
-<?php include 'scripts.php' ;?>
 
 </html>
 

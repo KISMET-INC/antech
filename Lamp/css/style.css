@@ -9,3 +9,22 @@ h1 {
     font-size: 30px;
     color: purple;
 }
+
+.flex {
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 500px;
+}
+.width100 {
+    width: 100%;
+}
+
+.unchecked {
+    color: grey;
+}
+
+*{
+    margin:0px;
+    padding:0px;
+}

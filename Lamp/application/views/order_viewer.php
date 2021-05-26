@@ -4,32 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/style.css">
     <title>Order Approval</title>
-    <style>
-        .flex {
-            display:flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 500px;
-        }
-        .width100 {
-            width: 100%;
-        }
-
-        .unchecked {
-            color: grey;
-        }
-
-        *{
-            margin:0px;
-            padding:0px;
-        }
-    </style>
 </head>
 
 <body>
-    <h2> Order Approval </h2>
-    <form id='approval_form' action='/Lamp/index.php/order/submit' method="POST"> 
+    <h1> Order Approval </h1>
+    <form id='approval_form' action='submit' method="POST"> 
 
         <section id='details' class='flex width100'>
         <!-- HOSPITAL INFO -->
@@ -187,7 +168,7 @@
                 <input name='death' id='date'type='date' value = '<?php echo $estimate['death']?>'>
             </div>
 
-             <!--SUMMARY  -->
+            <!--SUMMARY  -->
             <div>
                 <label for='summary'>A summarization is REQUIRED</label>
                 <textarea id='summary' name='summary'><?php echo $estimate['summary'] ?></textarea>
@@ -251,10 +232,10 @@
                 <!-- CHECKBOX -->
                 <label class='cremCost' for="crem_check"> Approved</label><br>
                 <input 
-                    type="checkbox"
-                    class='cremCost' 
                     id="crem_check" 
                     name="cremApproved" 
+                    class='cremCost' 
+                    type="checkbox"
                     value="TRUE"
                     onchange="toggleChecks(this)"
                     <?php 
@@ -277,9 +258,9 @@
                 </label>
                 <label for="total_check">Approved</label><br>
                     <input 
-                        type="checkbox" 
                         id="total_check" 
                         name="totalApproved" 
+                        type="checkbox" 
                         value="TRUE"
                         <?php 
                             if($estimate['totalApproved']=== "TRUE"){
@@ -299,75 +280,7 @@
     <!-- Clear Session Data -->
     <a href='/Lamp/index.php/calculator/clear'>Clear </a>
 
-
-
-    <script>
-        var ship_check = document.getElementById('ship_check');
-        var total_check = document.getElementById('total_check');
-        var crem_check = document.getElementById('crem_check');
-        
-        var totalCost = document.getElementById('totalCost');
-        var shipCost = document.getElementById('shipCost');
-        var cremCost = document.getElementById('cremCost');
-        var necroCost= document.getElementById('necroCost');
-
-        var euth = "<?php echo $estimate['euth'] ?>"
-        if(euth === 'yes'){
-            document.getElementById('euth_yes').checked = true;
-        } else if (euth == 'no'){
-            document.getElementById('euth_no').checked = true;
-        }
-
-        var frozen = "<?php echo $estimate['frozen'] ?>"
-        if(frozen === 'yes'){
-            document.getElementById('frozen_yes').checked = true;
-        } else if (frozen == 'no'){
-            document.getElementById('frozen_no').checked = true;
-        }
-
-        function toggleChecks(element){
-            console.log(element.classList[0]);
-            var cost = document.getElementById(element.classList[0])
-            if(!element.checked){
-                console.log('Checked');
-               // console.log(cost);
-                var total = parseInt(totalCost.value) - parseInt(cost.value)
-                totalCost.value = total
-                cost.style.textDecoration = 'line-through';
-                cost.style.color = 'grey';
-
-                var texts = document.getElementsByClassName(element.classList[0]);
-                //console.log(texts);
-
-                for( text of texts){
-                    text.classList.add('unchecked')
-                   // console.log(text);
-                }
-            } else {
-                var total = parseInt(totalCost.value) + parseInt(cost.value);
-    
-                totalCost.value = total;
-                
-                var texts = document.getElementsByClassName(element.classList[0]);
-                //console.log(texts);
-
-                for( text of texts){
-                    text.classList.remove('unchecked');
-                   // console.log(text);
-                }
-                cost.style.textDecoration = 'unset';
-                cost.style.color = 'unset';
-            }
-
-            total_check.checked = false;
-            
-        }
-
-      
-
-        
-        
-   </script>
+    <?php include "scripts/order_scripts.php"?>
 
 </body>
 </html>
