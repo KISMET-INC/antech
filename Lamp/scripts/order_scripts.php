@@ -8,6 +8,16 @@
     var cremCost = document.getElementById('cremCost');
     var necroCost= document.getElementById('necroCost');
 
+    var shipCosts = document.getElementsByClassName('shipCost')
+    
+    for (ship of shipCosts){
+        if (shipCost.value == 0){
+            ship.classList.add('unchecked');
+            ship.disabled ==true;
+        }
+    }
+    
+
     var euth = "<?php echo $estimate['euth'] ?>"
     if(euth === 'yes')
     {
@@ -24,6 +34,7 @@
     } else if (frozen == 'no'){
         document.getElementById('frozen_no').checked = true;
     }
+
 
     function toggleChecks(element){
         console.log(element.classList[0]);
@@ -45,6 +56,7 @@
                 text.classList.add('unchecked')
                 // console.log(text);
             }
+
         } else {
             var total = parseInt(totalCost.value) + parseInt(cost.value);
 

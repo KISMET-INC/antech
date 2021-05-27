@@ -16,16 +16,10 @@ class Order_Controller extends CI_Controller {
 
     public function submit()
     {
-        $this->load->library('array_helper');
-        $this->load->library('array_helper');
-        $this->load->model('Hospital');
-        $this->load->model('Estimate');
+
 
         $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
         $estimate = $this->array_helper->buildPostArray('estimate', $this->input->post());
-
-        $this->array_helper->updateMultiKey('hospital', $hospital);
-        $this->array_helper->updateMultiKey('estimate', $estimate);
 
         if(!array_key_exists('shipApproved', $this->input->post())){
             $this->array_helper->updateSession('estimate', 'shipApproved', 'FALSE');
@@ -33,9 +27,11 @@ class Order_Controller extends CI_Controller {
         if(!array_key_exists('cremApproved',$this->input->post())){
             $this->array_helper->updateSession('estimate', 'cremApproved', 'FALSE');
         }
+        if(!array_key_exists('totalApproved',$this->input->post())){
+            $this->array_helper->updateSession('estimate', 'totalApproved', 'FALSE');
+        }
 
-        $this->array_helper->printArr('POST', $this->input->post());
-        $this->array_helper->printEstimate();
+
 
 
         $hosp_result = $this->Hospital->validate_submit($hospital);
@@ -89,11 +85,36 @@ class Order_Controller extends CI_Controller {
         redirect('/');
 
         } else {
-            $errors = validation_errors();
+
+
+            $errors = array( 
+                'weight' => form_error('weight'),
+                'owner' => form_error('owner'),
+                'pet_name' => form_error('pet_name'),
+                'species' => form_error('species'),
+                'breed' => form_error('breed'),
+                'sex' => form_error('sex'),
+                'age' => form_error('age'),
+                'frozen' => form_error('frozen'),
+                'euth' => form_error('euth'),
+                'summary' => form_error('summary'),
+                'totalApproved' => form_error('totalApproved'),
+                'death' => form_error('death'),
+                'antech_id' => form_error('antech_id'),
+                'hosp_name' => form_error('hosp_name'),
+                'email' => form_error('email'),
+                'phone' => form_error('phone'),
+                'address' => form_error('address'),
+                'doctor' => form_error('doctor'),
+            );
             $this->session->set_flashdata('errors', $errors);
+
+            $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
+            $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
+            $this->array_helper->printArr('POST', $this->input->post());
+            
             echo 'errors found';
-            var_dump($errors);
-           //redirect('/order');
+            redirect('/order');
         };
 
         

@@ -56,6 +56,7 @@ class Hospital extends CI_Model {
         $this->form_validation->set_rules('address', 'Address', 'trim|required');
         $this->form_validation->set_rules('phone', 'Phone', 'trim|required');
         $this->form_validation->set_rules('doctor', 'Doctor Name', 'trim|required');
+        $this->form_validation->set_rules('email', 'email', 'trim|required');
 
         if($this->form_validation->run()) 
         {

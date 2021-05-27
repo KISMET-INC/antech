@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-   
+
     <title>Necropsy Calculator</title>
     <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/style.css">
 </head>
@@ -77,14 +77,14 @@
         <input type='submit' name = 'calculate' value="Calculate"/>
     </form>
 
-    <!-- Costs Display -->
+    <!-- COSTS-->
     <h3>Costs </h3>
     <p>Necropsy : <?php echo $estimate['necroCost'] ?> </p>
     <p>Shipping : <?php echo $estimate['shipCost'] ?> </p>
     <p>Cremation : <?php echo $estimate['cremCost'] ?> </p>
     <p>Total : <?php echo $estimate['totalCost'] ?> </p>
 
-    <!-- Proceed with Order-->
+    <!-- APPROVE AND ORDER-->
     <form action='start_order' method='post'>
         <input type='hidden' name = 'weight' value='<?php echo $estimate['weight'] ?>'>
         <input type='hidden' name = 'necroCost' value='<?php echo $estimate['necroCost'] ?>'>
@@ -95,47 +95,16 @@
         <input type='hidden' name = 'antech_id' value='<?php echo $hospital['antech_id'] ?>'>
         <button type='submit'>Approve and Order </button>
     </form>
-    <!-- Clear Session Data -->
+
+    <!-- CLEAR SESSION DATA -->
     <a href='clear'>Clear </a>
+
+    <!-- ERRORS -->
     <div id='error_list' class ='error red'></div>
-
-    <?php include "scripts/estimate_scripts.php"?>
-    <script>
     
-
-        // Turn error keys into an obj
-        var errors_obj = {<?php 
-                        if($this->session->flashdata('errors') != null){
-                            foreach($this->session->flashdata('errors') as $key => $value){
-                                echo '"' . $key .'": "'. $value .'",';
-                            }
-                        }
-                    ?>};
-        console.log(errors_obj);
-
-        if("<?php echo $this->session->flashdata('errors') !== null?>"){
-            var error_list = document.getElementById('error_list');
-            
-            for(error in errors_obj){
-                var elements = document.getElementsByClassName(error);
-
-
-                for(item of elements){
-                    if(errors_obj[error]!= ''){
-                        item.classList.add('red')
-                    }
-                
-                    console.log(item.tagName);
-                }
-                
-                error_list.innerHTML += errors_obj[error];
-            }
-            console.log(errors_obj['antech_id']);
-        }
-    </script>
+    <?php include "scripts/estimate_scripts.php"?>
+    <?php include "scripts/show_validation_scripts.php"?>
 </body>
-
-
 </html>
 
 

@@ -48,7 +48,7 @@ class Estimate extends CI_Model {
         // $this->form_validation->set_rules('necroCost', 'Calculation', 'trim|required|greater_than[0]');
 
         $this->form_validation->set_rules(
-            'necroCost', 'necroCost',
+            'totalCost', 'totalCost',
             'greater_than[0]',
             array(
                     // 'required'             => "required",
@@ -66,7 +66,6 @@ class Estimate extends CI_Model {
     // SUBMIT ORDER
     public function validate_submit($post)
     {
-        $this->form_validation->set_rules('weight', 'Weight', 'trim|required');
         $this->form_validation->set_rules('owner', 'owner', 'trim|required');
         $this->form_validation->set_rules('weight', 'Weight', 'trim|required');
         $this->form_validation->set_rules('pet_name', 'pet_name', 'trim|required');

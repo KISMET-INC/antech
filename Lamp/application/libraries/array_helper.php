@@ -35,6 +35,11 @@ class Array_Helper {
             {
                 $update_array[$key] = $value;
             }
+            else if($key !== 'updated_at' && $key !=='created_at' && $key !=='cremApproved'&& $key !=='shipApproved' && $key !=='shipCost' )
+            {
+                $update_array[$key] = '';
+            }
+    
         }
     
         $CI->session->set_userdata($target, $update_array);
@@ -114,9 +119,9 @@ class Array_Helper {
         foreach ($template as $key => $value)
         {
             if(array_key_exists($key, $post))
-            {
+            {   
                 $new_array[$key] = $CI->input->post($key);
-            }
+            } 
         }
 
         $CI->array_helper->updateMultiKey($type, $new_array);

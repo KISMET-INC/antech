@@ -26,11 +26,15 @@ h1 {
 }
 
 label.red,
-div.red
+div.red,
+p.red
 {
     color: red;
 }
-input.red{
+
+input.red,
+textarea.red
+{
     border: 1px solid red;
 }
 

@@ -100,8 +100,13 @@ class Estimate_Controller extends CI_Controller {
             $this->session->set_flashdata('errors', $errors);
 
         };
+
+        $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
+        $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
+        $this->array_helper->printArr('POST', $this->input->post());
+    
         // Return to main page
-        redirect('/');
+        //redirect('/');
 
     }
     
@@ -137,7 +142,7 @@ class Estimate_Controller extends CI_Controller {
                 'antech_id' => form_error('antech_id'),
                 'weight' => form_error('weight'),
                 'hosp_name' => form_error('hosp_name'),
-                'necroCost' => form_error('necroCost')
+                'totalCost' => form_error('totalCost')
             );
 
             $this->session->set_flashdata('errors', $errors);

@@ -17,53 +17,59 @@
             <fieldset id='hospital_info'>
                 <h2> Hospital Info </h2>
                 <div>
-                    <label for='hosp_name'>Hospital Name </label>
+                    <label class='hosp_name' for='hosp_name'>Hospital Name </label>
                     <input
                         id ='hosp_name'
                         name = 'hosp_name' 
+                        class='hosp_name' 
                         value ='<?php echo $hospital['hosp_name'] ?>'
                         >
                 <div>
                 <div>
-                    <label for='antech_id'>Antech ID# </label>
+                    <label class= 'antech_id'for='antech_id'>Antech ID# </label>
                     <input
                         id='antech_id'
-                        name = 'antech_id' 
+                        name = 'antech_id'
+                        class= 'antech_id'
                         value ='<?php echo $hospital['antech_id'] ?>'
                         >
                 <div>
                 <div>
-                    <label for='address'>Hospital Address </label>
+                    <label class='address' for='address'>Hospital Address </label>
                     <input
                         id='address'
                         name = 'address'
+                        class='address'
                         value = '<?php echo $hospital['address'] ?>' 
                         type='text' 
                         >
                 <div>
                 <div>
-                    <label for='phone'>Hospital Phone # </label>
+                    <label class='phone' for='phone'>Hospital Phone # </label>
                     <input 
                         id='phone'
                         name = 'phone'
+                        class='phone' 
                         type='text' 
                         value = '<?php echo $hospital['phone'] ?>' 
                         >
                 <div>
                 <div>
-                    <label for='doctor'>Doctor's Name</label>
+                    <label class= 'doctor'for='doctor'>Doctor's Name</label>
                     <input
                         id='doctor'
                         name = 'doctor'
+                        class= 'doctor'
                         value = '<?php echo $hospital['doctor'] ?>' 
                         type='text'
                         >
                 <div>
                 <div>
-                    <label for='email'>Email</label>
+                    <label class='email'for='email'>Email</label>
                     <input
                         id='email' 
                         name = 'email'
+                        class='email'
                         type='text'
                         value = '<?php echo $hospital['email'] ?>' 
                         >
@@ -73,65 +79,72 @@
             <fieldset id='pet_info'>
                 <h2> Pet Info </h2>
                 <div>
-                    <label for='pet_name'>Pet's Name</label>
+                    <label class='pet_name' for='pet_name'>Pet's Name</label>
                     <input
                         id='pet_name'
                         name = 'pet_name'
+                        class='pet_name' 
                         type='text'
                         value = '<?php echo $estimate['pet_name'] ?>' 
                         >
                 <div>
                 <div>
-                    <label for='owner'>Owner's Name</label>
+                    <label class='owner'for='owner'>Owner's Name</label>
                     <input
                         id='owner'
                         name = 'owner'
+                        class='owner'
                         type='text'
                         value = '<?php echo $estimate['owner'] ?>' 
                         >
                 <div>
                 <div>
-                    <label for ='species'>Species: </label>
+                    <label class='species' for ='species'>Species: </label>
                     <select
                         id='species' 
                         name = 'species'
+                        class='species' 
                         >
                         <option>Dog</option>
                         <option>Cat</option>
                     </select>
                 </div>
                 <div>
-                    <label for='breed'>Breed</label>
+                    <label class='breed' for='breed'>Breed</label>
                     <input
                         id='breed'
                         name = 'breed'
+                        class='breed' 
                         type='text'
                         value = '<?php echo $estimate['breed'] ?>' 
                         >
                 </div>
                 <div>
-                    <label for='sex'>Sex</label>
+                    <label class='sex' for='sex'>Sex</label>
                     <input
                         id='sex'
-                        name = 'sex'
+                        name ='sex'
+                        class ='sex' 
                         type='text'
                         value = '<?php echo $estimate['sex'] ?>' 
                         >
                 </div>
                 <div>
-                    <label for='age'>Age</label>
+                    <label class='age' for='age'>Age</label>
                     <input
                         id='age'
                         name = 'age'
+                        class='age' 
                         type='text'
                         value = '<?php echo $estimate['age'] ?>' 
                         >
                 <div>
                 <div>
-                    <label for='weight'>Weight</label>
+                    <label class='weight' for='weight'>Weight</label>
                     <input
                         id='weight'
-                        name = 'weight'
+                        name ='weight'
+                        class='weight' 
                         type='text'
                         value = '<?php echo $estimate['weight'] ?>' 
                         >
@@ -146,32 +159,32 @@
             <div id='euth'>
             <!-- EUTHANIZED -->
                 <p>Euthanized?</p>
-                <label for="yes">Yes</label>
-                <input type="radio" name="euth" id='euth_yes' value="yes">
+                <label  class='euth' for="yes">Yes</label>
+                <input  class='euth' type="radio" name="euth" id='euth_yes' value="yes">
 
-                <label for="no">No</label>
-                <input type="radio" name="euth" id='euth_no' value="no">
+                <label class='euth' for="no">No</label>
+                <input  class='euth' type="radio" name="euth" id='euth_no' value="no">
             </div>
             <!-- FROZEN -->
             <div id='frozen'>
-                <p>Is the body frozen?</p>
-                <label for="yes">Yes</label>
-                <input type="radio" name="frozen" id='frozen_yes' value="yes">
+                <p >Is the body frozen?</p>
+                <label class='frozen' for="yes">Yes</label>
+                <input class='frozen' type="radio" name="frozen" id='frozen_yes' value="yes">
 
-                <label for="no">No</label>
-                <input type="radio" name="frozen" id='frozen_no' value="no">
+                <label class='frozen' for="no">No</label>
+                <input class='frozen' type="radio" name="frozen" id='frozen_no' value="no">
             </div>
 
             <!-- DEATH -->
-            <div id='death_date'>
-                <label for='date'>Date of death: </label>
-                <input name='death' id='date'type='date' value = '<?php echo $estimate['death']?>'>
+            <div class='death'  id='death_date'>
+                <labe class='death'  for='date'>Date of death: </label>
+                <input class='death'  name='death' id='date'type='date' value = '<?php echo $estimate['death']?>'>
             </div>
 
             <!--SUMMARY  -->
             <div>
-                <label for='summary'>A summarization is REQUIRED</label>
-                <textarea id='summary' name='summary'><?php echo $estimate['summary'] ?></textarea>
+                <label class='summary' for='summary'>A summarization is REQUIRED</label>
+                <textarea class='summary' id='summary' name='summary'><?php echo $estimate['summary'] ?></textarea>
             </div>
         </fieldset>
         <fieldset id='costs' >
@@ -213,6 +226,9 @@
                         if($estimate['shipApproved']=== "TRUE"){
                             echo 'checked';
                         }
+                        if($estimate['shipCost'] == 0){
+                            echo "disabled";
+                        }
                         ?>
                     type="checkbox" 
                 >
@@ -247,19 +263,21 @@
             </div>
             <!-- TOTAL -->
             <div id='total' class='flex'>
-                <label>Total:  
+                <label class='totalApproved' >Total:  
                         <input
                             id='totalCost'
                             name = 'totalCost'
+                            class='totalCost'
                             type='text'
                             readonly
+
                             value = '<?php echo $estimate['totalCost'] ?>'
                         >
                 </label>
-                <label for="total_check">Approved</label><br>
+                <label class='totalApproved' for="total_check">Approved</label><br>
                     <input 
                         id="total_check" 
-                        name="totalApproved" 
+                        name="totalApproved"
                         type="checkbox" 
                         value="TRUE"
                         <?php 
@@ -270,17 +288,19 @@
                         >
             </div>
         </fieldset>
-        <!-- BUTTONS AND ERRORS -->
+        <!-- SUBMIT -->
         <input type='submit' value='Submit Neropsy Request'>
-        <span><?php echo $errors ;?></span>
-        <p id="my-form-status"></p>
     </form>
 
     <input type='button' value='Cancel'>
     <!-- Clear Session Data -->
     <a href='/Lamp/index.php/calculator/clear'>Clear </a>
 
+    <!-- ERRORS -->
+    <div id='error_list' class ='error red'></div>
+
     <?php include "scripts/order_scripts.php"?>
+    <?php include "scripts/show_validation_scripts.php"?>
 
 </body>
 </html>
