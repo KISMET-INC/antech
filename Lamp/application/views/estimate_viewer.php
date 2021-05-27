@@ -12,57 +12,69 @@
 </head>
 <body>
     <h1>Antech Full Body Necropsy Calculator </h1>
-    <!-- Lookup form -->
+    
+    <!-- LOOKUP FORM -->
     <form name ='lookup' action='lookup' method='post' >
+        <!-- antech id -->
         <div>
-            <label for='antech_id'>Antech ID </label>
+            <label class= 'antech_id' for='antech_id'>Antech ID </label>
             <input 
                 id='antech_id' 
                 name = 'antech_id' 
+                class = 'antech_id'
                 value='<?php echo $hospital['antech_id'] ;?>'
                 onkeypress='updateValue(event)' 
                 onchange='updateValue(event)' 
             >
+
+            <!-- hidden inputs -->
             <input type='hidden' name = 'hosp_name' value='<?php echo $hospital['hosp_name'] ?>'>
             <input type='hidden' name = 'area_code' value='<?php echo $hospital['area_code'] ?>'>
             <input type='hidden' name = 'weight' value='<?php echo $estimate['weight'] ?>'>
             <input type='submit'value="Lookup IDx"/>
         </div>
     </form>
-    <!-- Calculate Form -->
+    <!-- CALCULATE FORM -->
     <form id='calculate' name='calculate' action='calculate' method='post'>
         <input id='hidden' name='antech_id' type="hidden" value='<?php echo $hospital['antech_id'] ; ?>' />
+        <!-- hospital name -->
         <div>
-            <label for='hosp_name'>Hospital Name </label>
+            <label class = 'hosp_name' for='hosp_name'>Hospital Name </label>
             <input 
                 id='hosp_name'
                 name = 'hosp_name'  
+                class='hosp_name'
                 onkeypress='updateValue(event)' 
                 onchange='updateValue(event)' 
                 value='<?php echo $hospital['hosp_name'] ?>' 
                 >
         </div>
+        <!-- weight -->
         <div>
-            <label for='weight'>Pet Weight </label>
+            <label class='weight' for='weight'>Pet Weight </label>
             <input 
                 id ='weight'
                 name ='weight' 
+                class='weight'
                 onchange='updateValue(event)'
                 onkeypress='updateValue(event)' 
                 type = 'text'
                 value='<?php echo $estimate['weight'] ;?>'
                 >
+                
         </div>
+        <!-- area code -> select -->
         <label for="area_code">Area Code:</label>
         <select 
             id="area_code"  
             name="area_code"
+            onchange='updateValue(event)'
             >    
             <option value='0'>N/A</option>
         </select>
+        
 
         <input type='submit' name = 'calculate' value="Calculate"/>
-        <span><?php echo $errors ;?></span>
     </form>
 
     <!-- Costs Display -->
@@ -83,10 +95,44 @@
         <input type='hidden' name = 'antech_id' value='<?php echo $hospital['antech_id'] ?>'>
         <button type='submit'>Approve and Order </button>
     </form>
-    
     <!-- Clear Session Data -->
-    <a href='/Lamp/index.php/calculator/clear'>Clear </a>
+    <a href='clear'>Clear </a>
+    <div id='error_list' class ='error red'></div>
+
     <?php include "scripts/estimate_scripts.php"?>
+    <script>
+    
+
+        // Turn error keys into an obj
+        var errors_obj = {<?php 
+                        if($this->session->flashdata('errors') != null){
+                            foreach($this->session->flashdata('errors') as $key => $value){
+                                echo '"' . $key .'": "'. $value .'",';
+                            }
+                        }
+                    ?>};
+        console.log(errors_obj);
+
+        if("<?php echo $this->session->flashdata('errors') !== null?>"){
+            var error_list = document.getElementById('error_list');
+            
+            for(error in errors_obj){
+                var elements = document.getElementsByClassName(error);
+
+
+                for(item of elements){
+                    if(errors_obj[error]!= ''){
+                        item.classList.add('red')
+                    }
+                
+                    console.log(item.tagName);
+                }
+                
+                error_list.innerHTML += errors_obj[error];
+            }
+            console.log(errors_obj['antech_id']);
+        }
+    </script>
 </body>
 
 

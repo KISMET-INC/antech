@@ -1,51 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Estimate_Controller extends CI_Controller {
-    
-    //************************************************* */
-    // APPROVE AND START ORDER
-    //************************************************* */
-    public function start_order()
-    {
-
-        $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
-        $estimate = $this->array_helper->buildPostArray('estimate', $this->input->post());
-
-        $this->array_helper->updateMultiKey('hospital', $hospital);
-        $this->array_helper->updateMultiKey('estimate', $estimate);
-
-
-        if($this->input->post('shipCost') > 0)
-        {
-            $this->array_helper->updateSession('estimate', 'shipApproved', "TRUE");
-        }
-
-        if($this->input->post('cremCost') > 0)
-        {
-            $this->array_helper->updateSession('estimate', 'cremApproved', "TRUE");
-        }
-    
-        $hosp_result = $this->Hospital->validate_calculate($this->input->post());
-        $est_result = $this->Estimate->validate_start_order($this->input->post());
-
-        if($hosp_result=='valid' && $est_result=='valid')
-        {
-
-            echo 'Good Job';
-            redirect('/order');
-
-        } else {
-            $errors = validation_errors();
-            $this->session->set_flashdata('errors', $errors);
-            echo 'errors found';
-            var_dump($errors);
-            redirect('/');
-        };
-
-        $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
-        $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
-    }
-
 
     //************************************************* */
     // LOOK UP ID IN DB
@@ -54,35 +9,36 @@ class Estimate_Controller extends CI_Controller {
 
         $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
         $estimate = $this->array_helper->buildPostArray('estimate', $this->input->post());
-        $this->array_helper->updateMultiKey('hospital', $hospital);
-        $this->array_helper->updateMultiKey('estimate', $estimate);
 
         $result  = $this->Hospital->validate_lookup($this->input->post());
         if($result == 'valid'){
             
-
+            // LOOK UP HOSPITAL IN TEXT FILE
             if($this->Hospital->find_hospital_in_text($hospital['antech_id']) == TRUE)
             {
                 echo "FOUND";
                 $this->Hospital->add_hospital($this->session->userdata('hospital'));
                 
             } else {
-
+                // LOOK UP HOSPITAL IN DATABASE
                 $query = $this->Hospital->find_hospital_by_id($hospital['antech_id']);
                 if ($query != NULL)
                 {
                     $this->array_helper->updateMultiKey('hospital', $query);
                     
                 } else {
-                    $errors = "NO PREVIOUS HISTORY FOUND";
+                    $errors = $result;
                     $this->session->set_flashdata('errors', $errors);
-                    echo 'errors found';
+                    
                 } 
             }
             
         } else {
-            $errors = validation_errors();
+            $errors = array( 
+                'antech_id' => form_error('antech_id'),
+            );
             $this->session->set_flashdata('errors', $errors);
+
             echo 'errors found in validation';
         }
         
@@ -98,8 +54,8 @@ class Estimate_Controller extends CI_Controller {
         $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
         $estimate = $this->array_helper->buildPostArray('estimate', $this->input->post());
 
-        $this->array_helper->updateMultiKey('hospital', $hospital);
-        $this->array_helper->updateMultiKey('estimate', $estimate);
+        // $this->array_helper->updateMultiKey('hospital', $hospital);
+        // $this->array_helper->updateMultiKey('estimate', $estimate);
         
         $hosp_result  = $this->Hospital->validate_calculate($this->input->post());
         $est_result  = $this->Estimate->validate_calculate($this->input->post());
@@ -132,16 +88,68 @@ class Estimate_Controller extends CI_Controller {
             //$this->array_helper->printEstimate();
             $current_id = $this->Estimate->add_estimate($this->session->userdata('estimate'));
             $this->array_helper->updateSession('estimate', 'id', $current_id);
+
+
         } else {
-            $errors = validation_errors();
+            $errors = array( 
+                'antech_id' => form_error('antech_id'),
+                'weight' => form_error('weight'),
+                'hosp_name' => form_error('hosp_name')
+            );
+
             $this->session->set_flashdata('errors', $errors);
-            echo 'errors found';
-            var_dump($errors);
+
         };
         // Return to main page
         redirect('/');
 
     }
+    
+    //************************************************* */
+    // APPROVE AND START ORDER
+    //************************************************* */
+    public function start_order()
+    {
+        $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
+        $estimate = $this->array_helper->buildPostArray('estimate', $this->input->post());
+
+        if($this->input->post('shipCost') > 0)
+        {
+            $this->array_helper->updateSession('estimate', 'shipApproved', "TRUE");
+        }
+
+        if($this->input->post('cremCost') > 0)
+        {
+            $this->array_helper->updateSession('estimate', 'cremApproved', "TRUE");
+        }
+    
+        $hosp_result = $this->Hospital->validate_calculate($this->input->post());
+        $est_result = $this->Estimate->validate_start_order($this->input->post());
+
+        if($hosp_result=='valid' && $est_result=='valid')
+        {
+
+            echo 'Good Job';
+            redirect('/order');
+
+        } else {
+            $errors = array( 
+                'antech_id' => form_error('antech_id'),
+                'weight' => form_error('weight'),
+                'hosp_name' => form_error('hosp_name'),
+                'necroCost' => form_error('necroCost')
+            );
+
+            $this->session->set_flashdata('errors', $errors);
+            echo 'errors found';
+            redirect('/');
+        };
+
+        $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
+        $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
+        $this->array_helper->printArr('POST', $this->input->post());
+    }
+    
 
     //************************************************* */
     //  CLEAR SESSION DATA
@@ -157,18 +165,18 @@ class Estimate_Controller extends CI_Controller {
         redirect('/');
     }
 
-
     //************************************************* */
     // MAIN CALCULATOR VIEW 
     //************************************************* */
     
     public function index()
 	{
+        $this->load->helper('form');
 
         if(!$this->session->userdata('hospital'))
         {
-            $template = $this->Hospital->template();
-            $this->session->set_userdata('hospital',$template);
+            $hospital = new Hospital();
+            $this->session->set_userdata('hospital',(array)$hospital);
         };
 
         if(!$this->session->userdata('estimate'))
@@ -178,10 +186,17 @@ class Estimate_Controller extends CI_Controller {
         };
         //echo $this->session->userdata('antech_id');
 
+        //echo $this->session->flashdata('errors')['weight'];
+
+        
+    
+        //
+    
         $view_data = array(
             'hospital'=> $this->session->userdata('hospital'),
             'estimate'=> $this->session->userdata('estimate'),
             'errors' => $this->session->flashdata('errors'),
+
         );
 
         $this->load->view('estimate_viewer',$view_data);

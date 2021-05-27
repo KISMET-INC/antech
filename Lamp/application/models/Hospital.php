@@ -2,15 +2,15 @@
 
 class Hospital extends CI_Model {
 
-    public $antech_id;
-    public $hosp_name;
-    public $address;
-    public $phone;
-    public $email;
-    public $area_code;
-    public $doctor;
-    public $updated_at;
-    public $created_at;
+    public $antech_id = '';
+    public $hosp_name = '';
+    public $address = '';
+    public $phone = '';
+    public $email = '';
+    public $area_code = '0';
+    public $doctor = '';
+    public $updated_at = '';
+    public $created_at = '';
 
 
     //**************************************** */
@@ -65,6 +65,22 @@ class Hospital extends CI_Model {
         }
     }
 
+    //**************************************** */
+    // DATABASE FUNCTIONS
+    //**************************************** */
+
+    function buildFromPost($post)
+    {
+        $this->antech_id = $post['antech_id'];
+        $this->address = array_key_exists('address', $post);
+        return $this;
+    }
+
+    function printHosp(){
+        echo "antech: " . $this->antech_id;
+        echo $this->address;
+    }
+
 
     //**************************************** */
     // DATABASE FUNCTIONS
@@ -80,7 +96,6 @@ class Hospital extends CI_Model {
     function find_hospital_in_text($search_id)
     {
         $this->load->library('array_helper');
-        echo 'checkingDB';
 
         // Load Txt File
         $fdata = file('smallquotes.txt');
@@ -91,9 +106,7 @@ class Hospital extends CI_Model {
         
             // Extract ID from line
             $current_id = trim(substr($fdata[$i],10));
-            echo strlen($current_id);
-            
-            echo gettype($current_id);
+    
             if($search_id === $current_id)
             {
                 echo 'foundoone';

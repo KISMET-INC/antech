@@ -2,6 +2,7 @@
     margin:0;
     padding:0;
     
+    box-sizing: border-box;
 }
 
 h1 {
@@ -24,7 +25,12 @@ h1 {
     color: grey;
 }
 
-*{
-    margin:0px;
-    padding:0px;
+label.red,
+div.red
+{
+    color: red;
 }
+input.red{
+    border: 1px solid red;
+}
+

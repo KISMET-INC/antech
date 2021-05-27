@@ -158,3 +158,21 @@
 
         $interval = date_diff($date1,$date2);
         echo $interval->format('%H:%i');
+
+
+        if(item.tagName = 'p' && item.classList.contains('error')){
+                        item.innerHTML = errors_obj[error];
+                    }
+
+                    <p class = 'weight error'></p>
+
+
+
+
+                    //$errors = validation_errors();
+
+
+$errors = array( 
+       'antech_id' => form_error('antech_id'),
+);
+$this->session->set_flashdata('errors', $errors);                    

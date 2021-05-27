@@ -43,13 +43,23 @@ class Estimate extends CI_Model {
     // START ORDER
     public function validate_start_order($post)
     {
+        
         $this->form_validation->set_rules('weight', 'Weight', 'trim|required');
-        $this->form_validation->set_rules('necroCost', 'Calculation', 'trim|required|greater_than[0]');
+        // $this->form_validation->set_rules('necroCost', 'Calculation', 'trim|required|greater_than[0]');
+
+        $this->form_validation->set_rules(
+            'necroCost', 'necroCost',
+            'greater_than[0]',
+            array(
+                    // 'required'             => "required",
+                    'greater_than'      => 'You must run a calculation to proceed.',
+                )
+        );
 
         if($this->form_validation->run()) {
             return "valid";
         } else {
-            return array(validation_errors());
+            return validation_errors();
         }
     }
 

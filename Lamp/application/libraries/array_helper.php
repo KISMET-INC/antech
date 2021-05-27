@@ -15,15 +15,18 @@ class Array_Helper {
             $update_array[$key] = $value;
         }
 
+        
+
         $CI->session->set_userdata($target, $update_array);
     }
 
     //************************************************* */
-    // UPDATE MULTIPLE SESSION KEYS
+    // UPDATE MULTIPLE SESSION KEYS AND SET SESSION
     //************************************************* */
     public function updateMultiKey($target, $array)
     {
         $CI =& get_instance();
+
         $update_array = $CI->session->userdata($target);
 
         foreach($array as $key => $value)
@@ -33,6 +36,7 @@ class Array_Helper {
                 $update_array[$key] = $value;
             }
         }
+    
         $CI->session->set_userdata($target, $update_array);
     }
 
@@ -58,6 +62,31 @@ class Array_Helper {
         }
     }
 
+    //************************************************* */
+    // PRINT  POST
+    //************************************************* */
+
+    public function printPost()
+    {
+        $CI =& get_instance();
+        $array = $CI->input->post();
+        echo nl2br("\n POST \n");
+        foreach($array as $key => $value)
+        {
+        
+            if( gettype($value) === 'array')
+            {
+                foreach($value as $innerKey => $innerValue)
+                {
+                    echo nl2br($innerKey . ": " . $innerValue . "\n");
+                }
+                break;
+            }
+            echo nl2br($key . ":  &nbsp;&nbsp&nbsp;&nbsp;" . $value . "\n");
+        }
+    }
+
+
 
 
 
@@ -67,14 +96,13 @@ class Array_Helper {
     public function buildPostArray($type, $post)
     {
         $CI =& get_instance();
-        $array= array();
+        $new_array= array();
         $template= array();
 
         switch($type)
         {
             case 'hospital':
-                $CI->load->model('Hospital');
-                $template = $CI->Hospital->template();
+                $template =(array)new Hospital();
                 break;
 
             case 'estimate':
@@ -87,10 +115,12 @@ class Array_Helper {
         {
             if(array_key_exists($key, $post))
             {
-                $array[$key] = $CI->input->post($key);
+                $new_array[$key] = $CI->input->post($key);
             }
         }
-        return $array;
+
+        $CI->array_helper->updateMultiKey($type, $new_array);
+        return $new_array;
     }
 
     //************************************************* */
