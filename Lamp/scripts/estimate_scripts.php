@@ -2,16 +2,19 @@
 //************************************************* */
 // UPDATE CURRENT VALUE ACROSS ALL NAME INSTANCES
 //************************************************* */
+var value = '';
 function updateValue(e){
     var input_list = document.getElementsByName(e.target.name)
-
+    
     switch(e.type){
-
+        
         case "keypress":
+        
             value += e.key;
             for (var input of input_list){
-                input.value = value;
+                input.value == e.key;
             }
+            console.log(input.value);
             break;
 
         case "change":
@@ -42,7 +45,7 @@ for(var code of area_codes){
 //************************************************* */
 var option_tags = document.getElementsByTagName('option');
 var area = <?php echo $hospital['area_code'] ?> 
-    for (var option of option_tags){
+    for (option of option_tags){
     if(option.getAttribute('code') == area){
         option.selected = true;
     }

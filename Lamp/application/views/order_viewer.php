@@ -17,12 +17,12 @@
             <fieldset id='hospital_info'>
                 <h2> Hospital Info </h2>
                 <div>
-                    <label class='hosp_name' for='hosp_name'>Hospital Name </label>
+                    <label class='hospital_name' for='hospital_name'>Hospital Name </label>
                     <input
-                        id ='hosp_name'
-                        name = 'hosp_name' 
-                        class='hosp_name' 
-                        value ='<?php echo $hospital['hosp_name'] ?>'
+                        id ='hospital_name'
+                        name = 'hospital_name' 
+                        class='hospital_name' 
+                        value ='<?php echo $hospital['hospital_name'] ?>'
                         >
                 <div>
                 <div>
@@ -31,6 +31,7 @@
                         id='antech_id'
                         name = 'antech_id'
                         class= 'antech_id'
+                        type ='number'
                         value ='<?php echo $hospital['antech_id'] ?>'
                         >
                 <div>
@@ -121,14 +122,16 @@
                 </div>
                 <div>
                     <label class='sex' for='sex'>Sex</label>
-                    <input
-                        id='sex'
-                        name ='sex'
-                        class ='sex' 
-                        type='text'
-                        value = '<?php echo $estimate['sex'] ?>' 
+                    <select
+                        id='sex' 
+                        name = 'sex'
+                        class='sex' 
                         >
-                </div>
+                        <option>Intact Male</option>
+                        <option>Intact Female</option>
+                        <option>Neutered Male</option>
+                        <option>Neutered Female</option>
+                    </select>
                 <div>
                     <label class='age' for='age'>Age</label>
                     <input
@@ -138,6 +141,10 @@
                         type='text'
                         value = '<?php echo $estimate['age'] ?>' 
                         >
+                    <select>
+                        <option>months</option>
+                        <option>years</option>
+                    </select>
                 <div>
                 <div>
                     <label class='weight' for='weight'>Weight</label>
@@ -145,9 +152,9 @@
                         id='weight'
                         name ='weight'
                         class='weight' 
-                        type='text'
+                        type='number'
                         value = '<?php echo $estimate['weight'] ?>' 
-                        >
+                        >lbs
                 </div>
             </fieldset>
         </section>
@@ -156,29 +163,29 @@
         <fieldset id='history'>
             <h2>History</h2>
 
-            <div id='euth'>
+            <div id='euthanized'>
             <!-- EUTHANIZED -->
                 <p>Euthanized?</p>
-                <label  class='euth' for="yes">Yes</label>
-                <input  class='euth' type="radio" name="euth" id='euth_yes' value="yes">
+                <label  class='euthanized' for="euthanized_yes">Yes</label>
+                <input  class='euthanized' type="radio" name="euthanized" id='euthanized_yes' value="Yes">
 
-                <label class='euth' for="no">No</label>
-                <input  class='euth' type="radio" name="euth" id='euth_no' value="no">
+                <label class='euthanized' for="euthanized_no">No</label>
+                <input  class='euthanized' type="radio" name="euthanized" id='euthanized_no' value="No">
             </div>
             <!-- FROZEN -->
             <div id='frozen'>
                 <p >Is the body frozen?</p>
-                <label class='frozen' for="yes">Yes</label>
-                <input class='frozen' type="radio" name="frozen" id='frozen_yes' value="yes">
+                <label class='frozen' for="frozen_yes">Yes</label>
+                <input class='frozen' type="radio" name="frozen" id='frozen_yes' value="Yes">
 
-                <label class='frozen' for="no">No</label>
-                <input class='frozen' type="radio" name="frozen" id='frozen_no' value="no">
+                <label class='frozen' for="frozen_no">No</label>
+                <input class='frozen' type="radio" name="frozen" id='frozen_no' value="No">
             </div>
 
-            <!-- DEATH -->
-            <div class='death'  id='death_date'>
-                <labe class='death'  for='date'>Date of death: </label>
-                <input class='death'  name='death' id='date'type='date' value = '<?php echo $estimate['death']?>'>
+            <!-- DEATH DATE -->
+            <div class='death_date'  id='death_date'>
+                <labe class='death_date'  for='date'>Date of death: </label>
+                <input class='death_date'  name='death_date' id='date'type='date' value = '<?php echo $estimate['death_date']?>'>
             </div>
 
             <!--SUMMARY  -->
@@ -192,11 +199,12 @@
             <!-- NECROPSY -->
             <div id='necropsy'  class='flex'>
                 <label>Necropsy:  <input
-                        id='necroCost'
-                        name = 'necroCost'
+                        id='necropsy_cost'
+                        name = 'necropsy_cost'
+                        class = 'necropsy_cost cost'
                         type='text'
                         readonly
-                        value = '<?php echo $estimate['necroCost'] ?>' 
+                        value = '<?php echo $estimate['necropsy_cost'] ?>' 
                         >
                 </label>
                 <label for="necro"> Approved</label><br>
@@ -204,29 +212,29 @@
             </div>
             <!-- SHIPPING  -->
             <div id='shipping' class='flex'>
-                <label class='shipCost'>Shipping:  
+                <label class='delivery_cost'>Shipping:  
                     <input
-                        id='shipCost'
-                        class = 'shipCost'
-                        name = 'shipCost'
+                        id='delivery_cost'
+                        class = 'delivery_cost cost'
+                        name = 'delivery_cost'
                         type='text'
                         readonly
-                        value = '<?php echo $estimate['shipCost'] ?>' 
+                        value = '<?php echo $estimate['delivery_cost'] ?>' 
                         >
                 </label>
                 <!-- CHECKBOX -->
-                <label class='shipCost' for="ship_check"> Approved</label><br>
+                <label class='delivery_cost' for="ship_check"> Approved</label><br>
                 <input 
                     id="ship_check"
-                    class = 'shipCost'
-                    name="shipApproved" 
+                    class = 'delivery_cost'
+                    name="delivery_approved" 
                     onchange="toggleChecks(this)"
                     value="TRUE"
                     <?php 
-                        if($estimate['shipApproved']=== "TRUE"){
+                        if($estimate['delivery_approved']=== "TRUE"){
                             echo 'checked';
                         }
-                        if($estimate['shipCost'] == 0){
+                        if($estimate['delivery_cost'] == 0){
                             echo "disabled";
                         }
                         ?>
@@ -235,27 +243,27 @@
             </div>
             <!-- CREMATION -->
             <div id='cremation' class='flex'>
-                <label  class ='cremCost' name= 'cremCost'>Cremation:  
+                <label  class ='cremation_cost' name= 'cremation_cost'>Cremation:  
                     <input
-                        id='cremCost'
-                        name = 'cremCost'
-                        class='cremCost'
+                        id='cremation_cost'
+                        name = 'cremation_cost'
+                        class='cremation_cost cost'
                         type='text'
                         readonly
-                        value = '<?php echo $estimate['cremCost'] ?>' 
+                        value = '<?php echo $estimate['cremation_cost'] ?>' 
                         >
                 </label>
                 <!-- CHECKBOX -->
-                <label class='cremCost' for="crem_check"> Approved</label><br>
+                <label class='cremation_cost' for="crem_check"> Approved</label><br>
                 <input 
                     id="crem_check" 
-                    name="cremApproved" 
-                    class='cremCost' 
+                    name="cremation_approved" 
+                    class='cremation_cost' 
                     type="checkbox"
                     value="TRUE"
                     onchange="toggleChecks(this)"
                     <?php 
-                        if($estimate['cremApproved']=== "TRUE"){
+                        if($estimate['cremation_approved']=== "TRUE"){
                             echo 'checked';
                         }
                     ?>
@@ -263,25 +271,24 @@
             </div>
             <!-- TOTAL -->
             <div id='total' class='flex'>
-                <label class='totalApproved' >Total:  
+                <label class='total_approved' >Total :  <span>$</span> 
                         <input
-                            id='totalCost'
-                            name = 'totalCost'
-                            class='totalCost'
+                            id='total_cost'
+                            name = 'total_cost'
+                            class='total_cost cost'
                             type='text'
                             readonly
-
-                            value = '<?php echo $estimate['totalCost'] ?>'
+                            value = '<?php echo $estimate['total_cost'] ?>'
                         >
                 </label>
-                <label class='totalApproved' for="total_check">Approved</label><br>
+                <label class='total_approved' for="total_check">Approved</label><br>
                     <input 
                         id="total_check" 
-                        name="totalApproved"
+                        name="total_approved"
                         type="checkbox" 
                         value="TRUE"
                         <?php 
-                            if($estimate['totalApproved']=== "TRUE"){
+                            if($estimate['total_approved']=== "TRUE"){
                                 echo 'checked';
                             }
                         ?>
@@ -292,9 +299,12 @@
         <input type='submit' value='Submit Neropsy Request'>
     </form>
 
-    <input type='button' value='Cancel'>
+    <input type='button' value='Cancel'><br>
     <!-- Clear Session Data -->
-    <a href='/Lamp/index.php/calculator/clear'>Clear </a>
+    <a href='/Lamp/index.php/calculator/clear'>Clear </a><br>
+    <a href='/Lamp/index.php/order_controller/populateForm'>Add Test Info </a><br>
+    <button onclick="window.print()">print</button>
+    
 
     <!-- ERRORS -->
     <div id='error_list' class ='error red'></div>

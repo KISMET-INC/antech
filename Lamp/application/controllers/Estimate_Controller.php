@@ -13,30 +13,26 @@ class Estimate_Controller extends CI_Controller {
         $result  = $this->Hospital->validate_lookup($this->input->post());
         if($result == 'valid'){
             
-            // LOOK UP HOSPITAL IN TEXT FILE
-            if($this->Hospital->find_hospital_in_text($hospital['antech_id']) == TRUE)
+            $query = $this->Hospital->find_hospital_by_id($hospital['antech_id']);
+
+            if ($query != NULL)
             {
-                echo "FOUND";
-                $this->Hospital->add_hospital($this->session->userdata('hospital'));
+                $this->array_helper->updateMultiKey('hospital', $query);
                 
             } else {
-                // LOOK UP HOSPITAL IN DATABASE
-                $query = $this->Hospital->find_hospital_by_id($hospital['antech_id']);
-                if ($query != NULL)
-                {
-                    $this->array_helper->updateMultiKey('hospital', $query);
-                    
-                } else {
-                    $errors = $result;
-                    $this->session->set_flashdata('errors', $errors);
-                    
-                } 
-            }
-            
-        } else {
+                $errors = array( 
+                    'not found' => "previous data not found",
+                );
+                
+                $this->session->set_flashdata('errors', $errors);
+                
+            } 
+            } else {
+
             $errors = array( 
                 'antech_id' => form_error('antech_id'),
             );
+
             $this->session->set_flashdata('errors', $errors);
 
             echo 'errors found in validation';
@@ -53,9 +49,6 @@ class Estimate_Controller extends CI_Controller {
     {
         $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
         $estimate = $this->array_helper->buildPostArray('estimate', $this->input->post());
-
-        // $this->array_helper->updateMultiKey('hospital', $hospital);
-        // $this->array_helper->updateMultiKey('estimate', $estimate);
         
         $hosp_result  = $this->Hospital->validate_calculate($this->input->post());
         $est_result  = $this->Estimate->validate_calculate($this->input->post());
@@ -68,24 +61,22 @@ class Estimate_Controller extends CI_Controller {
             
 
             // Calculations
-            $necroCost = $weight * 2;
-            $cremCost = $weight + 10;
-            $shipCost = $area_code != '0' ? $area_code + 1 : 0;
-            $totalCost = $shipCost + $necroCost + $cremCost;
-            echo 'calculating';
+            $necropsy_cost = number_format($weight * 2.3, 2, '.', ','); 
+            $cremation_cost = number_format($weight + 10.9, 2, '.', ',');
+            $delivery_cost = $area_code != '0' ? number_format($area_code + 3.1, 2, '.',',') : 0;
+            $total_cost = number_format($delivery_cost + $necropsy_cost + $cremation_cost, 2, '.', ',');
 
             // Set Calculations into Session
             $calculations = array(
                 'weight' => $weight,
-                'necroCost'=> $necroCost,
-                'cremCost'=> $cremCost,
-                'shipCost' => $shipCost,
-                'totalCost' => $totalCost
+                'necropsy_cost'=> $necropsy_cost,
+                'cremation_cost'=> $cremation_cost,
+                'delivery_cost' => $delivery_cost,
+                'total_cost' => $total_cost
             );
 
             $this->array_helper->updateMultiKey('estimate',$calculations);
             $this->Hospital->add_hospital($hospital);
-            //$this->array_helper->printEstimate();
             $current_id = $this->Estimate->add_estimate($this->session->userdata('estimate'));
             $this->array_helper->updateSession('estimate', 'id', $current_id);
 
@@ -94,19 +85,19 @@ class Estimate_Controller extends CI_Controller {
             $errors = array( 
                 'antech_id' => form_error('antech_id'),
                 'weight' => form_error('weight'),
-                'hosp_name' => form_error('hosp_name')
+                'hospital_name' => form_error('hospital_name')
             );
 
             $this->session->set_flashdata('errors', $errors);
 
         };
-
+        echo 'CALCULATE FUNTCTION';
         $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
         $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
         $this->array_helper->printArr('POST', $this->input->post());
     
         // Return to main page
-        //redirect('/');
+        redirect('/');
 
     }
     
@@ -118,14 +109,14 @@ class Estimate_Controller extends CI_Controller {
         $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
         $estimate = $this->array_helper->buildPostArray('estimate', $this->input->post());
 
-        if($this->input->post('shipCost') > 0)
+        if($this->input->post('delivery_cost') > 0)
         {
-            $this->array_helper->updateSession('estimate', 'shipApproved', "TRUE");
+            $this->array_helper->updateSession('estimate', 'delivery_approved', "TRUE");
         }
 
-        if($this->input->post('cremCost') > 0)
+        if($this->input->post('cremation_cost') > 0)
         {
-            $this->array_helper->updateSession('estimate', 'cremApproved', "TRUE");
+            $this->array_helper->updateSession('estimate', 'cremation_approved', "TRUE");
         }
     
         $hosp_result = $this->Hospital->validate_calculate($this->input->post());
@@ -141,8 +132,8 @@ class Estimate_Controller extends CI_Controller {
             $errors = array( 
                 'antech_id' => form_error('antech_id'),
                 'weight' => form_error('weight'),
-                'hosp_name' => form_error('hosp_name'),
-                'totalCost' => form_error('totalCost')
+                'hospital_name' => form_error('hospital_name'),
+                'total_cost' => form_error('total_cost')
             );
 
             $this->session->set_flashdata('errors', $errors);
@@ -206,6 +197,17 @@ class Estimate_Controller extends CI_Controller {
 
         $this->load->view('estimate_viewer',$view_data);
 	}
+
+
+    //************************************************* */
+    // ADD TEXT FILE TO DATABASE
+    //************************************************* */
+    public function addText()
+    {
+        echo 'add text';
+        $this->Hospital->text_file_to_db();
+        $this->Estimate->text_file_to_db();
+    }
 
 }
 ?>

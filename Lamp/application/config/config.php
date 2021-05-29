@@ -23,6 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
+date_default_timezone_set('America/Los_Angeles');
 $config['base_url'] = 'http://localhost:8888/Lamp';
 
 /*

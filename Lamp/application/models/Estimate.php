@@ -3,7 +3,7 @@
 class Estimate extends CI_Model {
 
     public $antech_id;
-    public $pet_name ='';
+    public $pet_name;
     public $owner;
     public $species ;
     public $breed;
@@ -11,15 +11,16 @@ class Estimate extends CI_Model {
     public $age;
     public $weight;
     public $frozen;
-    public $euth;
+    public $euthanized;
     public $summary;
-    public $necroCost;
-    public $shipCost;
-    public $cremCost;
-    public $totalCost;
-    public $shipApproved;
-    public $cremApproved;
-    public $totalApproved;
+    public $death_date;
+    public $necropsy_cost;
+    public $delivery_cost;
+    public $cremation_cost;
+    public $total_cost;
+    public $delivery_approved;
+    public $cremation_approved;
+    public $total_approved;
     
 
     
@@ -48,11 +49,11 @@ class Estimate extends CI_Model {
         // $this->form_validation->set_rules('necroCost', 'Calculation', 'trim|required|greater_than[0]');
 
         $this->form_validation->set_rules(
-            'totalCost', 'totalCost',
-            'greater_than[0]',
+            'total_cost', 'total_cost',
+            'required',
             array(
                     // 'required'             => "required",
-                    'greater_than'      => 'You must run a calculation to proceed.',
+                    'required'      => 'You must run a calculation to proceed.',
                 )
         );
 
@@ -74,10 +75,10 @@ class Estimate extends CI_Model {
         $this->form_validation->set_rules('sex', 'sex', 'trim|required');
         $this->form_validation->set_rules('age', 'age', 'trim|required');
         $this->form_validation->set_rules('frozen', 'frozen', 'trim|required');
-        $this->form_validation->set_rules('euth', 'euth', 'trim|required');
+        $this->form_validation->set_rules('euthanized', 'euthanized', 'trim|required');
         $this->form_validation->set_rules('summary', 'summary', 'trim|required');
-        $this->form_validation->set_rules('totalApproved', 'totalApproved', 'trim|required');
-        $this->form_validation->set_rules('death', 'death', 'trim|required');
+        $this->form_validation->set_rules('total_approved', 'totalApproved', 'trim|required');
+        $this->form_validation->set_rules('death_date', 'death', 'trim|required');
 
         if($this->form_validation->run()) {
             return "valid";
@@ -116,7 +117,7 @@ class Estimate extends CI_Model {
         $interval = date_diff($date1,$date2)->format("%s");
         $new_estimate_id = '';
 
-        if ($interval > 30 || $estimate['totalCost'] != $new_estimate['totalCost']){
+        if ($interval > 30 || $estimate['total_cost'] != $new_estimate['total_cost']){
             unset($estimate['id']);
             $estimate['created_at'] = date("Y-m-d, H:i:s");
             $estimate['updated_at'] = date("Y-m-d, H:i:s");
@@ -129,6 +130,8 @@ class Estimate extends CI_Model {
             $this->update_estimate($estimate);
             $new_estimate_id= $query->id;
         }
+
+        $this->array_helper->printArr('EST', $estimate);
 
         return $new_estimate_id;
     }
@@ -144,7 +147,41 @@ class Estimate extends CI_Model {
         $this->db->update('estimates', $estimate, array('id' =>$id));
 
     }
+
+
     
+    //************************************************* */
+    // ADD TEXT FILE TO DATABASE
+    //************************************************* */
+    public function text_file_to_db()
+    {
+        
+        // Load Txt File
+        $fdata = file('nquotes.txt');
+        // Antech ID's Appear every 14 Lines
+        for($i = 4; $i < count($fdata); $i = $i + 14)
+        {
+            $date = trim(substr($fdata[$i-3],25));
+            $time = trim(substr($fdata[$i-2],25));
+            $datetime =  $this->array_helper->reformat_date_string($date, $time);
+        
+            $estimate =  array(
+                'antech_id' => trim(substr($fdata[$i],10)),
+                'weight' => trim(substr($fdata[$i+2],25)),
+                'necropsy_cost' => trim(substr($fdata[$i+3],25)),
+                'delivery_cost' => trim(substr($fdata[$i+4],25)),
+                'cremation_cost' => trim(substr($fdata[$i+7],25)),
+                'total_cost' => trim(substr($fdata[$i+8],25)),
+                'created_at' => $datetime,
+                'updated_at' => date("Y-m-d, H:i:s"),
+                'total_approved'=> 'FALSE',
+            );
+            
+            //Set into Session     
+            $this->db->insert('estimates', $estimate);
+        }
+
+    }
 
     // EMPTY TEMPLATE
     public function template(){
@@ -159,16 +196,16 @@ class Estimate extends CI_Model {
             'age' => '',
             'weight' => '',
             'frozen' => '',
-            'euth' => '',
+            'euthanized' => '',
             'summary' => '',
-            'death'=> '',
-            'necroCost' => '0',
-            'shipCost' => '0',
-            'cremCost' => '0',
-            'totalCost'=> '0',
-            'shipApproved' => 'FALSE',
-            'cremApproved' => 'FALSE',
-            'totalApproved' => 'FALSE',
+            'death_date'=> '',
+            'necropsy_cost' => '0',
+            'delivery_cost' => '0',
+            'cremation_cost' => '0',
+            'total_cost'=> '0',
+            'delivery_approved' => 'FALSE',
+            'cremation_approved' => 'FALSE',
+            'total_approved' => 'FALSE',
         );
 
         return $template;
