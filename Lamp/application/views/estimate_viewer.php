@@ -82,11 +82,47 @@
 
     <!-- COSTS-->
     <h3>Costs </h3>
-    <p>Necropsy : $<?php echo $estimate['necropsy_cost'] ?> </p>
-    <p>Shipping : $<?php echo $estimate['delivery_cost'] ?> </p>
-    <p>Cremation : $<?php echo $estimate['cremation_cost'] ?> </p>
-    <p>Total : $<?php echo $estimate['total_cost'] ?> </p>
-
+    <label>Necropsy:  
+        <input
+            id='necropsy_cost'
+            name = 'necropsy_cost'
+            class = 'necropsy_cost cost no_border'
+            type='text'
+            readonly
+            value = '<?php echo $estimate['necropsy_cost'] ?>' 
+        >
+    </label> </br>
+    <label>Delivery:  
+        <input
+            id='delivery_cost'
+            name = 'delivery_cost'
+            class = 'delivery_cost cost no_border'
+            type='text'
+            readonly
+            value = '<?php echo $estimate['delivery_cost'] ?>' 
+        >
+    </label> </br>
+    <label>Cremation:  
+        <input
+            id='cremation_cost'
+            name = 'cremation_cost'
+            class = 'cremation_cost cost no_border'
+            type='text'
+            readonly
+            value = '<?php echo $estimate['cremation_cost'] ?>' 
+        >
+    </label> </br>
+    <label>Total:  
+        <input
+            id='total_cost'
+            name = 'total_cost'
+            class = 'total_cost cost no_border'
+            type='text'
+            readonly
+            value = '<?php echo $estimate['total_cost'] ?>' 
+        >
+    </label> </br>
+    
     <!-- APPROVE AND ORDER-->
     <form action='start_order' method='post'>
         <input type='hidden' name = 'weight' value='<?php echo $estimate['weight'] ?>'>
@@ -105,9 +141,10 @@
     <!-- ERRORS -->
     <div id='error_list' class ='error red'></div>
     <button onclick="window.print()">print</button>
-    <a href='/Lamp/index.php/estimate_controller/addtext'>add all hospitals </a>
+    
     <?php include "scripts/estimate_scripts.php"?>
     <?php include "scripts/show_validation_scripts.php"?>
+    <?php include "scripts/dollar_scripts.php"?>
 </body>
 </html>
 

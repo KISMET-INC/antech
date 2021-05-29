@@ -1,9 +1,6 @@
 <script>
 
     var total_check = document.getElementById('total_check');
-    var total_cost = document.getElementById('total_cost');
-    
-    var cost_inputs = document.getElementsByClassName('cost')
     var delivery_costs = document.getElementsByClassName('delivery_cost')
 
     var euthanized = "<?php echo $estimate['euthanized'] ?>"
@@ -42,37 +39,7 @@
         document.getElementById('frozen_no').checked = true;
     }
     
-    
-    //****************************************************** */
-    // Add $ to all cost inputs on load
-    //****************************************************** */
 
-    for( var input of cost_inputs)
-    {   
-        if(input.value[0] != '$'){
-            input.value = addSign(input.value)
-        } else {
-            break;
-        }
-    }
-    console.log(removeSign(total_cost.value))
-    console.log(total_cost.value)
-
-    //****************************************************** */
-    // remove $ sign from number string and return decimal
-    //****************************************************** */
-    function removeSign(string)
-    {
-        //remove $ sign
-        return parseFloat(string.slice(1,string.length).replace(',','')).toFixed(2);
-    }
-
-    //****************************************************** */
-    // add $ sign to decimal and return string
-    //****************************************************** */
-    function addSign(decimal){
-        return '$'+ decimal
-    }
 
     //****************************************************** */
     // Disable, Enable and make calculations with checkboxes

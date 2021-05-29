@@ -89,20 +89,17 @@ class Order_Controller extends CI_Controller {
 
             echo "<script type='text/JavaScript'> 
             var formData = new FormData();    
-            var hat = 'my hat';
             </script>";
         
             foreach($myform as $key => $value){
-                echo nl2br($key . ": " . $value . "\n");
+                //echo nl2br($key . ": " . $value . "\n");
                 echo "<script type='text/JavaScript'> 
-                console.log('{$key}');
                 formData.append('{$key}', '{$value}');
                 </script>";
 
             };
 
             echo "<script type='text/JavaScript'> 
-            console.log(formData);
                 fetch('https://formspree.io/f/mzbyeakg', {
                     method: 'POST',
                     body: formData,
@@ -110,8 +107,10 @@ class Order_Controller extends CI_Controller {
                         'Accept': 'application/json'
                     }
                 }).then(response => {
-                    console.log('it worked1')
-                  
+                    console.log('success');
+                    var url = window.location.origin+'/Lamp/success';
+                    window.location.replace(url);
+
                 }).catch(error => {
                     
                     console.log('no bueno')
@@ -120,12 +119,11 @@ class Order_Controller extends CI_Controller {
             
             </script>";
 
-            echo 'SUBMIT SUCCESS FUNTCTION';
-            $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
-            //$this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
-            $this->array_helper->printArr('POST', $this->input->post());
-
-            //$this->session->unset_userdata('estimate');
+            // echo 'SUBMIT SUCCESS FUNTCTION';
+            // $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
+            // //$this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
+            // $this->array_helper->printArr('POST', $this->input->post());
+            $this->session->unset_userdata('estimate');
         
 
         } else {

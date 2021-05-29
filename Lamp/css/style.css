@@ -11,6 +11,9 @@ h1 {
     color: purple;
 }
 
+.no_border {
+    border:none;
+}
 .flex {
     display:flex;
     align-items: center;
@@ -24,6 +27,8 @@ h1 {
 .unchecked {
     color: grey;
 }
+
+
 
 label.red,
 div.red,

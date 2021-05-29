@@ -311,6 +311,7 @@
 
     <?php include "scripts/order_scripts.php"?>
     <?php include "scripts/show_validation_scripts.php"?>
+    <?php include "scripts/dollar_scripts.php"?>
 
 </body>
 </html>
