@@ -10,6 +10,8 @@
 
 <body>
     <h1> Order Approval </h1>
+    <h3> All fields are required </h3>
+    <a href='/Lamp/'>I need to change the estimate, go back </a>
     <form id='approval_form' action='submit' method="POST"> 
 
         <section id='details' class='flex width100'>
@@ -21,7 +23,8 @@
                     <input
                         id ='hospital_name'
                         name = 'hospital_name' 
-                        class='hospital_name' 
+                        class='hospital_name read_only' 
+                        readonly
                         value ='<?php echo $hospital['hospital_name'] ?>'
                         >
                 <div>
@@ -30,8 +33,9 @@
                     <input
                         id='antech_id'
                         name = 'antech_id'
-                        class= 'antech_id'
+                        class= 'antech_id read_only'
                         type ='number'
+                        readonlu
                         value ='<?php echo $hospital['antech_id'] ?>'
                         >
                 <div>
@@ -151,8 +155,9 @@
                     <input
                         id='weight'
                         name ='weight'
-                        class='weight' 
+                        class='weight  read_only' 
                         type='number'
+                        readonly
                         value = '<?php echo $estimate['weight'] ?>' 
                         >lbs
                 </div>
@@ -299,6 +304,8 @@
         <input type='submit' value='Submit Neropsy Request'>
     </form>
 
+    
+    <br>
     <input type='button' value='Cancel'><br>
     <!-- Clear Session Data -->
     <a href='/Lamp/index.php/calculator/clear'>Clear </a><br>

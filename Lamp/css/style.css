@@ -29,7 +29,9 @@ h1 {
 }
 
 
-
+.read_only {
+    color: grey;
+}
 label.red,
 div.red,
 p.red

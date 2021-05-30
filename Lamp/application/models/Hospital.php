@@ -26,7 +26,15 @@ class Hospital extends CI_Model {
     {
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('antech_id', 'Antech Id', 'trim|required');
+        //$this->form_validation->set_rules('antech_id', 'Antech Id', 'trim|required');
+
+        $this->form_validation->set_rules(
+            'antech_id', 'antech_id',
+            'required|numeric',
+            array(
+                    'numeric'      => 'Antech Id must be a number',
+                )
+        );
         if($this->form_validation->run()) 
         {
             return "valid";
@@ -63,9 +71,23 @@ class Hospital extends CI_Model {
         $this->form_validation->set_rules('antech_id', 'Antech Id', 'trim|required');
         $this->form_validation->set_rules('hospital_name', 'Hospital Name', 'trim|required');
         $this->form_validation->set_rules('address', 'Address', 'trim|required');
-        $this->form_validation->set_rules('phone', 'Phone', 'trim|required');
         $this->form_validation->set_rules('doctor', 'Doctor Name', 'trim|required');
-        $this->form_validation->set_rules('email', 'email', 'trim|required');
+        $this->form_validation->set_rules(
+            'email', 'email',
+            'required|valid_email',
+            array(
+                    // 'required'             => "required",
+                    'valid_email'      => 'You must supply a valid email address',
+                )
+        );
+        $this->form_validation->set_rules(
+            'phone', 'phone',
+            'required|regex_match[/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/]',
+            array(
+                    // 'required'             => "required",
+                    'regex_match'      => 'You must supply a valid phone number. (xxx)xxx-xxxx',
+                )
+        );
 
         if($this->form_validation->run()) 
         {

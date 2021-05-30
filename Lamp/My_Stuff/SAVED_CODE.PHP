@@ -182,3 +182,14 @@ echo 'CALCULATE FUNTCTION';
 $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
 $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
 $this->array_helper->printArr('POST', $this->input->post());
+
+
+
+$this->form_validation->set_rules(
+            'total_cost', 'total_cost',
+            'required',
+            array(
+                    // 'required'             => "required",
+                    'required'      => 'You must run a calculation to proceed.',
+                )
+        );

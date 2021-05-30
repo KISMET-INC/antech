@@ -45,7 +45,14 @@ class Estimate extends CI_Model {
     public function validate_start_order($post)
     {
         
-        $this->form_validation->set_rules('weight', 'Weight', 'trim|required');
+        $this->form_validation->set_rules(
+            'weight', 'weight',
+            'required|numeric',
+            array(
+                    // 'required'             => "required",
+                    'numeric'      => 'Pet weight must be a number',
+                )
+        );
         // $this->form_validation->set_rules('necroCost', 'Calculation', 'trim|required|greater_than[0]');
 
         $this->form_validation->set_rules(
