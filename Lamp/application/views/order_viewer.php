@@ -142,7 +142,7 @@
                         id='age'
                         name = 'age'
                         class='age' 
-                        type='text'
+                        type='number'
                         value = '<?php echo $estimate['age'] ?>' 
                         >
                     <select class = 'age_type' name='age_type'>

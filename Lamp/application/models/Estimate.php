@@ -111,6 +111,13 @@ class Estimate extends CI_Model {
         return $this->db->query("SELECT * FROM estimates WHERE id = ?", array($id))->row_array();
     }
 
+    // SEARCH DATABASE FOR HOSPTIAL
+    function find_estimate_by_antech($id)
+    {
+        //return $this->db->where('id', $id);
+        return $this->db->query("SELECT * FROM estimates WHERE id = ?", array($id))->result();
+    }
+
 
     // ADD ESTIMATE TO DATABASE
     function add_estimate($estimate)
@@ -126,10 +133,14 @@ class Estimate extends CI_Model {
         $interval = date_diff($date1,$date2)->format("%s");
         $new_estimate_id = '';
 
+        
+        
+
         if ($interval > 30 || $estimate['total_cost'] != $new_estimate['total_cost']){
             unset($estimate['id']);
             $estimate['created_at'] = date("Y-m-d, H:i:s");
             $estimate['updated_at'] = date("Y-m-d, H:i:s");
+
             $this->db->insert('estimates', $estimate);
             $new_estimate_id = intval($query->id)+1;
 
@@ -139,7 +150,6 @@ class Estimate extends CI_Model {
             $this->update_estimate($estimate);
             $new_estimate_id= $query->id;
         }
-
         $this->array_helper->printArr('EST', $estimate);
 
         return $new_estimate_id;
@@ -148,6 +158,10 @@ class Estimate extends CI_Model {
     // UPDATE HOSPITAL
     function update_estimate($estimate)
     {
+        $estimate['total_cost'] = substr($estimate['total_cost'],1);
+        $estimate['necropsy_cost'] = substr($estimate['necropsy_cost'],1);
+        $estimate['delivery_cost'] = substr($estimate['delivery_cost'],1);
+        $estimate['cremation_cost'] = substr($estimate['cremation_cost'],1);
     
         $id = $estimate['id'];
         unset($estimate['id']);
@@ -157,6 +171,16 @@ class Estimate extends CI_Model {
 
     }
 
+
+    //**************************************** */
+    // FORMAT NUMBERS FOR DATABASE
+    //**************************************** */
+
+    public function format_for_db($estimate)
+    {
+        $estimate['total_cost'] = implode("",explode(",", substr($estimate['total_cost'],1)));
+        return $estimate;
+    }
 
     
     //************************************************* */

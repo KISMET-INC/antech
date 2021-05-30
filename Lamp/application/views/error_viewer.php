@@ -9,8 +9,9 @@
     <title>SUCCESS</title>
 </head>
 <body>
-    <h1> Thank you for your order! </h2>
-    <p> Your email has been sent succesfully <p>
-    <a href='/Lamp'>Return Home </a>
+    <h1> Oops, We're Sorry, There was a problem.</h2>
+    <p> Please click the link below to return to try and resend. <p>
+    <a href='/Lamp/submit'>Resubmit </a>
+    <p>If you continue to have trouble, contact Richard Moreland at remdvm@antech.com <p>
 </body>
 </html>

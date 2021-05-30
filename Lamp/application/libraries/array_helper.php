@@ -200,6 +200,14 @@ class Array_Helper {
             }
         }     
     }
+    //************************************************* */
+    // REMOVE DOLLAR SIGN
+    //************************************************* */
+
+    public function removeDollarSign($price)
+    {
+        return substr($price,1);
+    }
 
     //************************************************* */
     // PRINT HOSPITAL FROM SESSION

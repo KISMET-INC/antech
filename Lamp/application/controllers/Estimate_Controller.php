@@ -59,13 +59,13 @@ class Estimate_Controller extends CI_Controller {
             $area_code = $this->session->userdata('hospital')['area_code'];
             $weight = $this->session->userdata('estimate')['weight'];
             
-
             // Calculations
-            $necropsy_cost = number_format($weight * 2.3, 2, '.', ','); 
-            $cremation_cost = number_format($weight + 10.9, 2, '.', ',');
-            $delivery_cost = $area_code != '0' ? number_format($area_code + 3.1, 2, '.',',') : 0;
-            $total_cost = number_format($delivery_cost + $necropsy_cost + $cremation_cost, 2, '.', ',');
+            $necropsy_cost = number_format($weight * 2.3, 2, '.', '');
+            $cremation_cost = number_format($weight + 10.9, 2, '.', '');
+            $delivery_cost = $area_code != '0' ? number_format($area_code + 3.1, 2, '.', ''): 0;
+            $total_cost = number_format($delivery_cost + $necropsy_cost + $cremation_cost, 2, '.', '');
 
+            
             // Set Calculations into Session
             $calculations = array(
                 'weight' => $weight,
@@ -74,8 +74,8 @@ class Estimate_Controller extends CI_Controller {
                 'delivery_cost' => $delivery_cost,
                 'total_cost' => $total_cost
             );
-
             $this->array_helper->updateMultiKey('estimate',$calculations);
+
             $this->Hospital->add_hospital($hospital);
             $current_id = $this->Estimate->add_estimate($this->session->userdata('estimate'));
             $this->array_helper->updateSession('estimate', 'id', $current_id);

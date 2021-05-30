@@ -4,6 +4,14 @@ class Order_Controller extends CI_Controller {
 
     public function index() 
     {
+        
+        if(!array_key_exists('total_cost',$this->session->userdata('estimate')) || $this->session->userdata('estimate')['total_cost'] === '0')
+        {
+            redirect('/');
+        }
+
+        $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
+
         $view_data = array(
             'hospital'=> $this->session->userdata('hospital'),
             'estimate' =>$this->session->userdata('estimate'),
@@ -69,25 +77,31 @@ class Order_Controller extends CI_Controller {
         }
         
         // Build object From Post Data
-        $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
-        $estimate = $this->array_helper->buildPostArray('estimate', $this->input->post());
+        
+        if ($this->session->userdata['hospital']['address'] == ''){
+            $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
+            $estimate = $this->array_helper->buildPostArray('estimate', $this->input->post());
+        } else {
+            $hospital = $this->session->userdata('hospital');
+            $estimate = $this->session->userdata('estimate');
+        }
+
         
         // Validate objects
         $hosp_result = $this->Hospital->validate_submit($hospital);
         $est_result = $this->Estimate->validate_submit($estimate);
 
-        if($hosp_result=='valid' && $est_result=='valid')
-        {
 
-            $this->array_helper->updateSession('estimate', 'age', $estimate['age'] . " ". $this->input->post('age_type'));
-            //echo estimate['age'];
-            //echo $this->input->post('age_type');
+        if($hosp_result=='valid' && $est_result=='valid' || $hosp_result[0] == '' && $est_result[0] == '' )
+        {
+            
             $this->Estimate->update_estimate($this->session->userdata('estimate'));
             
             // Merge sessions into form submission object
             $full_estimate = array_merge($this->session->userdata('estimate'),$this->session->userdata('hospital'));
             
             $myform = $full_estimate;
+
 
             echo "<script type='text/JavaScript'> 
             var formData = new FormData();    
@@ -109,24 +123,16 @@ class Order_Controller extends CI_Controller {
                         'Accept': 'application/json'
                     }
                 }).then(response => {
-                    console.log('success');
                     var url = window.location.origin+'/Lamp/success';
-                    //window.location.replace(url);
+                    window.location.replace(url);
 
                 }).catch(error => {
-                    
-                    console.log('no bueno')
+                    var url = window.location.origin+'/Lamp/error';
+                    window.location.replace(url);
                 });
 
             
             </script>";
-
-            // echo 'SUBMIT SUCCESS FUNTCTION';
-            $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
-            // //$this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
-            $this->array_helper->printArr('POST', $this->input->post());
-            //$this->session->unset_userdata('estimate');
-        
 
         } else {
 
@@ -153,14 +159,13 @@ class Order_Controller extends CI_Controller {
             );
 
             $this->session->set_flashdata('errors', $errors);
-            echo 'SUBMIT FUNTCTION';
-            $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
-            $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
-            $this->array_helper->printArr('POST', $this->input->post());
-            
-            echo 'errors found';
-            redirect('/order');
+            // echo 'SUBMIT FUCTION - ERRORS FOUND';
+            // $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
+            // $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
+            // $this->array_helper->printArr('POST', $this->input->post());
 
+            redirect('/');
+            
         };
     }
 }

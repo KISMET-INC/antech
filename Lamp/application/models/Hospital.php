@@ -117,10 +117,12 @@ class Hospital extends CI_Model {
     //************************************************* */
     // GET ALL HOSPITALS
     //************************************************* */
-    function get_all_hospitals()
+    function get_hospitals()
     {
-        return $this->db->query("SELECT * FROM hospitals")->result_array();
-    }
+        $query = $this->db->query("SELECT antech_id, hospital_name FROM hospitals LIMIT 5")->result();
+
+        return $query;
+     }
 
     //************************************************* */
     // SEARCH TEXT FILE FOR HOSPITAL
