@@ -145,9 +145,9 @@
                         type='text'
                         value = '<?php echo $estimate['age'] ?>' 
                         >
-                    <select>
+                    <select class = 'age_type' name='age_type'>
+                        <option selected >years</option>
                         <option>months</option>
-                        <option>years</option>
                     </select>
                 <div>
                 <div>

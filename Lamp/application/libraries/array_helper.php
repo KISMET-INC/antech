@@ -33,7 +33,7 @@ class Array_Helper {
         {
             if($value != null && array_key_exists($key, $update_array))
             {
-                if($key !== 'email' && $key != 'summary')
+                if($key !== 'email' && $key != 'summary' && $key != 'age_type')
                 {
                     $update_array[$key] = ucwords($value);
                 } else {

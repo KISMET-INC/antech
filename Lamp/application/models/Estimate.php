@@ -9,6 +9,7 @@ class Estimate extends CI_Model {
     public $breed;
     public $sex;
     public $age;
+    public $age_type;
     public $weight;
     public $frozen;
     public $euthanized;
@@ -81,6 +82,7 @@ class Estimate extends CI_Model {
         $this->form_validation->set_rules('breed', 'breed', 'trim|required');
         $this->form_validation->set_rules('sex', 'sex', 'trim|required');
         $this->form_validation->set_rules('age', 'age', 'trim|required');
+        $this->form_validation->set_rules('age_type', 'age_type', 'trim|required');
         $this->form_validation->set_rules('frozen', 'frozen', 'trim|required');
         $this->form_validation->set_rules('euthanized', 'euthanized', 'trim|required');
         $this->form_validation->set_rules('summary', 'summary', 'trim|required');
@@ -201,6 +203,7 @@ class Estimate extends CI_Model {
             'breed' => '',
             'sex' => '',
             'age' => '',
+            'age_type'=> '',
             'weight' => '',
             'frozen' => '',
             'euthanized' => '',

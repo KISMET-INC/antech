@@ -78,8 +78,10 @@ class Order_Controller extends CI_Controller {
 
         if($hosp_result=='valid' && $est_result=='valid')
         {
-            // $age = 
-            // $estimate['age'] = $estimate['age'] . " " . $this->input->post('age_type');
+
+            $this->array_helper->updateSession('estimate', 'age', $estimate['age'] . " ". $this->input->post('age_type'));
+            //echo estimate['age'];
+            //echo $this->input->post('age_type');
             $this->Estimate->update_estimate($this->session->userdata('estimate'));
             
             // Merge sessions into form submission object
@@ -109,7 +111,7 @@ class Order_Controller extends CI_Controller {
                 }).then(response => {
                     console.log('success');
                     var url = window.location.origin+'/Lamp/success';
-                    window.location.replace(url);
+                    //window.location.replace(url);
 
                 }).catch(error => {
                     
@@ -120,10 +122,10 @@ class Order_Controller extends CI_Controller {
             </script>";
 
             // echo 'SUBMIT SUCCESS FUNTCTION';
-            // $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
+            $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
             // //$this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
-            // $this->array_helper->printArr('POST', $this->input->post());
-            $this->session->unset_userdata('estimate');
+            $this->array_helper->printArr('POST', $this->input->post());
+            //$this->session->unset_userdata('estimate');
         
 
         } else {
@@ -136,6 +138,7 @@ class Order_Controller extends CI_Controller {
                 'breed' => form_error('breed'),
                 'sex' => form_error('sex'),
                 'age' => form_error('age'),
+                'age_type' => form_error('age_type'),
                 'frozen' => form_error('frozen'),
                 'euthanized' => form_error('euthanized'),
                 'summary' => form_error('summary'),

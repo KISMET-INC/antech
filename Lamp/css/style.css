@@ -32,6 +32,7 @@ h1 {
 .read_only {
     color: grey;
 }
+
 label.red,
 div.red,
 p.red
@@ -39,6 +40,7 @@ p.red
     color: red;
 }
 
+select.red,
 input.red,
 textarea.red
 {
