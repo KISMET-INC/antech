@@ -77,7 +77,7 @@
         </select>
         
 
-        <input type='submit' name = 'calculate' value="Calculate"/>
+        <input id='calculate_button' type='submit' name = 'calculate' value="Calculate"/>
     </form>
 
     <!-- COSTS-->

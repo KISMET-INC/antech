@@ -12,7 +12,7 @@ class Estimate_Controller extends CI_Controller {
         $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
 
         // Run Validations
-        $result  = $this->Hospital->validate_lookup($this->input->post());
+        $result  = $this->Record->validate_lookup();
 
         // VALID RESULTS
         if($result == 'valid')
@@ -57,11 +57,10 @@ class Estimate_Controller extends CI_Controller {
         $this->array_helper->buildPostArray('estimate', $this->input->post());
         
         // Run Validations
-        $hosp_result  = $this->Hospital->validate_calculate($this->input->post());
-        $est_result  = $this->Estimate->validate_calculate($this->input->post());
+        $result  = $this->Record->validate_calculate();
 
         // VALID RESULTS
-        if($hosp_result == 'valid' && $est_result == 'valid')
+        if($result == 'valid')
         {
             // Get Data from Session
             $area_code = $this->session->userdata('hospital')['area_code'];
@@ -104,7 +103,7 @@ class Estimate_Controller extends CI_Controller {
         };
 
         // PRINT FUNCTIONS
-        echo 'CALCULATE FUNCTIO';
+        echo 'CALCULATE FUNCTION';
         $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
         $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
         $this->array_helper->printArr('POST', $this->input->post());
@@ -133,11 +132,10 @@ class Estimate_Controller extends CI_Controller {
         }
     
         // Run validations
-        $hosp_result = $this->Hospital->validate_calculate($this->input->post());
-        $est_result = $this->Estimate->validate_start_order($this->input->post());
+        $result = $this->Record->validate_start_order();
 
         // VALID RESULTS - route to order page
-        if($hosp_result=='valid' && $est_result=='valid')
+        if($result=='valid' && $est_result=='valid')
         {
             echo 'FORM VALID';
             redirect('/order');

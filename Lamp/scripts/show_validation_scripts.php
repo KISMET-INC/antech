@@ -1,6 +1,9 @@
 <script>    
 
     // Turn error keys into an obj
+
+    var calculate_button = document.getElementById('calculate_button');
+
     var errors_obj = {<?php 
                     if($this->session->flashdata('errors') != null){
                         foreach($this->session->flashdata('errors') as $key => $value){
@@ -20,16 +23,18 @@
             if(errors_obj[error]!= ''){
 
                 for(item of elements){
-                    item.classList.add('red')
+                    if(error != 'total_cost'){
+                        item.classList.add('red')
+                    } else {
+                        calculate_button.classList.add('red');
+                    }
                 }
 
-                if (document.title != 'Order Approval')
-                {
+                if (document.title != 'Order Approval'){
                     error_list.innerHTML += errors_obj[error];
                 }
             
-                if (document.title == 'Order Approval')
-                {
+                if (document.title == 'Order Approval'){
                     error_list.innerHTML = 'All Fields are Required.'
                 
                     if(errors_obj['email'].includes('valid')){

@@ -2,7 +2,82 @@
 
 class Record extends CI_Model {
 
+    //========================================= */
+    // 
+    // VALIDATE FUNCTIONS
+    // 
+    //========================================== */
 
+    //**************************************** */
+    // LOOKUP
+    //**************************************** */
+    public function validate_lookup() 
+    {
+        $this->form_validation->set_rules(
+            'antech_id', 'antech_id',
+            'required|numeric',
+            array(
+                    'required'      => 'Antech ID is required.',     
+                    'numeric'       => 'Antech ID must be a number',
+                )
+        );
+        
+        if($this->form_validation->run()) 
+        {
+            return "valid";
+        } else {
+            return array(validation_errors());
+        }
+    }
+
+    //**************************************** */
+    // CALCULATE
+    //**************************************** */
+    public function validate_calculate() 
+    {
+        $this->validate_lookup();
+        $this->form_validation->set_rules('hospital_name', 'Hospital Name', 'trim|required');
+        $this->form_validation->set_rules(
+            'weight', 'Pet Weight', 
+            'trim|required|numeric',
+            array(
+                'numeric'       => 'Pet weight must be a number.'
+            )
+        );
+        
+        if($this->form_validation->run()) 
+        {
+            return "valid";
+        } else {
+            return array(validation_errors());
+        }
+    }
+
+    //**************************************** */
+    // BEGIN ORDER
+    //**************************************** */
+    public function validate_start_order()
+    {
+        $this->validate_lookup();
+        $this->validate_calculate();
+        $this->form_validation->set_rules(
+            'total_cost', 'total_cost',
+            'required|greater_than[0]',
+            array(
+                    'greater_than'      => 'You must run a calculation to proceed.',
+                )
+        );
+
+        if($this->form_validation->run()) {
+            return "valid";
+        } else {
+            return validation_errors();
+        }
+    }
+
+    //**************************************** */
+    // SEARCH FOR HOSPITAL IN TEXT FILE
+    //**************************************** */
     public function search_text($form_id)
     {
         $quote_data = file('smallquotes.txt');
