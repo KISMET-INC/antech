@@ -196,7 +196,7 @@ class Estimate extends CI_Model {
         {
             $date = trim(substr($fdata[$i-3],25));
             $time = trim(substr($fdata[$i-2],25));
-            $datetime =  $this->array_helper->reformat_date_string($date, $time);
+           // $datetime =  $this->array_helper->reformat_date_string($date, $time);
         
             $estimate =  array(
                 'antech_id' => trim(substr($fdata[$i],10)),
@@ -205,7 +205,7 @@ class Estimate extends CI_Model {
                 'delivery_cost' => trim(substr($fdata[$i+4],25)),
                 'cremation_cost' => trim(substr($fdata[$i+7],25)),
                 'total_cost' => trim(substr($fdata[$i+8],25)),
-                'created_at' => $datetime,
+                'created_at' => date("Y-m-d, H:i:s"),
                 'updated_at' => date("Y-m-d, H:i:s"),
                 'total_approved'=> 'FALSE',
             );

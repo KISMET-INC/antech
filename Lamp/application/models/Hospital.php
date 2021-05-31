@@ -97,15 +97,6 @@ class Hospital extends CI_Model {
         }
     }
 
-    //**************************************** */
-    // BUILD FROM POST
-    //**************************************** */
-    function buildFromPost($post)
-    {
-        $this->antech_id = $post['antech_id'];
-        $this->address = array_key_exists('address', $post);
-        return $this;
-    }
 
 
     //*================================================*/
@@ -122,7 +113,7 @@ class Hospital extends CI_Model {
         $query = $this->db->query("SELECT antech_id, hospital_name FROM hospitals LIMIT 5")->result();
 
         return $query;
-     }
+    }
 
     //************************************************* */
     // SEARCH TEXT FILE FOR HOSPITAL
@@ -132,7 +123,7 @@ class Hospital extends CI_Model {
         $this->load->library('array_helper');
 
         // Load Txt File
-        $fdata = file('nquotes.txt');
+        $fdata = file('smallquotes.txt');
         
         // Antech ID's Appear every 14 Lines
         for($i = 4; $i < count($fdata); $i=$i+14)
@@ -164,74 +155,8 @@ class Hospital extends CI_Model {
         return FALSE;
     }
 
-    //**************************************** */
-    // ADD TEXT HOSPITALS TO DB
-    //**************************************** */
-    function text_file_to_db()
-    {
-
-        // Load Txt File
-        $fdata = file('nquotes.txt');
-        // Antech ID's Appear every 14 Lines
-        for($i = 4; $i < count($fdata); $i=$i+14)
-        {
-            $date = trim(substr($fdata[$i-3],25));
-            $time = trim(substr($fdata[$i-2],25));
-
-            $datetime =  $this->array_helper->reformat_date_string($date, $time);
-
-            if ($this->find_hospital_by_id(trim(substr($fdata[$i],10))) === NULL)
-            {
-                $hospital = array(
-                    'antech_id' => trim(substr($fdata[$i],10)),
-                    'hospital_name' => trim(substr($fdata[$i-1],25)),
-                    'area_code' => trim(substr($fdata[$i+5],25)),
-                    'updated_at' =>  date("Y-m-d, h:i:s"),
-                    'created_at' =>  $datetime,
-                );
-
-                $this->db->insert('hospitals', $hospital);
-            }
-        }
-
-        return TRUE;
-            
-    }
 
 
-    //************************************************* */
-    // SEARCH DATABASE FOR HOSPTIAL
-    //************************************************* */
-    function find_hospital_by_id($antech_id)
-    {
-        return $this->db->query("SELECT * FROM hospitals WHERE antech_id = ?", array($antech_id))->row_array();
-    }
-
-
-    //************************************************* */
-    // ADD HOSPTIAL TO DATABASE
-    //************************************************* */
-    function add_hospital($hospital)
-    {
-        $this->antech_id   =    $hospital['antech_id'];
-        $this->hospital_name   =    strtoupper($hospital['hospital_name']);
-        if(array_key_exists( 'area_code' ,$hospital))
-        {
-            $this->area_code = $hospital['area_code'];
-        } else {
-            $this->area_code = '';
-        }
-        
-        $this->created_at   =   date("Y-m-d, H:i:s");
-        $this->updated_at   =  "2021-02-23,12:23:0";
-        if ($this->find_hospital_by_id($this->antech_id) === NULL)
-        {
-            return $this->db->insert('hospitals', $this);
-        } else {
-
-            return $this->db->update('hospitals', $this, array('antech_id' =>$hospital['antech_id']));
-        }
-    }
     //************************************************* */
     // GENERATE EMPTY TEMPLATE
     //************************************************* */

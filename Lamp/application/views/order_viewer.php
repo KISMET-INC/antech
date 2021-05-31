@@ -11,7 +11,7 @@
 <body>
     <h1> Order Approval </h1>
     <h3> All fields are required </h3>
-    <a href='/Lamp/'>I need to change the estimate, go back </a>
+    <a href='/Lamp/'>I need to change the estimate, go back </a> 
     <form id='approval_form' action='submit' method="POST"> 
 
         <section id='details' class='flex width100'>
@@ -231,19 +231,16 @@
                 <label class='delivery_cost' for="ship_check"> Approved</label><br>
                 <input 
                     id="ship_check"
-                    class = 'delivery_cost'
+                    class = 'delivery_cost check'
                     name="delivery_approved" 
+                    type="checkbox" 
                     onchange="toggleChecks(this)"
                     value="TRUE"
                     <?php 
                         if($estimate['delivery_approved']=== "TRUE"){
                             echo 'checked';
                         }
-                        if($estimate['delivery_cost'] == 0){
-                            echo "disabled";
-                        }
-                        ?>
-                    type="checkbox" 
+                    ?>
                 >
             </div>
             <!-- CREMATION -->
@@ -263,7 +260,7 @@
                 <input 
                     id="crem_check" 
                     name="cremation_approved" 
-                    class='cremation_cost' 
+                    class='cremation_cost check' 
                     type="checkbox"
                     value="TRUE"
                     onchange="toggleChecks(this)"
@@ -302,13 +299,9 @@
         </fieldset>
         <!-- SUBMIT -->
         <input type='submit' value='Submit Neropsy Request'>
-    </form>
-
-    
+    </form>  
     <br>
-    <input type='button' value='Cancel'><br>
     <!-- Clear Session Data -->
-    <a href='/Lamp/index.php/calculator/clear'>Clear </a><br>
     <a href='/Lamp/index.php/order_controller/populateForm'>Add Test Info </a><br>
     <button onclick="window.print()">print</button>
     

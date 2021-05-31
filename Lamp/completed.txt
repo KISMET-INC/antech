@@ -1,0 +1,48 @@
+************************************************
+Date of Quote:           05-30-2021
+Time of Quote:           08:59:52 PM
+Hospital:                STENNER CREEK ANIMAL HOSPITAL
+Antech ID:               3
+Weight:                  75
+Full Necropsy:           $172.50
+Carcass Transport:       $750.10
+    Area Code:             747
+Cremation:               $85.90
+Full Necropsy Total:     $2508.70
+************************************************
+************************************************
+Date of Quote:           05-30-2021
+Time of Quote:           09:01:23 PM
+Hospital:                STENNER CREEK ANIMAL HOSPITAL
+Antech ID:               5
+Weight:                  75
+Full Necropsy:           $172.50
+Carcass Transport:       $0
+    Area Code:             0
+Cremation:               $85.90
+Full Necropsy Total:     $172.50
+************************************************
+************************************************
+Date of Quote:           05-30-2021
+Time of Quote:           09:01:41 PM
+Hospital:                STENNER CREEK ANIMAL HOSPITAL
+Antech ID:               5
+Weight:                  75
+Full Necropsy:           $172.50
+Carcass Transport:       $0
+    Area Code:             0
+Cremation:               $85.90
+Full Necropsy Total:     $172.50
+************************************************
+************************************************
+Date of Quote:           05-30-2021
+Time of Quote:           09:02:28 PM
+Hospital:                STENNER CREEK ANIMAL HOSPITAL
+Antech ID:               5
+Weight:                  75
+Full Necropsy:           $172.50
+Carcass Transport:       $0
+    Area Code:             0
+Cremation:               $85.90
+Full Necropsy Total:     $172.50
+************************************************

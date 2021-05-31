@@ -10,14 +10,15 @@ class Order_Controller extends CI_Controller {
             redirect('/');
         }
 
-        $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
-
         $view_data = array(
             'hospital'=> $this->session->userdata('hospital'),
             'estimate' =>$this->session->userdata('estimate'),
             'errors' => $this->session->flashdata('errors'),
         );
         
+        // echo 'ORDER FORM';
+        // $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
+
         $this->load->view('order_viewer', $view_data);
     }
 
@@ -59,56 +60,46 @@ class Order_Controller extends CI_Controller {
 
     public function submit()
     {
+        // BUILD SESSION FROM POST DATA
+        $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
+        $estimate = $this->array_helper->buildPostArray('estimate', $this->input->post());
         
-        // If no post data, set element to false
-        if(!array_key_exists('delivery_approved', $this->input->post()))
-        {
+        // IF NO POST DATA FOR BOOLEANS SET TO FALSE
+        if(!array_key_exists('delivery_approved', $this->input->post())){
             $this->array_helper->updateSession('estimate', 'delivery_approved', 'FALSE');
         }
-
-        if(!array_key_exists('cremation_approved',$this->input->post()))
-        {
+        if(!array_key_exists('cremation_approved',$this->input->post())){
             $this->array_helper->updateSession('estimate', 'cremation_approved', 'FALSE');
         }
-
-        if(!array_key_exists('total_approved',$this->input->post()))
-        {
+        if(!array_key_exists('total_approved',$this->input->post())){
             $this->array_helper->updateSession('estimate', 'total_approved', 'FALSE');
         }
         
-        // Build object From Post Data
         
-        if ($this->session->userdata['hospital']['address'] == ''){
-            $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
-            $estimate = $this->array_helper->buildPostArray('estimate', $this->input->post());
-        } else {
-            $hospital = $this->session->userdata('hospital');
-            $estimate = $this->session->userdata('estimate');
-        }
-
-        
-        // Validate objects
+        // Run Validations
         $hosp_result = $this->Hospital->validate_submit($hospital);
         $est_result = $this->Estimate->validate_submit($estimate);
 
-
+        // VALID RESULTS
         if($hosp_result=='valid' && $est_result=='valid' || $hosp_result[0] == '' && $est_result[0] == '' )
         {
-            
-            $this->Estimate->update_estimate($this->session->userdata('estimate'));
+            // ADD RECORD TO TEXT FILE
+            $this->Record->add_record($this->session->userdata('hospital'),$this->session->userdata('estimate'), 'completed.txt');
             
             // Merge sessions into form submission object
             $full_estimate = array_merge($this->session->userdata('estimate'),$this->session->userdata('hospital'));
             
-            $myform = $full_estimate;
+            echo 'SENDING..';
 
+            // Load Spinner view while waiting for fetch result
+            $this->load->view('spinner_viewer');
 
-            echo "<script type='text/JavaScript'> 
-            var formData = new FormData();    
+            echo "
+            <script type='text/JavaScript'> 
+                var formData = new FormData();
             </script>";
         
-            foreach($myform as $key => $value){
-                //echo nl2br($key . ": " . $value . "\n");
+            foreach($full_estimate as $key => $value){
                 echo "<script type='text/JavaScript'> 
                 formData.append('{$key}', '{$value}');
                 </script>";
@@ -123,16 +114,25 @@ class Order_Controller extends CI_Controller {
                         'Accept': 'application/json'
                     }
                 }).then(response => {
-                    var url = window.location.origin+'/Lamp/success';
-                    window.location.replace(url);
+                    // REDIRECT TO SUCCESS PAGE
 
+                    var url = window.location.origin+'/Lamp/success';
+                    //window.location.replace(url);
+                    console.log(response)
                 }).catch(error => {
+                    // REDIRECT TO ERROR PAGE
+
                     var url = window.location.origin+'/Lamp/error';
                     window.location.replace(url);
+                    console.log(error)
                 });
-
-            
             </script>";
+
+            echo 'VALID RESULTS -SUBMIT TO EMAIL FUNTCTION';
+            $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
+            $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
+            $this->array_helper->printArr('POST', $this->input->post());
+
 
         } else {
 
@@ -158,13 +158,11 @@ class Order_Controller extends CI_Controller {
                 'doctor' => form_error('doctor'),
             );
 
+            // Set Errors
             $this->session->set_flashdata('errors', $errors);
-            // echo 'SUBMIT FUCTION - ERRORS FOUND';
-            // $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
-            // $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
-            // $this->array_helper->printArr('POST', $this->input->post());
+            echo 'VALIDATION FAILED';
 
-            redirect('/');
+            redirect('/order');
             
         };
     }

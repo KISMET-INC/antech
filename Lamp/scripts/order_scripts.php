@@ -2,6 +2,7 @@
 
     var total_check = document.getElementById('total_check');
     var delivery_costs = document.getElementsByClassName('delivery_cost')
+    var delivery_check = document.getElementById('ship_check')
 
     var euthanized = "<?php echo $estimate['euthanized'] ?>"
     var frozen = "<?php echo $estimate['frozen'] ?>"
@@ -13,18 +14,27 @@
     for (ship of delivery_costs){
         if (delivery_cost.value == 0){
             ship.classList.add('unchecked');
-            ship.disabled ==true;
+            ship.disabled == true;
+            delivery_check.setAttribute('disabled','');
+        } else {
+            ship.disabled == false;
+            delivery_check.removeAttribute('disabled','');
         }
+        console.log(delivery_cost.value);
+        console.log(delivery_check);
     }
+
+
+
+    
     //****************************************************** */   
     // Pre set euthanasia checkbox
     //****************************************************** */
 
-    if(euthanized === 'Yes')
-    {
+    if(euthanized === 'Yes'){
         document.getElementById('euthanized_yes').checked = true;
-    } else if (euthanized == 'No')
-    {
+
+    } else if (euthanized == 'No'){
         document.getElementById('euthanized_no').checked = true;
     }
 
@@ -32,9 +42,9 @@
     // Pre set frozen checkbox
     //****************************************************** */
 
-    if(frozen === 'Yes')
-    {
+    if(frozen === 'Yes'){
         document.getElementById('frozen_yes').checked = true;
+
     } else if (frozen == 'No'){
         document.getElementById('frozen_no').checked = true;
     }
