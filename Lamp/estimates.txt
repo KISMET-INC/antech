@@ -1,204 +1,168 @@
 ************************************************
-Date of Quote:           05-30-2021
-Time of Quote:           08:58:09 PM
-Hospital:                STENNER CREEK ANIMAL HOSPITAL
-Antech ID:               4
-Weight:                  6
-Full Necropsy:           13.80
+Date of Quote:           05-31-2021
+Time of Quote:           10:33:26 AM
+Hospital:                Kristens Animal Hospital
+Antech ID:               2332
+Weight:                  22
+Full Necropsy:           50.60
 Carcass Transport:       0
     Area Code:             0
-Cremation:               16.90
-Full Necropsy Total:     30.70
+Cremation:               32.90
+Full Necropsy Total:     83.50
 ************************************************
 ************************************************
-Date of Quote:           05-30-2021
-Time of Quote:           08:58:30 PM
-Hospital:                STENNER CREEK ANIMAL HOSPITAL
-Antech ID:               4
-Weight:                  6
-Full Necropsy:           13.80
-Carcass Transport:       821.10
-    Area Code:             818
-Cremation:               16.90
-Full Necropsy Total:     851.80
-************************************************
-************************************************
-Date of Quote:           05-30-2021
-Time of Quote:           08:58:38 PM
-Hospital:                STENNER CREEK ANIMAL HOSPITAL
-Antech ID:               4
-Weight:                  75
-Full Necropsy:           172.50
-Carcass Transport:       821.10
-    Area Code:             818
-Cremation:               85.90
-Full Necropsy Total:     1079.50
-************************************************
-************************************************
-Date of Quote:           05-30-2021
-Time of Quote:           08:58:53 PM
-Hospital:                STENNER CREEK ANIMAL HOSPITAL
-Antech ID:               4
-Weight:                  75
-Full Necropsy:           172.50
+Date of Quote:           05-31-2021
+Time of Quote:           10:33:59 AM
+Hospital:                Kristens Animal Hospital
+Antech ID:               2332
+Weight:                  22
+Full Necropsy:           50.60
 Carcass Transport:       750.10
     Area Code:             747
-Cremation:               85.90
-Full Necropsy Total:     1008.50
+Cremation:               32.90
+Full Necropsy Total:     833.60
 ************************************************
 ************************************************
-Date of Quote:           05-30-2021
-Time of Quote:           09:00:49 PM
-Hospital:                STENNER CREEK ANIMAL HOSPITAL
-Antech ID:               5
-Weight:                  75
-Full Necropsy:           172.50
-Carcass Transport:       0
-    Area Code:             0
-Cremation:               85.90
-Full Necropsy Total:     258.40
-************************************************
-************************************************
-Date of Quote:           05-30-2021
-Time of Quote:           09:21:11 PM
-Hospital:                STENNER CREEK ANIMAL HOSPITAL
-Antech ID:               5
-Weight:                  75
-Full Necropsy:           172.50
-Carcass Transport:       0
-    Area Code:             0
-Cremation:               85.90
-Full Necropsy Total:     258.40
-************************************************
-************************************************
-Date of Quote:           05-30-2021
-Time of Quote:           09:21:25 PM
-Hospital:                STENNER CREEK ANIMAL HOSPITAL
-Antech ID:               5
-Weight:                  75
-Full Necropsy:           172.50
-Carcass Transport:       0
-    Area Code:             0
-Cremation:               85.90
-Full Necropsy Total:     258.40
-************************************************
-************************************************
-Date of Quote:           05-30-2021
-Time of Quote:           09:21:31 PM
-Hospital:                STENNER CREEK ANIMAL HOSPITAL
-Antech ID:               5
-Weight:                  75
-Full Necropsy:           172.50
-Carcass Transport:       821.10
-    Area Code:             818
-Cremation:               85.90
-Full Necropsy Total:     1079.50
-************************************************
-************************************************
-Date of Quote:           05-30-2021
-Time of Quote:           09:21:43 PM
-Hospital:                STENNER CREEK ANIMAL HOSPITAL
-Antech ID:               5
-Weight:                  755
-Full Necropsy:           1736.50
-Carcass Transport:       821.10
-    Area Code:             818
-Cremation:               765.90
-Full Necropsy Total:     3323.50
-************************************************
-************************************************
-Date of Quote:           05-30-2021
-Time of Quote:           09:36:40 PM
-Hospital:                STENNER CREEK ANIMAL HOSPITAL
-Antech ID:               5
-Weight:                  755
-Full Necropsy:           1736.50
-Carcass Transport:       0
-    Area Code:             0
-Cremation:               765.90
-Full Necropsy Total:     2502.40
-************************************************
-************************************************
-Date of Quote:           05-30-2021
-Time of Quote:           09:45:57 PM
+Date of Quote:           05-31-2021
+Time of Quote:           10:37:34 AM
 Hospital:                Kristens Animal Hospital
 Antech ID:               2332
 Weight:                  22
 Full Necropsy:           50.60
+Carcass Transport:       750.10
+    Area Code:             747
+Cremation:               32.90
+Full Necropsy Total:     833.60
+************************************************
+************************************************
+Date of Quote:           05-31-2021
+Time of Quote:           10:39:16 AM
+Hospital:                Kristens Animal Hospital
+Antech ID:               2332
+Weight:                  30
+Full Necropsy:           69.00
+Carcass Transport:       750.10
+    Area Code:             747
+Cremation:               40.90
+Full Necropsy Total:     860.00
+************************************************
+************************************************
+Date of Quote:           05-31-2021
+Time of Quote:           10:47:07 AM
+Hospital:                Kristens Animal Hospital
+Antech ID:               2332
+Weight:                  9
+Full Necropsy:           0.00
+Carcass Transport:       750.10
+    Area Code:             747
+Cremation:               19.90
+Full Necropsy Total:     770.00
+************************************************
+************************************************
+Date of Quote:           05-31-2021
+Time of Quote:           10:47:51 AM
+Hospital:                Kristens Animal Hospital
+Antech ID:               2332
+Weight:                  9
+Full Necropsy:           0.00
+Carcass Transport:       750.10
+    Area Code:             747
+Cremation:               19.90
+Full Necropsy Total:     770.00
+************************************************
+************************************************
+Date of Quote:           05-31-2021
+Time of Quote:           10:50:21 AM
+Hospital:                Kristens Animal Hospital
+Antech ID:               2332
+Weight:                  3
+Full Necropsy:           1380.00
 Carcass Transport:       0
     Area Code:             0
-Cremation:               32.90
-Full Necropsy Total:     83.50
+Cremation:               13.90
+Full Necropsy Total:     1393.90
 ************************************************
 ************************************************
-Date of Quote:           05-30-2021
-Time of Quote:           09:49:45 PM
+Date of Quote:           05-31-2021
+Time of Quote:           11:01:36 AM
 Hospital:                Kristens Animal Hospital
 Antech ID:               2332
-Weight:                  22
-Full Necropsy:           50.60
-Carcass Transport:       313.10
-    Area Code:             310
-Cremation:               32.90
-Full Necropsy Total:     396.60
-************************************************
-************************************************
-Date of Quote:           05-30-2021
-Time of Quote:           10:23:59 PM
-Hospital:                Kristens Animal Hospital
-Antech ID:               2332
-Weight:                  22
-Full Necropsy:           50.60
+Weight:                  5
+Full Necropsy:           1380.00
 Carcass Transport:       0
-    Area Code:             0
-Cremation:               32.90
-Full Necropsy Total:     83.50
+    Area Code:             909
+Cremation:               15.90
+Full Necropsy Total:     1395.90
 ************************************************
 ************************************************
-Date of Quote:           05-30-2021
-Time of Quote:           10:33:46 PM
+Date of Quote:           05-31-2021
+Time of Quote:           11:02:31 AM
+Hospital:                Kristens Animal Hospital
+Antech ID:               2332
+Weight:                  5
+Full Necropsy:           1380.00
+Carcass Transport:       160.00
+    Area Code:             909
+Cremation:               15.90
+Full Necropsy Total:     1555.90
+************************************************
+************************************************
+Date of Quote:           05-31-2021
+Time of Quote:           11:09:08 AM
+Hospital:                Kristens Animal Hospital
+Antech ID:               2332
+Weight:                  5
+Full Necropsy:           1380.00
+Carcass Transport:       160.00
+    Area Code:             909
+Cremation:               -1.00
+Full Necropsy Total:     1539.00
+************************************************
+************************************************
+Date of Quote:           05-31-2021
+Time of Quote:           11:09:48 AM
+Hospital:                Kristens Animal Hospital
+Antech ID:               2332
+Weight:                  5
+Full Necropsy:           1380.00
+Carcass Transport:       160.00
+    Area Code:             909
+Cremation:               -1.00
+Full Necropsy Total:     1539.00
+************************************************
+************************************************
+Date of Quote:           05-31-2021
+Time of Quote:           11:10:34 AM
+Hospital:                Kristens Animal Hospital
+Antech ID:               2332
+Weight:                  5
+Full Necropsy:           1380.00
+Carcass Transport:       160.00
+    Area Code:             909
+Cremation:               -1.00
+Full Necropsy Total:     1539.00
+************************************************
+************************************************
+Date of Quote:           05-31-2021
+Time of Quote:           11:11:07 AM
 Hospital:                Kristens Animal Hospital
 Antech ID:               2332
 Weight:                  22
-Full Necropsy:           50.60
-Carcass Transport:       0
-    Area Code:             0
-Cremation:               32.90
-Full Necropsy Total:     83.50
+Full Necropsy:           1525.00
+Carcass Transport:       160.00
+    Area Code:             909
+Cremation:               -1.00
+Full Necropsy Total:     1684.00
 ************************************************
 ************************************************
-Date of Quote:           05-30-2021
-Time of Quote:           10:34:38 PM
+Date of Quote:           05-31-2021
+Time of Quote:           11:11:45 AM
 Hospital:                Kristens Animal Hospital
 Antech ID:               2332
 Weight:                  22
-Full Necropsy:           50.60
-Carcass Transport:       0
-    Area Code:             0
-Cremation:               32.90
-Full Necropsy Total:     83.50
-************************************************
-************************************************
-Date of Quote:           05-30-2021
-Time of Quote:           10:34:53 PM
-Hospital:                Kristens Animal Hospital
-Antech ID:               2332
-Weight:                  22
-Full Necropsy:           50.60
-Carcass Transport:       821.10
-    Area Code:             818
-Cremation:               32.90
-Full Necropsy Total:     904.60
-************************************************
-************************************************
-Date of Quote:           05-30-2021
-Time of Quote:           10:40:58 PM
-Hospital:                Kristens Animal Hospital
-Antech ID:               2332
-Weight:                  22
-Full Necropsy:           50.60
-Carcass Transport:       821.10
-    Area Code:             818
-Cremation:               32.90
-Full Necropsy Total:     904.60
+Full Necropsy:           1525.00
+Carcass Transport:       160.00
+    Area Code:             909
+Cremation:               200.00
+Full Necropsy Total:     1885.00
 ************************************************
