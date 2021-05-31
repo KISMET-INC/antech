@@ -4,6 +4,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Estimate_Controller extends CI_Controller {
 
     //************************************************* */
+    // MAIN CALCULATOR VIEW 
+    //************************************************* */
+    
+    public function index()
+	{
+
+        // if(!$this->session->userdata('logged_in') && !$this->session->userdata('calculation_made')){
+        //     $this->session->unset_userdata('estimate');
+        // }
+
+        if(!$this->session->userdata('hospital')){
+            $hospital = new Hospital();
+            $this->session->set_userdata('hospital',(array)$hospital);
+        };
+
+        if(!$this->session->userdata('estimate')){
+            $estimate = new Estimate();
+            $this->session->set_userdata('estimate',(array)$estimate);
+        };
+
+        
+    
+        $view_data = array(
+            'hospital'=> $this->session->userdata('hospital'),
+            'estimate'=> $this->session->userdata('estimate'),
+            'errors' => $this->session->flashdata('errors'),
+
+        );
+
+        $this->load->view('estimate_viewer',$view_data);
+	}
+
+
+
+    //************************************************* */
     // LOOK UP ID IN DB
     //************************************************* */
     public function lookup() 
@@ -87,8 +122,9 @@ class Estimate_Controller extends CI_Controller {
             // UPDATE SESSION
             $this->array_helper->updateMultiKey('estimate',$calculations);
 
-            // STORE IN TXT
-            $this->Record->add_record($this->session->userdata('hospital'),$this->session->userdata('estimate'),'estimates.txt');
+            // STORE IN TXT (one LONG LINE)
+            $this->Record->add_record($this->session->userdata('hospital'),$this->session->userdata('estimate'),'nquotes2.txt');
+            $this->session->set_userdata('calculation_made',TRUE);
             //echo nl2br("\n CALCULATION  BEGUN \n");
 
         } else {
@@ -105,11 +141,11 @@ class Estimate_Controller extends CI_Controller {
         };
 
         //PRINT FUNCTION
-        //echo 'CALCULATE FUNCTION';
-        //echo $this->calc_necropsy($weight);
-        // $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
-        //$this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
-        //$this->array_helper->printArr('POST', $this->input->post());
+        echo 'CALCULATE FUNCTION';
+        echo $this->calc_necropsy($weight);
+        $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
+        $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
+        $this->array_helper->printArr('POST', $this->input->post());
     
         // Return to main page
         redirect('/');
@@ -124,7 +160,6 @@ class Estimate_Controller extends CI_Controller {
         // BUILD SESSION DATA FROM POST
         $this->array_helper->buildPostArray('hospital', $this->input->post());
         $this->array_helper->buildPostArray('estimate', $this->input->post());
-      
     
         // SET BOOLEANS TO TRUE IF CALCULATION VALUES ARE GREATER THAN 0
         if($this->input->post('delivery_cost') > 0){
@@ -142,6 +177,9 @@ class Estimate_Controller extends CI_Controller {
         if($result=='valid')
         {
             echo 'FORM VALID';
+
+            // LOGIN USER
+            $this->session->set_userdata('logged_in', TRUE);
             redirect('/order');
 
         } else {
@@ -262,35 +300,6 @@ class Estimate_Controller extends CI_Controller {
 
 
 
-    //************************************************* */
-    // MAIN CALCULATOR VIEW 
-    //************************************************* */
-    
-    public function index()
-	{
-        $this->load->helper('form');
-
-        if(!$this->session->userdata('hospital'))
-        {
-            $hospital = new Hospital();
-            $this->session->set_userdata('hospital',(array)$hospital);
-        };
-
-        if(!$this->session->userdata('estimate'))
-        {
-            $estimate = new Estimate();
-            $this->session->set_userdata('estimate',(array)$estimate);
-        };
-    
-        $view_data = array(
-            'hospital'=> $this->session->userdata('hospital'),
-            'estimate'=> $this->session->userdata('estimate'),
-            'errors' => $this->session->flashdata('errors'),
-
-        );
-
-        $this->load->view('estimate_viewer',$view_data);
-	}
 
 }
 ?>

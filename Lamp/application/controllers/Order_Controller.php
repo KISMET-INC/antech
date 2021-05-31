@@ -5,7 +5,7 @@ class Order_Controller extends CI_Controller {
     public function index() 
     {
         
-        if(!array_key_exists('total_cost',$this->session->userdata('estimate')) || $this->session->userdata('estimate')['total_cost'] === '0')
+        if(!array_key_exists('logged_in',$this->session->userdata()))
         {
             redirect('/');
         }
@@ -60,6 +60,10 @@ class Order_Controller extends CI_Controller {
 
     public function submit()
     {
+        if(!array_key_exists('logged_in',$this->session->userdata()))
+        {
+            redirect('/');
+        }
         // BUILD SESSION FROM POST DATA
         $this->array_helper->buildPostArray('hospital', $this->input->post());
         $this->array_helper->buildPostArray('estimate', $this->input->post());

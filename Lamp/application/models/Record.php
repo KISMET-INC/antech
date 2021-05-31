@@ -128,7 +128,7 @@ class Record extends CI_Model {
     //**************************************** */
     public function search_text($form_id)
     {
-        $quote_data = file('smallquotes.txt');
+        $quote_data = file('nquotes2.txt');
         
         // Antech ID's Appear every 14 Lines
         for($i = 4; $i < count($quote_data); $i = $i + 14)
@@ -186,10 +186,12 @@ Date of Quote:           " . $date . "
 Time of Quote:           " . $time . "
 Hospital:                " . $hospital['hospital_name'] . "
 Antech ID:               " . $hospital['antech_id']. "
+CS Rep:                  N/A
 Weight:                  " . $estimate['weight'] . "
 Full Necropsy:           " . $estimate['necropsy_cost'] . "
 Carcass Transport:       " . $estimate['delivery_cost'] . "
     Area Code:             " . $hospital['area_code']. "
+    Transport Miles:       N/A
 Cremation:               " . $estimate['cremation_cost'] . "
 Full Necropsy Total:     " . $estimate['total_cost'] . "
 ************************************************

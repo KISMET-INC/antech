@@ -26,34 +26,34 @@ class Estimate extends CI_Model {
 
 
 
-    // EMPTY TEMPLATE
-    public function template(){
-        $template = array(
-            'id' => '',
-            'pet_name' => '',
-            'antech_id' => '',
-            'species' => '',
-            'owner'=>'',
-            'breed' => '',
-            'sex' => '',
-            'age' => '',
-            'age_type'=> '',
-            'weight' => '',
-            'frozen' => '',
-            'euthanized' => '',
-            'summary' => '',
-            'death_date'=> '',
-            'necropsy_cost' => '0',
-            'delivery_cost' => '0',
-            'cremation_cost' => '0',
-            'total_cost'=> '0',
-            'delivery_approved' => 'FALSE',
-            'cremation_approved' => 'FALSE',
-            'total_approved' => 'FALSE',
-        );
+    // // EMPTY TEMPLATE
+    // public function template(){
+    //     $template = array(
+    //         'id' => '',
+    //         'pet_name' => '',
+    //         'antech_id' => '',
+    //         'species' => '',
+    //         'owner'=>'',
+    //         'breed' => '',
+    //         'sex' => '',
+    //         'age' => '',
+    //         'age_type'=> '',
+    //         'weight' => '',
+    //         'frozen' => '',
+    //         'euthanized' => '',
+    //         'summary' => '',
+    //         'death_date'=> '',
+    //         'necropsy_cost' => '0',
+    //         'delivery_cost' => '0',
+    //         'cremation_cost' => '0',
+    //         'total_cost'=> '0',
+    //         'delivery_approved' => 'FALSE',
+    //         'cremation_approved' => 'FALSE',
+    //         'total_approved' => 'FALSE',
+    //     );
 
-        return $template;
-    }
+    //     return $template;
+    // }
 }
 
 ?>

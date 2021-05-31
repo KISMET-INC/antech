@@ -23,18 +23,12 @@
     ?>
 
 <h2>Order Info</h2>
-    <?php if($estimate){
-
-        foreach($estimate as $key => $value)
+    <?php foreach($estimate as $key => $value)
         {
-            $format_key = implode(" ", explode("_",$key));
-            echo "<p><b>$key :</b> $value</p>";
+            $format_key = ucwords(implode(" ", explode("_",$key)));
+            echo "<p><b>$format_key :</b> $value</p>";
         };
-    } else {
-        echo "<p>Sorry Data No longer available</p>";
-    }
     ?>
-   
-    <a href='/Lamp'>Return Home </a>
+    <a href='/Lamp/success_controller/return_home'>Return Home </a>
 </body>
 </html>

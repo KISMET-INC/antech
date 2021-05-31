@@ -116,8 +116,7 @@ class Array_Helper {
                 break;
 
             case 'estimate':
-                $CI->load->model('Estimate');
-                $template =  $CI->Estimate->template();
+                $template =  (array)new Estimate();
                 break;
         }
 
