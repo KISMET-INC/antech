@@ -135,7 +135,7 @@ class Estimate_Controller extends CI_Controller {
         $result = $this->Record->validate_start_order();
 
         // VALID RESULTS - route to order page
-        if($result=='valid' && $est_result=='valid')
+        if($result=='valid')
         {
             echo 'FORM VALID';
             redirect('/order');

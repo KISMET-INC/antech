@@ -76,6 +76,54 @@ class Record extends CI_Model {
     }
 
     //**************************************** */
+    // SUBMIT
+    //**************************************** */
+    public function validate_submit()
+    {
+        $this->validate_lookup();
+        $this->validate_calculate();
+        // ESTIMATE
+        $this->form_validation->set_rules('owner', 'owner', 'trim|required');
+        $this->form_validation->set_rules('weight', 'Weight', 'trim|required');
+        $this->form_validation->set_rules('pet_name', 'pet_name', 'trim|required');
+        $this->form_validation->set_rules('species', 'species', 'trim|required');
+        $this->form_validation->set_rules('breed', 'breed', 'trim|required');
+        $this->form_validation->set_rules('sex', 'sex', 'trim|required');
+        $this->form_validation->set_rules('age', 'age', 'trim|required');
+        $this->form_validation->set_rules('age_type', 'age_type', 'trim|required');
+        $this->form_validation->set_rules('frozen', 'frozen', 'trim|required');
+        $this->form_validation->set_rules('euthanized', 'euthanized', 'trim|required');
+        $this->form_validation->set_rules('summary', 'summary', 'trim|required');
+        $this->form_validation->set_rules('total_approved', 'totalApproved', 'trim|required');
+        $this->form_validation->set_rules('death_date', 'death', 'trim|required');
+        // HOSPITAL
+        $this->form_validation->set_rules('address', 'Address', 'trim|required');
+        $this->form_validation->set_rules('doctor', 'Doctor Name', 'trim|required');
+        $this->form_validation->set_rules(
+            'email', 'email',
+            'required|valid_email',
+            array(
+                    // 'required'             => "required",
+                    'valid_email'      => 'You must supply a valid email address',
+                )
+        );
+        $this->form_validation->set_rules(
+            'phone', 'phone',
+            'required|regex_match[/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/]',
+            array(
+                    // 'required'             => "required",
+                    'regex_match'      => 'You must supply a valid phone number. (xxx)xxx-xxxx',
+                )
+        );
+
+        if($this->form_validation->run()) {
+            return "valid";
+        } else {
+            return array(validation_errors());
+        }
+    }
+
+    //**************************************** */
     // SEARCH FOR HOSPITAL IN TEXT FILE
     //**************************************** */
     public function search_text($form_id)
@@ -83,7 +131,7 @@ class Record extends CI_Model {
         $quote_data = file('smallquotes.txt');
         
         // Antech ID's Appear every 14 Lines
-        for($i = 4; $i < count($quote_data); $i=$i+14)
+        for($i = 4; $i < count($quote_data); $i = $i + 14)
         {
         
             // Extract ID from line
@@ -114,11 +162,6 @@ class Record extends CI_Model {
 
     public function add_record( $hospital, $estimate, $filename) 
     {
-        echo 'ADD RECORD FUNCTION';
-        $this->array_helper->printArr('ESTIMATE', $estimate);
-        $this->array_helper->printArr('HOSPITAL', $hospital);
-        echo "FILENAME :" . $filename;
-        
         $date = date("m-d-Y");
         $time = date("h:i:s A");
         $str = 
@@ -138,7 +181,14 @@ Full Necropsy Total:     " . $estimate['total_cost'] . "
 ";
         
         file_put_contents($filename ,$str,FILE_APPEND);
+    
+
+    // echo 'ADD RECORD FUNCTION';
+    // $this->array_helper->printArr('ESTIMATE', $estimate);
+    // $this->array_helper->printArr('HOSPITAL', $hospital);
+    // echo "FILENAME :" . $filename;
     }
+    
 
 }
 

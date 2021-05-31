@@ -61,8 +61,8 @@ class Order_Controller extends CI_Controller {
     public function submit()
     {
         // BUILD SESSION FROM POST DATA
-        $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
-        $estimate = $this->array_helper->buildPostArray('estimate', $this->input->post());
+        $this->array_helper->buildPostArray('hospital', $this->input->post());
+        $this->array_helper->buildPostArray('estimate', $this->input->post());
         
         // IF NO POST DATA FOR BOOLEANS SET TO FALSE
         if(!array_key_exists('delivery_approved', $this->input->post())){
@@ -77,11 +77,10 @@ class Order_Controller extends CI_Controller {
         
         
         // Run Validations
-        $hosp_result = $this->Hospital->validate_submit($hospital);
-        $est_result = $this->Estimate->validate_submit($estimate);
+        $result = $this->Record->validate_submit();
 
         // VALID RESULTS
-        if($hosp_result=='valid' && $est_result=='valid' || $hosp_result[0] == '' && $est_result[0] == '' )
+        if($result =='valid' || $result[0] == '' )
         {
             // ADD RECORD TO TEXT FILE
             $this->Record->add_record($this->session->userdata('hospital'),$this->session->userdata('estimate'), 'completed.txt');
@@ -117,7 +116,7 @@ class Order_Controller extends CI_Controller {
                     // REDIRECT TO SUCCESS PAGE
 
                     var url = window.location.origin+'/Lamp/success';
-                    //window.location.replace(url);
+                    window.location.replace(url);
                     console.log(response)
                 }).catch(error => {
                     // REDIRECT TO ERROR PAGE
@@ -128,10 +127,10 @@ class Order_Controller extends CI_Controller {
                 });
             </script>";
 
-            echo 'VALID RESULTS -SUBMIT TO EMAIL FUNTCTION';
-            $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
-            $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
-            $this->array_helper->printArr('POST', $this->input->post());
+            // echo 'VALID RESULTS -SUBMIT TO EMAIL FUNTCTION';
+            // $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
+            // $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
+            // $this->array_helper->printArr('POST', $this->input->post());
 
 
         } else {
