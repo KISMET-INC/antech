@@ -80,7 +80,8 @@ class Estimate_Controller extends CI_Controller {
                 'necropsy_cost'=> $necropsy_cost,
                 'cremation_cost'=> $cremation_cost,
                 'delivery_cost' => $delivery_cost,
-                'total_cost' => $total_cost
+                'total_cost' => $total_cost,
+                'created_at'=> date("m-d-Y, H:i:s A"),
             );
 
             // UPDATE SESSION
@@ -123,6 +124,7 @@ class Estimate_Controller extends CI_Controller {
         // BUILD SESSION DATA FROM POST
         $this->array_helper->buildPostArray('hospital', $this->input->post());
         $this->array_helper->buildPostArray('estimate', $this->input->post());
+      
     
         // SET BOOLEANS TO TRUE IF CALCULATION VALUES ARE GREATER THAN 0
         if($this->input->post('delivery_cost') > 0){
@@ -276,8 +278,8 @@ class Estimate_Controller extends CI_Controller {
 
         if(!$this->session->userdata('estimate'))
         {
-            $template = $this->Estimate->template();
-            $this->session->set_userdata('estimate',$template);
+            $estimate = new Estimate();
+            $this->session->set_userdata('estimate',(array)$estimate);
         };
     
         $view_data = array(

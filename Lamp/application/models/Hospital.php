@@ -9,8 +9,6 @@ class Hospital extends CI_Model {
     public $email = '';
     public $area_code = '0';
     public $doctor = '';
-    public $updated_at = '';
-    public $created_at = '';
 
 
 

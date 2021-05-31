@@ -136,11 +136,10 @@
     </form>
 
     <!-- CLEAR SESSION DATA -->
-    <a href='clear'>Clear </a>
+    <a href='clear'>Clear Form</a>
 
     <!-- ERRORS -->
     <div id='error_list' class ='error red'></div>
-    <button onclick="window.print()">print</button>
     
     <?php include "scripts/estimate_scripts.php"?>
     <?php include "scripts/show_validation_scripts.php"?>

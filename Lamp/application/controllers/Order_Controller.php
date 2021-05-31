@@ -87,6 +87,8 @@ class Order_Controller extends CI_Controller {
             
             // Merge sessions into form submission object
             $full_estimate = array_merge($this->session->userdata('estimate'),$this->session->userdata('hospital'));
+            $full_estimate['name_address'] = $this->session->userdata('hospital')['hospital_name']. " " . $this->session->userdata('hospital')['address'];
+            unset($full_estimate['id']);
             
             echo 'SENDING..';
 
