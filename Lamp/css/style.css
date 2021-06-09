@@ -3,22 +3,288 @@
     padding:0;
     font-family:Arial, Helvetica, sans-serif;
     box-sizing: border-box;
+    outline: 2px dotted red;
+}
+:root {
+    --purple: #4D2E99;
+    --green: #32CD98;
+    --bgreen: #41C04D;
 }
 
 h1 {
+    color: black;
+    font-size: 60px;
+}
+
+.title {
+    position: absolute;
+    top: 300px;
+    left: 15%;
+    line-height: 3.3em;
+}
+
+.faq {
+    position: relative;
+    top: 300px;
+    left: 0%;
+    line-height: 3.3em;
+    color: white;
+    height: 0px;
+}
+.faq h1 {
+    color: white;
+}
+
+.faq hr {
+    border-color: greenyellow;
+}
+
+
+header {
+    height: 60px;
+    width: 100%;
+    grid-template-columns:50%;
+    display: grid;
+    background-color :var(--purple);
+}
+#answers {
+    width: 50%;
+}
+#answer {
+    line-height: 1.5em;
+    font-size: 1em;
+}
+
+.bluebg  {
+    background-color: var(--purple);
+    width: 100%;
+
+}
+#questions {
+    width: 50%;
+}
+.logo {
+    width: 176px;
+    margin-top:20px;
+    margin-bottom: 20px;
+}
+
+hr {
+    box-sizing: content-box;
+    width: 86px;
+    border-top: 7px solid var(--purple);
+    margin-bottom: 20px;
+    margin-left: 0px;
+    margin-top: 1rem;
+
     
+}
+
+footer {
+    color: var(--purple);
+}
+
+#answer span {
+    font-weight: bold;
+}
+
+#error_list p {
+    padding:0px;
+    margin-top: 5px;
+}
+
+.jumbo {
+    object-fit: cover;
+    width: 100%;
+    height: 700px;
+}
+.nav {
+    grid-column-start: 2;
+}
+
+h2 {
+    font-size: 40px;
+}
+h3 {
     font-size: 30px;
-    color: purple;
+}
+
+footer {
+    color: var(--purple);
+    font-weight: bold;
+    text-align: center;
+    padding: 50px 0px;
+}
+header p {
+    font-size: 17px;
+    text-align: center;
+    color: white;
+}
+
+.about {
+    background-color: var(--purple);
+    width: 100%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+#questions hr {
+    border-top: 7px solid var(--bgreen);
+    background-color: var(--bgreen);
+    width: 200px;
+}
+
+.green {
+    color: var(--green);
+}
+
+#answer {
+    width: 100%;
+}
+
+#answers img {
+    width:100%;
+}
+
+#questions h3 {
+    margin-bottom: 50px;
+}
+
+#questions {
+    width: 50%;
+}
+li {
+    list-style: none;
+    margin-left: 100px;
+    margin-top: 20px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+.estimate h3 {
+    font-weight: lighter;
+}
+
+.about p {
+    color: white;
+    font-size: 20px;
+    width:700px;
+    line-height: 2em;
+}
+
+
+.about h3 {
+    color:white;
+}
+
+.flexColumn {
+    display:flex;
+    flex-direction: column;
+}
+.estimate.wrapper {
+    padding-top: 3%;
+    margin-bottom: 100px;
+}
+.wrapper {
+    width: 80%;
+    margin: auto;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.ambulance_note {
+    padding-top: 3%;
+    padding-bottom: 5%;
+}
+
+.bgreen  {
+    color: var(--bgreen);
+}
+
+#calculate_button {
+    border:none;
+    color: var(--purple);
+    font-weight: bold;
+}
+
+select {
+    width: 100px;
+    height: 2.5em;
+}
+input {
+    height: 2.5em;
+    margin-bottom: 1em;
+}
+
+input.hospital_name {
+    width: 75%;
+}
+label {
+    display: inline-block;
+    width: 7em;
+}
+
+.cost {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin: 0.5em;
+    padding: 0;
+    height: fit-content;
+}
+#antech_id {
+    width: 60%;
+}
+button,
+.button  {
+    background-color: var(--purple);
+    color: white;
+    border-radius: 100px;
+    border: none;
+    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: bold;
 }
 
 .no_border {
     border:none;
 }
+
+.right {
+    width: 50%;
+    margin-left: 10%;
+}
+.left input {
+    margin-bottom: 2em;
+}
+.left {
+    border-right: 1px solid grey;
+    padding-right: 20px;
+    width: 60%;
+}
+#approve_button {
+    background-color: red;
+    width: 200px;
+    margin-bottom: 2em;
+
+}
+
+
 .flex {
     display:flex;
     align-items: center;
     justify-content: space-between;
-    width: 500px;
+}
+
+
+.approve_form {
+    justify-content: center;
+    align-items: center;
+}
+
+.approve_form p {
+    color: grey;
 }
 .width100 {
     width: 100%;

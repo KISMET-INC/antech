@@ -170,13 +170,13 @@ class Record extends CI_Model {
         if(array_key_exists('last_time',$this->session->userdata))
         {
             //echo nl2br("\nKEY EXISTS\n");
-            $last_time = date_create($this->session->userdata('last_time'));
+            $last_time = date_create(date($this->session->userdata('last_time')));
             $new_time = date_create($time);
             $interval = date_diff($last_time,$new_time)->format("%s");
 
         }
         
-        if($interval > 30 && $estimate['total_cost'] != $this->session->userdata('last_total') || $this->session->userdata('start_order') == TRUE){
+        if($interval > 30 && $estimate['total_cost'] != $this->session->userdata('last_total') || $this->session->userdata('logged_in') == TRUE){
             //echo nl2br("\nADDING TO TEXT FILE...\n");
             $date = date("m-d-Y");
             $str =

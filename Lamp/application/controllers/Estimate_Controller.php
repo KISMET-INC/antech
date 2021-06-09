@@ -123,7 +123,7 @@ class Estimate_Controller extends CI_Controller {
             $this->array_helper->updateMultiKey('estimate',$calculations);
 
             // STORE IN TXT (one LONG LINE)
-            $this->Record->add_record($this->session->userdata('hospital'),$this->session->userdata('estimate'),'nquotes2.txt');
+            $this->Record->add_record($this->session->userdata('hospital'),$this->session->userdata('estimate'),'estimates.txt');
             $this->session->set_userdata('calculation_made',TRUE);
             //echo nl2br("\n CALCULATION  BEGUN \n");
 
