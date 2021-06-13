@@ -13,7 +13,6 @@ class Estimate_Controller extends CI_Controller {
         // if(!$this->session->userdata('logged_in') && !$this->session->userdata('calculation_made')){
         //     $this->session->unset_userdata('estimate');
         // }
-
         if(!$this->session->userdata('hospital')){
             $hospital = new Hospital();
             $this->session->set_userdata('hospital',(array)$hospital);
@@ -24,7 +23,7 @@ class Estimate_Controller extends CI_Controller {
             $this->session->set_userdata('estimate',(array)$estimate);
         };
 
-        
+
     
         $view_data = array(
             'hospital'=> $this->session->userdata('hospital'),
@@ -196,11 +195,14 @@ class Estimate_Controller extends CI_Controller {
         // VALID RESULTS - route to order page
         if($result=='valid')
         {
-            echo 'FORM VALID';
+           // echo 'FORM VALID';
 
             // LOGIN USER
             $this->session->set_userdata('logged_in', TRUE);
-            redirect('/order');
+            $errors = array( 
+                'redirect' => 'order',
+            );
+
 
         } else {
 
@@ -216,13 +218,14 @@ class Estimate_Controller extends CI_Controller {
             // echo 'VALIDATION FAILED';
             // redirect('/');
         };
-
-        // // PRINT FUNCTIONS
+        
+        echo json_encode($errors);
+        // PRINT FUNCTIONS
         // echo 'START ORDER FUNCTION';
         // $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
         // $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
         // $this->array_helper->printArr('POST', $this->input->post());
-        echo json_encode($errors);
+        // echo $this->session->userdata('logged_in');
     }
     
 
@@ -231,13 +234,20 @@ class Estimate_Controller extends CI_Controller {
     //************************************************* */
     public function clear() 
     {
+        //$errors = $this->session->all_userdata();
         foreach($this->session->all_userdata() as $key => $value)
         {
             $this->session->unset_userdata($key);
         }
-        var_dump($this->session->all_userdata());
+        $this->resetSession();
+        $errors = $this->session->all_userdata();
+        echo json_encode($errors);
 
-        redirect('/');
+        // echo 'CLEAR FUNCTION';
+        // $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
+        // $this->array_helper->printArr('ALL DATA', $this->session->all_userdata());
+        // $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
+        // $this->array_helper->printArr('POST', $this->input->post());
     }
 
 
@@ -319,8 +329,17 @@ class Estimate_Controller extends CI_Controller {
         return $total;         
     }
 
+    //************************************************* */
+    // RESET HOSPITAL AND ESTIMATE TO EMPTY VALUES
+    //************************************************* */
+    public function resetSession(){
+        
+        $hospital = new Hospital();
+        $this->session->set_userdata('hospital',(array)$hospital);
+        $estimate = new Estimate();
+        $this->session->set_userdata('estimate',(array)$estimate);
 
-
+    }
 
 }
 ?>

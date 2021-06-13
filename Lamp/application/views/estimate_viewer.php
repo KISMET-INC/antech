@@ -11,12 +11,11 @@
     <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/style.css">
 </head>
 <body>
+    <!-- HEADER -->
     <?php $this->load->view('./partials/header.php') ?>
 
-    <div class='antech_nav wrapper'>
-        <img class='logo' src = '../../assets/antech_logo.jpg' alt='antech logo'>
-    </div>
-
+    <!-- MAIN CONTENT -->
+    <!-- Jumbotron Display -->
     <section class='title wrapper'>
         <hr>
         <h1>Antech <br> Necropsy <br> Service </h1>
@@ -31,6 +30,7 @@
         </div>
     </section>
 
+    <!-- BEGIN CALCULATOR SECTION -->
     <section id='calculator' class='estimate wrapper flex'>
         <div class='left'>
         <hr>
@@ -54,65 +54,68 @@
                     >
 
                     <!-- hidden inputs -->
-                    <input type='hidden' name = 'hospital_name' value='<?php echo $hospital['hospital_name'] ?>'>
-                    <input type='hidden' name = 'area_code' value='<?php echo $hospital['area_code'] ?>'>
-                    <input type='hidden' name = 'weight' value='<?php echo $estimate['weight'] ?>'>
+                    <input class='hospital_name' type='hidden' name = 'hospital_name' value='<?php echo $hospital['hospital_name'] ?>'>
+                    <input class='area_code' type='hidden' name = 'area_code' value='<?php echo $hospital['area_code'] ?>'>
+                    <input class='weight' type='hidden' name = 'weight' value='<?php echo $estimate['weight'] ?>'>
+                    <!-- submit button -->
                     <input id='lookup_button' class='button' type='submit'value="Find by Id"/>
                 </div>
                 </div>
             </form>
             <!-- CALCULATE FORM -->
             <form class='flexColumn' id='calculate' name='calculate' onsubmit='validateAndFill(event)' method='post'>
-                <input id='hidden' name='antech_id' type="hidden" value='<?php echo $hospital['antech_id'] ; ?>' />
+            <!-- <form class='flexColumn' id='calculate' name='calculate' action='calculate' method='post'> -->
                 <!-- hospital name -->
                 <div class='flex2'>
-                    <label class = 'hospital_name' for='hospital_name'>Hospital Name </label>
+                    <label class= 'hospital_name' for='hospital_name'>Hospital Name </label>
                     <input 
-                        id='hospital_name'
-                        name = 'hospital_name'  
-                        class='hospital_name lookup'
-                        onkeypress='updateValue(event)' 
-                        onchange='updateValue(event)' 
-                        value='<?php echo $hospital['hospital_name'] ?>'
-                        type='text'
-                        >
+                    id='hospital_name'
+                    name = 'hospital_name'  
+                    class='hospital_name lookup'
+                    onkeypress='updateValue(event)' 
+                    onchange='updateValue(event)' 
+                    value='<?php echo $hospital['hospital_name'] ?>'
+                    type='text'
+                    >
                 </div>
                 <div id='weight_area' class='flex2' >
                 <!-- area code -> select -->
                 <div class='flex2'>
                     <label id='area' for="area_code">Area Code:</label>
-                        <select 
-                            id="area_code"  
-                            name="area_code"
-                            class='lookup'
+                    <select 
+                    id="area_code"  
+                    name="area_code"
+                    class='lookup'
                             onchange='updateValue(event)'
                             type = 'number'
                             >    
                             <option value ='0'>N/A</option>
                         </select>
-                </div>
-                <!-- weight -->
+                    </div>
+                    <!-- weight -->
                     <div class='flex2'>
                         <label class='weight' for='weight'>Pet Weight </label>
                         <input 
-                            id ='weight'
-                            name ='weight' 
-                            class='weight'
-                            onchange='updateValue(event)'
-                            onkeypress='updateValue(event)' 
-                            value='<?php echo $estimate['weight'] ;?>'
-                            type = 'number'
-                            >
-                            
+                        id ='weight'
+                        name ='weight' 
+                        class='weight'
+                        onchange='updateValue(event)'
+                        onkeypress='updateValue(event)' 
+                        value='<?php echo $estimate['weight'] ;?>'
+                        type = 'number'
+                        >
+                        
                     </div>
-            </div>
+                </div>
+                <input class='antech_id' name='antech_id' type="hidden" value='<?php echo $hospital['antech_id'] ; ?>' />
             </div> 
             <!-- BUTTONS -->
             <div id='left_buttons' class='flexCenter'>
                 <!-- CALCULATE BUTTON -->
                 <input id='calculate_button' type='submit' name = 'calculate' value="Calculate Necropsy Costs"/>
                 <!-- CLEAR SESSION DATA -->
-                <p id='clear_form' onclick='clearForm()'>Clear Form</p>
+                <p id='clear_form'><a href='clear'>Clear Via Href</a></p>
+                <p id='clear_form' onclick='clearForm()'><a>Clear Form</a></p>
             </div>
             </form>
 
@@ -171,15 +174,16 @@
             </div>
             </br>
             
-            <!-- APPROVE AND ORDER-->
+            <!-- START ORDER-->
+            <!-- <form class='flexColumn approve_form'  id='start_order' name='start_order'  action='start_order'  method='post'> -->
             <form class='flexColumn approve_form'  id='start_order' name='start_order'  onsubmit='validateAndFill(event)'  method='post'>
-                <input type='hidden' name = 'weight' value='<?php echo $estimate['weight'] ?>'>
-                <input type='hidden' name = 'necropsy_cost' value='<?php echo $estimate['necropsy_cost'] ?>'>
-                <input type='hidden' name = 'delivery_cost' value='<?php echo $estimate['delivery_cost'] ?>'>
-                <input type='hidden' name = 'cremation_cost' value='<?php echo $estimate['cremation_cost'] ?>'>
-                <input type='hidden' name = 'total_cost' value='<?php echo $estimate['total_cost'] ?>'>
-                <input type='hidden' name = 'hospital_name' value='<?php echo $hospital['hospital_name'] ?>'>
-                <input type='hidden' name = 'antech_id' value='<?php echo $hospital['antech_id'] ?>'>
+                <input type='hidden' class='weight' name = 'weight' value='<?php echo $estimate['weight'] ?>'>
+                <input type='hidden' class='necropsy_cost cost'name = 'necropsy_cost' value='<?php echo $estimate['necropsy_cost'] ?>'>
+                <input type='hidden' class='delivery_cost cost' name = 'delivery_cost' value='<?php echo $estimate['delivery_cost'] ?>'>
+                <input type='hidden' class='cremation_cost cost' name = 'cremation_cost' value='<?php echo $estimate['cremation_cost'] ?>'>
+                <input type='hidden' class='total_cost cost' name = 'total_cost' value='<?php echo $estimate['total_cost'] ?>'>
+                <input type='hidden' class='hospital_name'name = 'hospital_name' value='<?php echo $hospital['hospital_name'] ?>'>
+                <input type='hidden' class='antech_id' name = 'antech_id' value='<?php echo $hospital['antech_id'] ?>'>
                 <!-- SUBMIT BUTTON -->
                 <button id='approve_button' type='submit'>Proceed to Begin Order </button>
                 <p>*Optional costs can be declined on the next page </p>
@@ -187,12 +191,14 @@
 
         </div>
     </section>
-
+    <!-- Jumbotron Display -->
     <section class='faq wrapper'>
         <hr>
         <h1>Frequently <br> Asked <br> Questions </h1>
     </section>
     <img class='jumbo' src ='../../assets/handscrop.jpg' alt='pathologist'>
+
+    <!-- FREQUENTLY ASKED QUESTIONS -->
     <section class = 'about'>
         <div class = 'wrapper flex'>
             <div id ='answers'>
@@ -221,11 +227,11 @@
             </div>
         </div>
     </section>
+    
+    <!-- FOOTER -->
     <? $this->load->view('./partials/footer.php') ?>
 
     
-
-
 
     <script> 
 

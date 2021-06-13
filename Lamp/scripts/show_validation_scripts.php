@@ -4,7 +4,6 @@
 
     var calculate_button = document.getElementById('calculate_button');
     var error_list = document.getElementById('error_list');
-
     var errors_obj2 = {<?php 
                     if($this->session->flashdata('errors') != null){
                         foreach($this->session->flashdata('errors') as $key => $value){
@@ -15,19 +14,13 @@
 
     function validateAndFill(e){ 
         e.preventDefault();
-    
+       
         var form = `#${e.target.name}`;
         var data = new FormData(document.querySelector(form));
-        console.log(e.target.name);
-
-        // Clear previous validation errors
-        var inputs = document.querySelectorAll(".red");
-        for(var input of inputs){
-            input.classList.remove('red')
-        }
+        clearValidations();
 
         fetch(e.target.name, {
-            method: 'POST', // or 'PUT'
+            method: 'POST', 
             body: data,
         }).then(res =>  res.json())
         .then(errors_obj => {
@@ -36,18 +29,25 @@
             console.log(errors_obj)
             for(var error in errors_obj){
                 var elements = document.getElementsByClassName(error);
-                    console.log(error);
+
                 // NOT ERRORS SO UPDATE INPUT RESULTS
                 if(typeof errors_obj[error] === 'object'){
-                    console.log(true)
                     for(input in errors_obj[error]){
-                        console.log(errors_obj[error]);
-                        document.getElementById(input).value= errors_obj[error][input];
+                        var inputs = document.getElementsByClassName(input)
+                        for(target of inputs){
+                            target.value = errors_obj[error][input]
+                        }
+            
                     }
                     break;
                 }
-                if(errors_obj[error]!= ''){
 
+                if (error =='redirect'){
+                    window.location.href=errors_obj['redirect'];
+                    break;
+                }
+
+                if(errors_obj[error]!= ''){
                     for(item of elements){
                         if(error != 'total_cost'){
                             item.classList.add('red')
@@ -77,12 +77,14 @@
         }).catch(error => console.log(error))
 
     }
+
 function clearForm(){
     var inputs = document.querySelectorAll("input");
     fetch("clear")
-    .then(res => {
+    .then(res => res.json())
+    .then(results => {
         for(input of inputs){
-            if(input.type === 'text' || input.type =='number' ){
+            if(input.type === 'text' || input.type ==='number' || input.type==='hidden' ){
                 if(input.classList.contains('cost')){
                 input.value = '$0'
                 } else {
@@ -91,10 +93,17 @@ function clearForm(){
             }
         }
         error_list.innerHTML = '';
-        
     }).catch(error => console.log(error))
+        clearValidations();
 }     
 
+
+function clearValidations() {
+    var validations = document.querySelectorAll(".red");
+    for(valid of validations ){
+            valid.classList.remove('red')
+    }
+}
 
 
 </script>

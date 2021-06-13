@@ -11,7 +11,7 @@
 <body>
     <h1> Order Approval </h1>
     <h3> All fields are required </h3>
-    <a href='/Lamp/'>I need to change the estimate, go back </a> 
+    <a href='/Lamp/#calculator'>I need to change the estimate, go back </a> 
     <form id='approval_form' action='submit' method="POST"> 
 
         <section id='details' class='flex width100'>

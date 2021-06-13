@@ -62,9 +62,9 @@ class Record extends CI_Model {
         $this->validate_calculate();
         $this->form_validation->set_rules(
             'total_cost', 'total_cost',
-            'required|greater_than[0]',
+            'trim|required|min_length[3]',
             array(
-                    'greater_than'      => 'You must run a calculation to proceed.',
+                    'min_length'      => 'You must run a calculation to proceed.',
                 )
         );
 
@@ -167,47 +167,47 @@ class Record extends CI_Model {
 
         $time = date("h:i:s A");
 
-        if(array_key_exists('last_time',$this->session->userdata))
-        {
-            //echo nl2br("\nKEY EXISTS\n");
-            $last_time = date_create(date($this->session->userdata('last_time')));
-            $new_time = date_create($time);
-            $interval = date_diff($last_time,$new_time)->format("%s");
+//         if(array_key_exists('last_time',$this->session->userdata))
+//         {
+//             //echo nl2br("\nKEY EXISTS\n");
+//             $last_time = date_create(date($this->session->userdata('last_time')));
+//             $new_time = date_create($time);
+//             $interval = date_diff($last_time,$new_time)->format("%s");
 
-        }
+//         }
         
-        if($interval > 30 && $estimate['total_cost'] != $this->session->userdata('last_total') || $this->session->userdata('logged_in') == TRUE){
-            //echo nl2br("\nADDING TO TEXT FILE...\n");
-            $date = date("m-d-Y");
-            $str =
+//         if($interval > 30 && $estimate['total_cost'] != $this->session->userdata('last_total') || $this->session->userdata('logged_in') == TRUE){
+//             //echo nl2br("\nADDING TO TEXT FILE...\n");
+//             $date = date("m-d-Y");
+//             $str =
     
-"************************************************
-Date of Quote:           " . $date . "
-Time of Quote:           " . $time . "
-Hospital:                " . $hospital['hospital_name'] . "
-Antech ID:               " . $hospital['antech_id']. "
-CS Rep:                  N/A
-Weight:                  " . $estimate['weight'] . "
-Full Necropsy:           " . $estimate['necropsy_cost'] . "
-Carcass Transport:       " . $estimate['delivery_cost'] . "
-    Area Code:             " . $hospital['area_code']. "
-    Transport Miles:       N/A
-Cremation:               " . $estimate['cremation_cost'] . "
-Full Necropsy Total:     " . $estimate['total_cost'] . "
-************************************************
-";
+// "************************************************
+// Date of Quote:           " . $date . "
+// Time of Quote:           " . $time . "
+// Hospital:                " . $hospital['hospital_name'] . "
+// Antech ID:               " . $hospital['antech_id']. "
+// CS Rep:                  N/A
+// Weight:                  " . $estimate['weight'] . "
+// Full Necropsy:           " . $estimate['necropsy_cost'] . "
+// Carcass Transport:       " . $estimate['delivery_cost'] . "
+//     Area Code:             " . $hospital['area_code']. "
+//     Transport Miles:       N/A
+// Cremation:               " . $estimate['cremation_cost'] . "
+// Full Necropsy Total:     " . $estimate['total_cost'] . "
+// ************************************************
+// ";
 
-            $file_data = $str;
-            $file_data .= file_get_contents($filename);
+//             $file_data = $str;
+//             $file_data .= file_get_contents($filename);
 
 
-            file_put_contents($filename, $file_data);
+//             file_put_contents($filename, $file_data);
     
-            $this->session->set_userdata('last_time', date('h:i:s A'));
-            $this->session->set_userdata('last_total', $estimate['total_cost']);
+//             $this->session->set_userdata('last_time', date('h:i:s A'));
+//             $this->session->set_userdata('last_total', $estimate['total_cost']);
         
             
-        }
+       // }
 
     // echo nl2br("\nADD RECORD FUNCTION\n");
     // echo nl2br($this->session->userdata('last_total'). "\n");

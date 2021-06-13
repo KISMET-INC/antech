@@ -5,10 +5,10 @@ class Order_Controller extends CI_Controller {
     public function index() 
     {
         
-        if(!array_key_exists('logged_in',$this->session->userdata()))
-        {
-            redirect('/');
-        }
+        // if(!array_key_exists('logged_in',$this->session->userdata()))
+        // {
+        //     redirect('/');
+        // }
 
         $view_data = array(
             'hospital'=> $this->session->userdata('hospital'),
