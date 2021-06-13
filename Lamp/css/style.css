@@ -3,7 +3,7 @@
     padding:0;
     font-family:Arial, Helvetica, sans-serif;
     box-sizing: border-box;
-    outline: 2px dotted red;
+    /* outline: 2px dotted red;  */
 }
 :root {
     --purple: #4D2E99;
@@ -29,7 +29,7 @@ h1 {
     left: 0%;
     line-height: 3.3em;
     color: white;
-    height: 0px;
+    height: 50px;
 }
 .faq h1 {
     color: white;
@@ -40,6 +40,7 @@ h1 {
 }
 
 
+
 header {
     height: 60px;
     width: 100%;
@@ -47,13 +48,7 @@ header {
     display: grid;
     background-color :var(--purple);
 }
-#answers {
-    width: 50%;
-}
-#answer {
-    line-height: 1.5em;
-    font-size: 1em;
-}
+
 
 .bluebg  {
     background-color: var(--purple);
@@ -82,11 +77,15 @@ hr {
 
 footer {
     color: var(--purple);
+    font-size: 0.75em;
 }
 
-#answer span {
-    font-weight: bold;
+footer a,
+footer a:visited {
+    color: var(--purple)
 }
+
+
 
 #error_list p {
     padding:0px;
@@ -126,6 +125,8 @@ header p {
     width: 100%;
     padding-top: 3%;
     padding-bottom: 3%;
+    height: fit-content;
+    
 }
 #questions hr {
     border-top: 7px solid var(--bgreen);
@@ -136,34 +137,80 @@ header p {
 .green {
     color: var(--green);
 }
-
-#answer {
-    width: 100%;
+#answers {
+    width: 45%;
+    height: 450px;
+    position: relative;    
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+.bgreen a {
+    color: var(--bgreen);
+}
+
+a{
+    text-decoration: none;
+}
+a:visited{
+    color: var(--bgreen);
+}
+header p,
+header a {
+    font-size: 0.9em;
+}
+#answer {
+    margin-bottom: 50px;
+    margin-top: 75px;
+    line-height: 1.5em;
+    font-size: 0.9em;
+    width: 100%;
+    overflow-y:auto;
+    padding-right: 15px;
+ 
+}
+
+#answer span {
+    font-weight: bold;
+    font-size:1.2em;
+    display: block;
+}
+
+
 
 #answers img {
     width:100%;
+;
 }
 
 #questions h3 {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 #questions {
     width: 50%;
 }
-li {
+ul li {
     list-style: none;
     margin-left: 100px;
-    margin-top: 20px;
+    margin-top: 13px;
     color: white;
     font-weight: bold;
     cursor: pointer;
+    font-size: 0.9em;
 }
 .estimate h3 {
     font-weight: lighter;
+    margin-bottom: 1em;
+    margin-top: 2em;
 }
 
+
+ol li {
+    margin-left: 50px;
+    margin-bottom: 10px;
+}
 .about p {
     color: white;
     font-size: 20px;
@@ -181,11 +228,11 @@ li {
     flex-direction: column;
 }
 .estimate.wrapper {
-    padding-top: 3%;
-    margin-bottom: 100px;
+    margin: 100px auto;
+    
 }
 .wrapper {
-    width: 80%;
+    width: 90%;
     margin: auto;
 }
 
@@ -202,39 +249,59 @@ li {
     color: var(--bgreen);
 }
 
-#calculate_button {
+#calculate_button,
+#clear_form {
     border:none;
     color: var(--purple);
     font-weight: bold;
+    font-size: 0.8em;
+    width: unset;
+    background-color: transparent;
 }
 
 select {
-    width: 100px;
+    width: 100%;
     height: 2.5em;
 }
 input {
     height: 2.5em;
-    margin-bottom: 1em;
+    padding-left: 10px;
+    width:100%;
 }
 
-input.hospital_name {
-    width: 75%;
-}
 label {
     display: inline-block;
-    width: 7em;
+    width: 120px;
+    min-width: 120px;
 }
+
 
 .cost {
     font-weight: bold;
     font-size: 1.5em;
-    margin: 0.5em;
+    margin: 0.2em;
     padding: 0;
     height: fit-content;
+    text-align: right;
 }
-#antech_id {
-    width: 60%;
+#answer::-webkit-scrollbar {
+    width: 1em;
 }
+   
+  #answer::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+  #answer::-webkit-scrollbar-button{
+
+  }
+  #answer::-webkit-scrollbar-thumb {
+    background-color: var(--bgreen);
+    outline: 1px solid slategrey;
+    border-radius: 10px;
+    outline:none;
+  }
+
 button,
 .button  {
     background-color: var(--purple);
@@ -247,17 +314,36 @@ button,
     font-weight: bold;
 }
 
+#weight_area label.weight{
+    margin-left: 20px;
+}
+form div{
+    justify-content: unset;
+    width: 100%;
+}
+/* label.weight {
+    width: 5.5em;
+} */
+
+#weight_area {
+    justify-content: unset;
+}
+
+
 .no_border {
     border:none;
 }
 
 .right {
-    width: 50%;
+    width: 40%;
     margin-left: 10%;
 }
-.left input {
-    margin-bottom: 2em;
+
+#lookup_button {
+    width: 150px;
+    margin-left: 20px;
 }
+
 .left {
     border-right: 1px solid grey;
     padding-right: 20px;
@@ -276,8 +362,21 @@ button,
     align-items: center;
     justify-content: space-between;
 }
+.flex2 {
+    display:flex;
+    align-items:center;
+    margin-bottom: 20px;
+}
 
-
+.flexCenter{
+    display: flex;
+    align-items:center;
+    justify-content:center;
+}
+#clear_form {
+    margin-left: 100px;
+    cursor: context-menu;
+}
 .approve_form {
     justify-content: center;
     align-items: center;
@@ -287,6 +386,10 @@ button,
     color: grey;
 }
 .width100 {
+    width: 100%;
+}
+
+#form_content {
     width: 100%;
 }
 

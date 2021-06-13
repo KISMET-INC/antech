@@ -293,3 +293,86 @@ $this->form_validation->set_rules(
 
         return  $hour . ":". $minutes . ":" . $seconds ; 
     }
+
+
+    //************************************************* */
+    // LOOK UP ID IN DB
+    //************************************************* */
+    public function lookup2() 
+    {
+        // BUILD SESSION DATA FROM POST
+        $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
+
+        // Run Validations
+        $result  = $this->Record->validate_lookup();
+
+        // VALID RESULTS
+        if($result == 'valid')
+        {
+            if (!$this->Record->search_text($hospital['antech_id']) == TRUE)
+            {
+                $errors = array( 
+                    'not found' => "Previous data not found.",
+                );
+                // Set Errors
+                $this->session->set_flashdata('errors', $errors);
+                echo 'HOSPITAL NOT FOUND';
+            } else {
+
+                echo nl2br("\n HOSPITAL FOUND AND STORED IN SESSION \n"); 
+            }
+        } else {
+
+            $errors = array( 
+                'antech_id' => form_error('antech_id'),
+            );
+
+            $this->session->set_flashdata('errors', $errors);
+
+            echo 'VALIDATION FAILED';
+        }
+        echo 'LOOKUP  FUNCTION';
+        $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
+        $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
+        $this->array_helper->printArr('POST', $this->input->post());
+
+        redirect('/');
+    }
+
+    //     if("<?php echo $this->session->flashdata('errors') !== null?>"){
+//         var error_list = document.getElementById('error_list');
+        
+
+//         for(error in errors_obj){
+//             var elements = document.getElementsByClassName(error);
+//             console.log(elements);
+
+//             if(errors_obj[error]!= ''){
+
+//                 for(item of elements){
+//                     if(error != 'total_cost'){
+//                         item.classList.add('red')
+//                     } else {
+//                         calculate_button.classList.add('red');
+//                     }
+//                 }
+
+//                 if (document.title != 'Order Approval'){
+//                     error_list.innerHTML += errors_obj[error];
+//                 }
+            
+//                 if (document.title == 'Order Approval'){
+//                     error_list.innerHTML = 'All Fields are Required.'
+                
+//                     if(errors_obj['email'].includes('valid')){
+//                         error_list.innerHTML += errors_obj['email'];
+//                     };
+
+//                     if(errors_obj['phone'].includes('valid')){
+//                         error_list.innerHTML += errors_obj['phone'];
+//                     }
+
+//                 }
+//             }
+//         }
+// }

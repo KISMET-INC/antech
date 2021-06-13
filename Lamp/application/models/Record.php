@@ -128,7 +128,7 @@ class Record extends CI_Model {
     //**************************************** */
     public function search_text($form_id)
     {
-        $quote_data = file('nquotes2.txt');
+        $quote_data = file('estimates.txt');
         
         // Antech ID's Appear every 14 Lines
         for($i = 4; $i < count($quote_data); $i = $i + 14)
@@ -196,8 +196,12 @@ Cremation:               " . $estimate['cremation_cost'] . "
 Full Necropsy Total:     " . $estimate['total_cost'] . "
 ************************************************
 ";
-            
-            file_put_contents($filename ,$str,FILE_APPEND);
+
+            $file_data = $str;
+            $file_data .= file_get_contents($filename);
+
+
+            file_put_contents($filename, $file_data);
     
             $this->session->set_userdata('last_time', date('h:i:s A'));
             $this->session->set_userdata('last_total', $estimate['total_cost']);

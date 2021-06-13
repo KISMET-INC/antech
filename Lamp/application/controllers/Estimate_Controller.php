@@ -36,56 +36,144 @@ class Estimate_Controller extends CI_Controller {
         $this->load->view('estimate_viewer',$view_data);
 	}
 
-
-
     //************************************************* */
     // LOOK UP ID IN DB
     //************************************************* */
     public function lookup() 
     {
+        $value = '20';
+        $antech = $this->input->post('antech_id');
+        $hospital =$this->input->post('hospital_name');
+        $stuff = array(
+            'antech' => $antech,
+            'hospital' => $hospital,
+        );
+
         // BUILD SESSION DATA FROM POST
         $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
+       
 
         // Run Validations
         $result  = $this->Record->validate_lookup();
-
-        // VALID RESULTS
         if($result == 'valid')
         {
             if (!$this->Record->search_text($hospital['antech_id']) == TRUE)
             {
                 $errors = array( 
                     'not found' => "Previous data not found.",
+                    
                 );
                 // Set Errors
-                $this->session->set_flashdata('errors', $errors);
-                echo 'HOSPITAL NOT FOUND';
+                //$this->session->set_flashdata('errors', $errors);
+               // echo 'HOSPITAL NOT FOUND';
             } else {
-
-                echo nl2br("\n HOSPITAL FOUND AND STORED IN SESSION \n"); 
+                $hospital = $this->session->userdata('hospital');
+               // echo nl2br("\n HOSPITAL FOUND AND STORED IN SESSION \n");
+                $errors = array( 
+                    'found' => array(
+                        'hospital_name' => $hospital['hospital_name'],
+                        'area_code'=> $hospital['area_code']
+                    )
+                );
             }
         } else {
 
             $errors = array( 
-                'antech_id' => form_error('antech_id'),
+                'error' => form_error('antech_id'),
             );
 
-            $this->session->set_flashdata('errors', $errors);
+            //$this->session->set_flashdata('errors', $errors);
 
-            echo 'VALIDATION FAILED';
+            //echo 'VALIDATION FAILED';
         }
-        echo 'LOOKUP  FUNCTION';
-        $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
-        $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
-        $this->array_helper->printArr('POST', $this->input->post());
+        
+        echo json_encode($errors);
+       
 
-        redirect('/');
     }
-
+   
     //************************************************* */
     // CALCULATE COSTS BASED ON WEIGHT AND AREA CODE
     //************************************************* */
     public function calculate() 
+    {
+        // BUILD SESSION DATA FROM POST
+        $this->array_helper->buildPostArray('hospital', $this->input->post());
+        $this->array_helper->buildPostArray('estimate', $this->input->post());
+        
+        // Run Validations
+        $result  = $this->Record->validate_calculate();
+        $errors = array();
+
+        // VALID RESULTS
+        if($result == 'valid')
+        {
+            // Get Data from Session
+            $area_code = $this->session->userdata('hospital')['area_code'];
+            $weight = $this->session->userdata('estimate')['weight'];
+            
+            // Calculations
+            $necropsy_cost = number_format($this->calc_necropsy($weight), 2, '.', '');
+            $cremation_cost = number_format($this->calc_cremation($weight), 2, '.', '');
+            $delivery_cost = $area_code != '0' ? number_format($this->calc_delivery($area_code),2, '.', ''): '0';
+            $total_cost = number_format($delivery_cost + $necropsy_cost + $cremation_cost, 2, '.', '');
+
+            
+            
+            // Set Calculations into Session
+            $calculations = array(
+                'weight' => $weight,
+                'necropsy_cost'=> $necropsy_cost,
+                'cremation_cost'=> $cremation_cost,
+                'delivery_cost' => $delivery_cost,
+                'total_cost' => $total_cost,
+                'created_at'=> date("m-d-Y, H:i:s A"),
+            );
+
+            // UPDATE SESSION
+            $this->array_helper->updateMultiKey('estimate',$calculations);
+
+            // STORE IN TXT (one LONG LINE)
+            $this->Record->add_record($this->session->userdata('hospital'),$this->session->userdata('estimate'),'estimates.txt');
+            $this->session->set_userdata('calculation_made',TRUE);
+            //echo nl2br("\n CALCULATION  BEGUN \n");
+            $errors = array( 
+                'calculations' => array(
+                    'necropsy_cost'=> "$" . $necropsy_cost,
+                    'cremation_cost'=> "$" . $cremation_cost,
+                    'delivery_cost' => "$" . $delivery_cost,
+                    'total_cost' => "$" . $total_cost,
+                )
+            );
+        } else {
+
+            $errors = array( 
+                'antech_id' => form_error('antech_id'),
+                'weight' => form_error('weight'),
+                'hospital_name' => form_error('hospital_name')
+            );
+            // Set Errors
+            //$this->session->set_flashdata('errors', $errors);
+            //echo nl2br("\n VALIDATION ERROR \n");
+
+        };
+
+        //PRINT FUNCTION
+        // echo 'CALCULATE FUNCTION';
+        // echo $this->calc_necropsy($weight);
+        // $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
+        // $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
+        // $this->array_helper->printArr('POST', $this->input->post());
+    
+        // Return to main page
+        echo json_encode($errors);
+
+    }
+    
+    //************************************************* */
+    // CALCULATE COSTS BASED ON WEIGHT AND AREA CODE
+    //************************************************* */
+    public function calculate2() 
     {
         // BUILD SESSION DATA FROM POST
         $this->array_helper->buildPostArray('hospital', $this->input->post());
