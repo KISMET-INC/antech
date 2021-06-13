@@ -17,12 +17,13 @@
 
     <main id= 'order_form' class='wrapper'>
         <h1> Full Body Necropsy Order Form </h1>
-        <!-- ERRORS -->
-        <div id='error_list' class ='error red'></div>
+       <!-- ERRORS -->
+       <div id='error_list' style='color:red' class ='error'></div>
 
         <!-- BEGIN ORDER FORM -->
-        <form id='approval_form' action='submit' method="POST" class='flex3'> 
-            <section id='left_col' lass='flexColumn'>
+        <form id='submit' name='submit' onsubmit='validateAndFill(event)' method="POST" class='flex3'> 
+        <!-- <form id='approval_form' action='submit' method="POST" class='flex3'>  -->
+            <section id='left_col' >
             <!-- HOSPITAL INFO -->
                 <fieldset id='hospital_info' c>
                     <h3> Hospital Information </h3>
@@ -167,7 +168,7 @@
                         <label class='total_approved' >Total : </label>
                                 <input
                                     id='total_cost'
-                                    name = 'total_cost'
+                                    name = 'total_cost '
                                     class='total_cost cost'
                                     type='text'
                                     readonly

@@ -78,7 +78,7 @@ class Order_Controller extends CI_Controller {
         if(!array_key_exists('total_approved',$this->input->post())){
             $this->array_helper->updateSession('estimate', 'total_approved', 'FALSE');
         }
-        
+        $errors = array();
         
         // Run Validations
         $result = $this->Record->validate_submit();
@@ -94,49 +94,14 @@ class Order_Controller extends CI_Controller {
             $full_estimate['name_address'] = $this->session->userdata('hospital')['hospital_name']. " " . $this->session->userdata('hospital')['address'];
             unset($full_estimate['id']);
             
-            echo 'SENDING..';
+            $errors = array(
+                'submit' => $full_estimate
+            );
+            
+            // echo 'SENDING..';
 
-            // Load Spinner view while waiting for fetch result
-            $this->load->view('spinner_viewer');
-
-            echo "
-            <script type='text/JavaScript'> 
-                var formData = new FormData();
-            </script>";
-        
-            foreach($full_estimate as $key => $value){
-                echo "<script type='text/JavaScript'> 
-                formData.append('{$key}', '{$value}');
-                </script>";
-
-            };
-
-            echo "<script type='text/JavaScript'> 
-                fetch('https://formspree.io/f/mzbyeakg', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                }).then(response => {
-                    // REDIRECT TO SUCCESS PAGE
-
-                    var url = window.location.origin+'/Lamp/success';
-                    window.location.replace(url);
-                    console.log(response)
-                }).catch(error => {
-                    // REDIRECT TO ERROR PAGE
-
-                    var url = window.location.origin+'/Lamp/error';
-                    window.location.replace(url);
-                    console.log(error)
-                });
-            </script>";
-
-            // echo 'VALID RESULTS -SUBMIT TO EMAIL FUNTCTION';
-            // $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
-            // $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
-            // $this->array_helper->printArr('POST', $this->input->post());
+            // // Load Spinner view while waiting for fetch result
+            // $this->load->view('spinner_viewer');
 
 
         } else {
@@ -164,12 +129,13 @@ class Order_Controller extends CI_Controller {
             );
 
             // Set Errors
-            $this->session->set_flashdata('errors', $errors);
-            echo 'VALIDATION FAILED';
+            // $this->session->set_flashdata('errors', $errors);
+            // echo 'VALIDATION FAILED';
 
-            redirect('/order');
+            // redirect('/order');
             
         };
+        echo json_encode($errors);
     }
 }
 

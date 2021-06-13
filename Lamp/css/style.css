@@ -31,6 +31,23 @@
     border: none;
     min-width: 1.5em;
 }
+input.age {
+    width:50%;
+}
+input.weight {
+    width:90%;
+    margin-right: 10px;
+}
+select.age_type {
+    width:50%;
+}
+#order_form h1 {
+    margin-bottom: 0.5em;
+}
+
+#submit {
+    margin-top: 1.5em;
+}
 
 #order_form label.radio {
    min-width: 0;

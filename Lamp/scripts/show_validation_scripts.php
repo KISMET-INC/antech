@@ -32,15 +32,40 @@
 
                 // NOT ERRORS SO UPDATE INPUT RESULTS
                 if(typeof errors_obj[error] === 'object'){
-                    for(input in errors_obj[error]){
-                        var inputs = document.getElementsByClassName(input)
-                        for(target of inputs){
-                            target.value = errors_obj[error][input]
-                        }
+                    console.log(e.target)
+
+                    if(error === 'submit'){
+                        var form = document.getElementById("submit");
+                        var data = new FormData(e.target);
+                        data.append('name_address', errors_obj['submit']['hospital_name'] +  "  -  " + errors_obj['submit']['address']) 
+                        fetch('https://formspree.io/f/mzbyeakg', {
+                            method: form.method,
+                            body: data,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                            }).then(response => {
             
+                                console.log('success')
+                                form.reset()
+                                var url = window.location.origin+'/Lamp/success';
+                                window.location.replace(url);
+                            }).catch(error => {
+                                
+                                console.log('error')
+                            });
+                            break;
+                        } else {
+                        for(input in errors_obj[error]){
+                            var inputs = document.getElementsByClassName(input)
+                            for(target of inputs){
+                                target.value = errors_obj[error][input]
+                            }
+                        }
                     }
                     break;
                 }
+                
 
                 if (error =='redirect'){
                     window.location.href=errors_obj['redirect'];
