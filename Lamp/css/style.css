@@ -251,11 +251,12 @@ ol li {
 
 #calculate_button,
 #clear_form {
-    border:none;
+    border:transparent;
     color: var(--purple);
     font-weight: bold;
     font-size: 0.8em;
     width: unset;
+    padding: 10px;
     background-color: transparent;
 }
 
@@ -411,7 +412,8 @@ p.red
 
 select.red,
 input.red,
-textarea.red
+textarea.red,
+#calculate_button.red
 {
     border: 1px solid red;
 }

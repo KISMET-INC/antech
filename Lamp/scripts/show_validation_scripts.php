@@ -33,6 +33,7 @@
         .then(errors_obj => {
             error_list.innerHTML = '';
             var errors_obj= errors_obj;
+            console.log(errors_obj)
             for(var error in errors_obj){
                 var elements = document.getElementsByClassName(error);
                     console.log(error);

@@ -79,7 +79,7 @@ class Estimate_Controller extends CI_Controller {
         } else {
 
             $errors = array( 
-                'error' => form_error('antech_id'),
+                'antech_id' => form_error('antech_id'),
             );
 
             //$this->session->set_flashdata('errors', $errors);
@@ -88,10 +88,10 @@ class Estimate_Controller extends CI_Controller {
         }
         
         echo json_encode($errors);
-       
+
 
     }
-   
+
     //************************************************* */
     // CALCULATE COSTS BASED ON WEIGHT AND AREA CODE
     //************************************************* */
@@ -170,75 +170,6 @@ class Estimate_Controller extends CI_Controller {
 
     }
     
-    //************************************************* */
-    // CALCULATE COSTS BASED ON WEIGHT AND AREA CODE
-    //************************************************* */
-    public function calculate2() 
-    {
-        // BUILD SESSION DATA FROM POST
-        $this->array_helper->buildPostArray('hospital', $this->input->post());
-        $this->array_helper->buildPostArray('estimate', $this->input->post());
-        
-        // Run Validations
-        $result  = $this->Record->validate_calculate();
-
-        // VALID RESULTS
-        if($result == 'valid')
-        {
-            // Get Data from Session
-            $area_code = $this->session->userdata('hospital')['area_code'];
-            $weight = $this->session->userdata('estimate')['weight'];
-            
-            // Calculations
-            $necropsy_cost = number_format($this->calc_necropsy($weight), 2, '.', '');
-            $cremation_cost = number_format($this->calc_cremation($weight), 2, '.', '');
-            $delivery_cost = $area_code != '0' ? number_format($this->calc_delivery($area_code),2, '.', ''): '0';
-            $total_cost = number_format($delivery_cost + $necropsy_cost + $cremation_cost, 2, '.', '');
-
-            
-            
-            // Set Calculations into Session
-            $calculations = array(
-                'weight' => $weight,
-                'necropsy_cost'=> $necropsy_cost,
-                'cremation_cost'=> $cremation_cost,
-                'delivery_cost' => $delivery_cost,
-                'total_cost' => $total_cost,
-                'created_at'=> date("m-d-Y, H:i:s A"),
-            );
-
-            // UPDATE SESSION
-            $this->array_helper->updateMultiKey('estimate',$calculations);
-
-            // STORE IN TXT (one LONG LINE)
-            $this->Record->add_record($this->session->userdata('hospital'),$this->session->userdata('estimate'),'estimates.txt');
-            $this->session->set_userdata('calculation_made',TRUE);
-            //echo nl2br("\n CALCULATION  BEGUN \n");
-
-        } else {
-
-            $errors = array( 
-                'antech_id' => form_error('antech_id'),
-                'weight' => form_error('weight'),
-                'hospital_name' => form_error('hospital_name')
-            );
-            // Set Errors
-            $this->session->set_flashdata('errors', $errors);
-            //echo nl2br("\n VALIDATION ERROR \n");
-
-        };
-
-        //PRINT FUNCTION
-        echo 'CALCULATE FUNCTION';
-        echo $this->calc_necropsy($weight);
-        $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
-        $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
-        $this->array_helper->printArr('POST', $this->input->post());
-    
-        // Return to main page
-        redirect('/');
-
-    }
     
     //************************************************* */
     // APPROVE AND START ORDER
@@ -261,6 +192,7 @@ class Estimate_Controller extends CI_Controller {
         // Run validations
         $result = $this->Record->validate_start_order();
 
+        $errors = array();
         // VALID RESULTS - route to order page
         if($result=='valid')
         {
@@ -279,17 +211,18 @@ class Estimate_Controller extends CI_Controller {
                 'total_cost' => form_error('total_cost')
             );
 
-            // Set Errors
-            $this->session->set_flashdata('errors', $errors);
-            echo 'VALIDATION FAILED';
-            redirect('/');
+            // // Set Errors
+            // $this->session->set_flashdata('errors', $errors);
+            // echo 'VALIDATION FAILED';
+            // redirect('/');
         };
 
-        // PRINT FUNCTIONS
-        echo 'START ORDER FUNCTION';
-        $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
-        $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
-        $this->array_helper->printArr('POST', $this->input->post());
+        // // PRINT FUNCTIONS
+        // echo 'START ORDER FUNCTION';
+        // $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
+        // $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
+        // $this->array_helper->printArr('POST', $this->input->post());
+        echo json_encode($errors);
     }
     
 
