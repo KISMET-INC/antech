@@ -11,6 +11,92 @@
     --bgreen: #41C04D;
 }
 
+#order_form #error_list{
+    height: 5em;
+}
+
+#order_form input[type='checkbox'],
+#order_form input[type='radio']
+{
+    height: 1em;
+    width: 6em;
+}
+
+#order_form .approve {
+    text-align: right;
+    width:1em;
+}
+
+#order_form .cost {
+    border: none;
+    min-width: 1.5em;
+}
+
+#order_form label.radio {
+   min-width: 0;
+    width: 3em;
+}
+
+input.death_date {
+    width: 17em;
+}
+label.death_date {
+    width:15em;
+}
+
+fieldset div {
+    display:flex;
+    align-items: center;
+    margin-top: 0.5em;
+}
+#death_date {
+    margin-top: 1.5em;
+}
+fieldset div label {
+    display:inline-block;
+    width: 13em;
+    min-width: 5em;
+}
+.radio_label {
+    min-width: 15em;
+}
+#order_form h3 {
+    font-size: 1.7em;
+    margin-bottom: 1em;
+}
+#left_col {
+    justify-content: space-around;
+    width: 40%;
+}
+#h_summary {
+    margin-top: 2em;
+    width:100%;
+}
+
+#pet_section {
+    width: 40%;
+}
+textarea {
+    width: 100%;
+    height: 400px;
+    overflow-y: auto;
+    margin-top: 1.5em;
+}
+label.summary {
+    display:block;
+    width:100%;
+}
+#order_form .button {
+    margin-top: 5em;
+}
+#history,
+#costs {
+    margin-top: 3em;
+}
+
+#costs {
+    width:30%;
+}
 h1 {
     color: black;
     font-size: 60px;
@@ -22,7 +108,9 @@ h1 {
     left: 15%;
     line-height: 3.3em;
 }
-
+#pet_section {
+    margin-left: 7em;
+}
 .faq {
     position: relative;
     top: 300px;
@@ -293,9 +381,7 @@ label {
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
   }
-  #answer::-webkit-scrollbar-button{
 
-  }
   #answer::-webkit-scrollbar-thumb {
     background-color: var(--bgreen);
     outline: 1px solid slategrey;
@@ -356,7 +442,9 @@ form div{
     margin-bottom: 2em;
 
 }
-
+#order_form label {
+    font-size: 15px;
+}
 
 .flex {
     display:flex;
@@ -367,6 +455,10 @@ form div{
     display:flex;
     align-items:center;
     margin-bottom: 20px;
+}
+
+.flex3 {
+    display: flex;
 }
 
 .flexCenter{
@@ -403,13 +495,20 @@ form div{
     color: grey;
 }
 
+fieldset {
+    border:none;
+}
+
 label.red,
 div.red,
 p.red
 {
     color: red;
 }
-
+#order_form h1 {
+    color: var(--purple);
+    font-size: 2em;
+}
 select.red,
 input.red,
 textarea.red,
