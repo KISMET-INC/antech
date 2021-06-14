@@ -384,3 +384,19 @@ $this->form_validation->set_rules(
             echo "<p><b>$format_key :</b> $value</p>";
         };
     ?>
+
+#answer::-webkit-scrollbar {
+    width: 1em;
+}
+   
+  #answer::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+
+  #answer::-webkit-scrollbar-thumb {
+    background-color: var(--bgreen);
+    outline: 1px solid slategrey;
+    border-radius: 10px;
+    outline:none;
+  }
