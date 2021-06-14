@@ -140,7 +140,7 @@
                     <input
                         id='necropsy_cost'
                         name = 'necropsy_cost'
-                        class = 'necropsy_cost cost no_border'
+                        class = 'necropsy_cost cost'
                         type='text'
                         readonly
                         value = '<?php echo $estimate['necropsy_cost'] ?>' 
@@ -152,7 +152,7 @@
                     <input 
                         id='delivery_cost'
                         name = 'delivery_cost'
-                        class = 'delivery_cost cost no_border'
+                        class = 'delivery_cost cost'
                         type='text'
                         readonly
                         value = '<?php echo $estimate['delivery_cost'] ?>' 
@@ -164,7 +164,7 @@
                 <input
                     id='cremation_cost'
                     name = 'cremation_cost'
-                    class = 'cremation_cost cost no_border'
+                    class = 'cremation_cost cost'
                     type='text'
                     readonly
                     value = '<?php echo $estimate['cremation_cost'] ?>' 
@@ -176,7 +176,7 @@
                 <input
                     id='total_cost'
                     name = 'total_cost'
-                    class = 'total_cost cost no_border'
+                    class = 'total_cost cost'
                     type='text'
                     readonly
                     value = '<?php echo $estimate['total_cost'] ?>' 

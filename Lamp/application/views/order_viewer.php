@@ -17,8 +17,8 @@
 
     <main id= 'order_form' class='wrapper'>
         <h1> Full Body Necropsy Order Form </h1>
-       <!-- ERRORS -->
-       <div id='error_list' style='color:red' class ='error'></div>
+        <p>*All fields are required.</p>
+
 
         <!-- BEGIN ORDER FORM -->
         <form id='submit' name='submit' onsubmit='validateAndFill(event)' method="POST" class='flex3'> 
@@ -105,7 +105,7 @@
                                 value = '<?php echo $estimate['necropsy_cost'] ?>' 
                                 >
                         
-                        <label  class='necro_cost approve'> Approved</label><br>
+                        <label  class='necro_cost approved'> Approved</label><br>
                         <input checked disabled type="checkbox" id="necro" name="necro" value=" Necropsy Cost Approved">
                     </div>
                     <!-- SHIPPING  -->
@@ -120,7 +120,7 @@
                                 value = '<?php echo $estimate['delivery_cost'] ?>' 
                                 >
                         <!-- CHECKBOX -->
-                        <label class='delivery_cost approve' for="ship_check"> Approved</label><br>
+                        <label class='delivery_cost approved' for="ship_check"> Approved</label><br>
                         <input 
                             id="ship_check"
                             class = 'delivery_cost check'
@@ -148,7 +148,7 @@
                                 >
                         
                         <!-- CHECKBOX -->
-                        <label class='cremation_cost approve' for="crem_check"> Approved</label><br>
+                        <label class='cremation_cost approved' for="crem_check"> Approved</label><br>
                         <input 
                             id="crem_check" 
                             name="cremation_approved" 
@@ -169,26 +169,19 @@
                                 <input
                                     id='total_cost'
                                     name = 'total_cost '
-                                    class='total_cost cost'
+                                    class='total_cost total_approved cost'
                                     type='text'
                                     readonly
                                     value = '<?php echo $estimate['total_cost'] ?>'
                                 >
-                        <label class='total_approved approve' for="total_check">Approved</label><br>
+                        <label class='total_approved approved' for="total_check">Approved</label><br>
                             <input 
                                 id="total_check" 
                                 name="total_approved"
                                 type="checkbox" 
                                 value="TRUE"
-                                <?php 
-                                    if($estimate['total_approved']=== "TRUE"){
-                                        echo 'checked';
-                                    }
-                                ?>
                                 >
                     </div>
-                     <!-- SUBMIT -->
-                    <input class='button' type='submit' value='Submit Neropsy Request'>
                 </fieldset>
 
             </section>
@@ -285,7 +278,7 @@
                             
                             <div id='euthanized'>
                             <!-- EUTHANIZED -->
-                                <label class='radio_label'>Euthanized?</label>
+                                <label class='euthanized radio_label '>Euthanized?</label>
                                 <label  class='euthanized radio' for="euthanized_yes">Yes</label>
                                 <input  class='euthanized' type="radio" name="euthanized" id='euthanized_yes' value="Yes">
 
@@ -294,7 +287,7 @@
                             </div>
                             <!-- FROZEN -->
                             <div id='frozen'>
-                                <label class='radio_label'>Is the body frozen?</label>
+                                <label class='frozen radio_label'>Is the body frozen?</label>
                                 <label class='frozen radio' for="frozen_yes">Yes</label>
                                 <input class='frozen' type="radio" name="frozen" id='frozen_yes' value="Yes">
 
@@ -309,8 +302,8 @@
             
 
                     <!--SUMMARY  -->
-                    <section id='h_summary'>
-                        <label class='summary' for='summary'>A summarization of the history IS REQUIRED, Supplying medical records are not a sufficient substitue for this summarization which will be included verbatim as part of the final necropsy report. In this summary, please give the general timeline (with dates) from teh most recent presentation until the death or euthanasia. Include the reason for the most recent presentation, general treatments in that regard, and the most recent and terminal clinical signs. Any known PERTINANT chronic conditins should be indicated however general yearly health checkup information is nt necessary.</label>
+                    <section id='summary_section'>
+                        <label id='summary_label' class='summary' for='summary'>A summarization of the history IS REQUIRED, Supplying medical records are not a sufficient substitue for this summarization which will be included verbatim as part of the final necropsy report. In this summary, please give the general timeline (with dates) from teh most recent presentation until the death or euthanasia. Include the reason for the most recent presentation, general treatments in that regard, and the most recent and terminal clinical signs. Any known PERTINANT chronic conditins should be indicated however general yearly health checkup information is nt necessary.</label>
                         <textarea class='summary' id='summary' name='summary'><?php echo $estimate['summary'] ?></textarea>
                     </section>
                 </fieldset>
@@ -320,8 +313,12 @@
         </form>  
         <br>
         <!-- Clear Session Data -->
-        <a href='/Lamp/index.php/order_controller/populateForm'>Add Test Info </a><br>
-        <button onclick="window.print()">print</button>
+        <!-- <a href='/Lamp/index.php/order_controller/populateForm'>Add Test Info </a><br>
+        <button onclick="window.print()">print</button> -->
+         <!-- ERRORS -->
+         <div id='error_list' style='color:red' class ='error'></div>
+         <!-- SUBMIT -->
+        <input form='submit' class='button' type='submit' value='Submit Neropsy Request'>
         
 
      
