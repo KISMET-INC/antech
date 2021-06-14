@@ -14,7 +14,44 @@
 #order_form #error_list{
     height: 5em;
 }
+#thanks {
+    margin-bottom: 2em;
+}
+.button.red,
+button.red{
+    background-color: red;
+    color:white;
+}
 
+#success button {
+    margin-bottom: 2em;
+}
+#success h2 {
+    color: var(--purple);
+}
+#suggest {
+    width:50%;
+    margin-bottom: 2em;
+}
+#success button{
+    padding: 10px 30px;
+}
+
+#success h3 {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#success p {
+    line-height:1.5em;
+    font-size: 14px;
+}
+#success_left {
+    width:40%;
+}
+#pet_hist{
+    width: 65%;
+}
 #order_form input[type='checkbox'],
 #order_form input[type='radio']
 {

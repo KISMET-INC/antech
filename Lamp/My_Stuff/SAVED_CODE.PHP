@@ -376,3 +376,11 @@ $this->form_validation->set_rules(
 //             }
 //         }
 // }
+
+
+<?php foreach($hospital as $key => $value)
+        {
+            $format_key = ucwords(implode(" ", explode("_",$key)));
+            echo "<p><b>$format_key :</b> $value</p>";
+        };
+    ?>

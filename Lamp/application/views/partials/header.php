@@ -23,5 +23,12 @@ if (document.title == 'Order Approval'){
     +"<p><a href='/Lamp/#calculator'> Go Back To Estimate</a> </p>"
 }
 
+if (document.title == 'SUCCESS'){
+
+    nav.innerHTML = 
+    "<a href='/Lamp/success_controller/return_home'>Return Home </a>"
+    }
+
+
 
 </script>
