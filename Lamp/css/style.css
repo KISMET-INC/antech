@@ -3,9 +3,11 @@
     padding:0;
     font-family:Arial, Helvetica, sans-serif;
     box-sizing: border-box;
-    font-size: 15px;
+    font-size: 17px;
+    font-family: 'Work Sans', sans-serif;
     /* outline: 2px dotted red;  */
 }
+
 :root {
     --purple: #4D2E99;
     --green: #32CD98;
@@ -229,6 +231,10 @@ fieldset {
     display: flex;
     align-items:center;
     justify-content:center;
+}
+.flex4 {
+    display: flex;
+    justify-content: space-evenly;
 }
 
 
@@ -623,61 +629,6 @@ label.death_date {
 
 
 
-
-/*********************************/
-/*  SUCCESS
-/********************************/
-#thanks {
-    margin-bottom: 2em;
-}
-
-/* .estimate.wrapper {
-    margin: 100px auto;
-    
-} */
-#success button {
-    margin-bottom: 2em;
-}
-#success h2 {
-    color: var(--purple);
-}
-#suggest {
-    width:50%;
-    margin-bottom: 2em;
-}
-#success button{
-    padding: 10px 30px;
-}
-
-#success h3 {
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-
-#success p {
-    line-height:1.5em;
-    font-size: 14px;
-}
-#success_left {
-    width:40%;
-}
-#pet_hist{
-    width: 65%;
-}
-
-#pet_section {
-    width: 40%;
-}
-
-
-
-
-
-
-
-
-
-
 #pet_section {
     margin-left: 7em;
 }
@@ -735,6 +686,57 @@ form div{
     margin-left: 100px;
     cursor: context-menu;
 }
+
+
+
+
+
+
+/*********************************/
+/*  SUCCESS
+/********************************/
+#thanks {
+    margin-bottom: 2em;
+}
+
+#success #hosp_info,
+#success #pet_info,
+#success #order_costs {
+    width: 35%;
+}
+
+#success #pet_info{
+    margin-left: 36px;
+}
+#success button {
+    margin-bottom: 2em;
+}
+#success h2 {
+    color: var(--purple);
+}
+#suggest {
+    width:50%;
+    margin-bottom: 2em;
+}
+#success button{
+    padding: 10px 30px;
+}
+
+#success h3 {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+#success p {
+    line-height:1.5em;
+}
+
+#success #pet_hist {
+    margin-top: 3em;
+}
+
+
+
 
 
 

@@ -10,9 +10,11 @@ class Estimate_Controller extends CI_Controller {
     public function index()
 	{
 
-        // if(!$this->session->userdata('logged_in'){
-        //     $this->session->unset_userdata('estimate');
-        // }
+        if($this->session->userdata('completed')){
+            $this->session->unset_userdata('estimate');
+            $this->session->unset_userdata('completed');
+
+        }
         if(!$this->session->userdata('hospital')){
             $hospital = new Hospital();
             $this->session->set_userdata('hospital',(array)$hospital);
@@ -162,6 +164,8 @@ class Estimate_Controller extends CI_Controller {
         // $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
         // $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
         // $this->array_helper->printArr('POST', $this->input->post());
+        
+        
     
         // Return to main page
         echo json_encode($errors);

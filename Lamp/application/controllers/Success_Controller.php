@@ -8,7 +8,7 @@ class Success_Controller extends CI_Controller {
         {
             redirect('/');
         }
-        $this->session->unset_userdata('logged_in');
+        $this->session->set_userdata('completed', TRUE);
         $estimate = $this->session->userdata('estimate');
         $view_data = array(
             'hospital'=> $this->session->userdata('hospital'),

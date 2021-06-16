@@ -170,17 +170,17 @@ class Record extends CI_Model {
 
         $time = date("h:i:s A");
 
-//         if(array_key_exists('last_time',$this->session->userdata))
-//         {
-//             //echo nl2br("\nKEY EXISTS\n");
-//             $last_time = date_create(date($this->session->userdata('last_time')));
-//             $new_time = date_create($time);
-//             $interval = date_diff($last_time,$new_time)->format("%s");
+        // if(array_key_exists('last_time',$this->session->userdata))
+        // {
+        //     //echo nl2br("\nKEY EXISTS\n");
+        //     $last_time = date_create(date($this->session->userdata('last_time')));
+        //     $new_time = date_create($time);
+        //     $interval = date_diff($last_time,$new_time)->format("%s");
 
-//         }
+        // };
         
-//         if($interval > 30 && $estimate['total_cost'] != $this->session->userdata('last_total') || $this->session->userdata('logged_in') == TRUE){
-//             //echo nl2br("\nADDING TO TEXT FILE...\n");
+        // if($interval > 30 && $estimate['total_cost'] != $this->session->userdata('last_total') || $this->session->userdata('logged_in') == TRUE){
+            //echo nl2br("\nADDING TO TEXT FILE...\n");
             $date = date("m-d-Y");
             $str =
     
@@ -210,7 +210,7 @@ Full Necropsy Total:     " . $estimate['total_cost'] . "
             $this->session->set_userdata('last_total', $estimate['total_cost']);
         
             
-       }
+    }
 
     // echo nl2br("\nADD RECORD FUNCTION\n");
     // echo nl2br($this->session->userdata('last_total'). "\n");
@@ -219,7 +219,8 @@ Full Necropsy Total:     " . $estimate['total_cost'] . "
    // $this->array_helper->printArr('ESTIMATE', $estimate);
    // $this->array_helper->printArr('HOSPITAL', $hospital);
     //echo "FILENAME :" . $filename;
-    }
+    // }
+}
 
 
 
