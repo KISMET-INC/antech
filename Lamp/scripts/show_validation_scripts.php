@@ -14,7 +14,6 @@
 
     function validateAndFill(e){ 
         e.preventDefault();
-       
         var form = `#${e.target.name}`;
         var data = new FormData(document.querySelector(form));
         clearValidations();
@@ -26,14 +25,14 @@
         .then(errors_obj => {
             error_list.innerHTML = '';
             var errors_obj= errors_obj;
-            console.log(errors_obj)
             for(var error in errors_obj){
                 var elements = document.getElementsByClassName(error);
 
                 // NOT ERRORS SO UPDATE INPUT RESULTS
                 if(typeof errors_obj[error] === 'object'){
-                    console.log(e.target)
+                   // console.log(e.target)
 
+                    //submit email
                     if(error === 'submit'){
                         var form = document.getElementById("submit");
                         var data = new FormData(e.target);
@@ -56,10 +55,16 @@
                             });
                             break;
                         } else {
+
                         for(input in errors_obj[error]){
                             var inputs = document.getElementsByClassName(input)
+                            console.log(errors_obj[error][input])
+                            console.log(input)
                             for(target of inputs){
                                 target.value = errors_obj[error][input]
+                            }
+                            if (input == 'area_code'){
+                                document.getElementById('area_code').value = errors_obj[error][input];
                             }
                         }
                     }
@@ -137,7 +142,7 @@ function clearForm(section){
 
             error_list.innerHTML = '';
         }
-        
+
     }).catch(error => console.log(error))
 
     clearValidations();

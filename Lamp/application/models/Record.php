@@ -142,7 +142,8 @@ class Record extends CI_Model {
 
                 // Extract Important Info from lines
                 $hospital_name = substr($quote_data[$i-1],25);
-                $area_code = substr($quote_data[$i+5],25);
+                $area_code = trim(substr($quote_data[$i+5],25));
+            
             
                 //Set into Session
                 if (strlen($area_code) != 2)
@@ -156,6 +157,8 @@ class Record extends CI_Model {
             }
         }
         return FALSE;
+        //$this->array_helper->printArr('hospital', $this->session->userdata('hospital'));
+        
     
     }
 

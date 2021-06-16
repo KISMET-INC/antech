@@ -43,7 +43,8 @@
             <p class= 'ambulance_note'>*Ambulance Pickup Limited by Area Code </p>
             <div id='form_content'>
                 <!-- LOOKUP FORM -->
-                <form class='flexColunn' id = 'lookup' name ='lookup' onsubmit='validateAndFill(event)' method='POST' >
+                <!-- <form class='flexColunn' id = 'lookup' name ='lookup' action='lookup' method='POST' > -->
+                <form class='flexColumn' id = 'lookup' name ='lookup' onsubmit='validateAndFill(event)' method='POST' >
                     <!-- antech id -->
                     <div class='flex2' >
                         <label class= 'antech_id' for='antech_id'>Antech ID </label>

@@ -63,7 +63,7 @@ class Estimate_Controller extends CI_Controller {
                 );
                 // Set Errors
                 //$this->session->set_flashdata('errors', $errors);
-               // echo 'HOSPITAL NOT FOUND';
+            //echo 'HOSPITAL NOT FOUND';
             } else {
                 $hospital = $this->session->userdata('hospital');
                // echo nl2br("\n HOSPITAL FOUND AND STORED IN SESSION \n");
