@@ -120,15 +120,12 @@ function clearForm(section){
                 if(element.type === 'radio'){
                     element.checked = false;
                 } 
-                
-                
-                else{
+                else {
                     element.value = '';
                 }
 
             }
         } else {
-
             var inputs = document.querySelectorAll("input");
             for(input of inputs){
                 if(input.type === 'text' || input.type ==='number' || input.type==='hidden' ){
@@ -139,6 +136,7 @@ function clearForm(section){
                     }
                 }
             }
+            document.getElementById('area_code').value ='0';
 
             error_list.innerHTML = '';
         }
