@@ -10,8 +10,6 @@
 </head>
 <body>
     <h1> Oops, We're Sorry, There was a problem.</h2>
-    <p> Please click the link below to return to try and resend. <p>
-    <a href='/Lamp/submit'>Resubmit </a>
-    <p>If you continue to have trouble, contact Richard Moreland at remdvm@antech.com <p>
+    <p>Contact Dr. Richard Moreland at remdvm@antech.com <p>
 </body>
 </html>

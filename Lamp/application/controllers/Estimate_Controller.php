@@ -10,7 +10,7 @@ class Estimate_Controller extends CI_Controller {
     public function index()
 	{
 
-        // if(!$this->session->userdata('logged_in') && !$this->session->userdata('calculation_made')){
+        // if(!$this->session->userdata('logged_in'){
         //     $this->session->unset_userdata('estimate');
         // }
         if(!$this->session->userdata('hospital')){
@@ -50,8 +50,7 @@ class Estimate_Controller extends CI_Controller {
 
         // BUILD SESSION DATA FROM POST
         $hospital = $this->array_helper->buildPostArray('hospital', $this->input->post());
-       
-
+        
         // Run Validations
         $result  = $this->Record->validate_lookup();
         if($result == 'valid')
@@ -232,16 +231,61 @@ class Estimate_Controller extends CI_Controller {
     //************************************************* */
     //  CLEAR SESSION DATA
     //************************************************* */
-    public function clear() 
+    public function clear($section) 
     {
-        //$errors = $this->session->all_userdata();
-        foreach($this->session->all_userdata() as $key => $value)
+        switch($section)
         {
-            $this->session->unset_userdata($key);
+            case 'estimate':
+                $safe = array (
+                    "antech_id"=> '',
+                    "hospital_name"=> '',
+                    "area_code"=> '',
+                    "weight"=> '',
+                    "necropsy_cost"=> '',
+                    "delivery_cost"=> '',
+                    "cremation_cost"=> '',
+                    "total_cost"=> '',
+                    "neropsy_approved"=> '',
+                    "cremation_approved"=> '',
+                    "delivery_approved"=> '',
+                    "total_approved"=> '',
+                );
+                $estimate = $this->session->userdata('estimate');
+
+                foreach($estimate as $key => $value)
+                {
+                    if(!array_key_exists($key,$safe))
+                    {
+                        $estimate[$key] = ' ';
+                    }
+                }
+
+                $hospital = $this->session->userdata('hospital');
+                foreach($hospital as $key => $value)
+                {
+                    if(!array_key_exists($key,$safe))
+                    {
+                        $hospital[$key] = ' ';
+                    }
+                }
+
+                $this->session->set_userdata('estimate', $estimate);
+                $this->session->set_userdata('hospital', $hospital);
+                echo json_encode($safe);
+                break;
+
+            case 'all':
+                foreach($this->session->all_userdata() as $key => $value)
+                {
+                    $this->session->unset_userdata($key);
+                }
+                $this->resetSession();
+                break;
         }
-        $this->resetSession();
-        $errors = $this->session->all_userdata();
-        echo json_encode($errors);
+
+        //$errors = $this->session->all_userdata();
+        // $errors = $this->session->all_userdata();
+        // echo json_encode($errors);
 
         // echo 'CLEAR FUNCTION';
         // $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));

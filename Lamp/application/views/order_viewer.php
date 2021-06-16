@@ -53,7 +53,7 @@
                         <input
                             id='address'
                             name = 'address'
-                            class='address'
+                            class='address clear'
                             value = '<?php echo $hospital['address'] ?>' 
                             type='text' 
                             >
@@ -63,7 +63,7 @@
                         <input 
                             id='phone'
                             name = 'phone'
-                            class='phone' 
+                            class='phone clear' 
                             type='text' 
                             value = '<?php echo $hospital['phone'] ?>' 
                             >
@@ -73,7 +73,7 @@
                         <input
                             id='email' 
                             name = 'email'
-                            class='email'
+                            class='email clear'
                             type='text'
                             value = '<?php echo $hospital['email'] ?>' 
                             >
@@ -83,7 +83,7 @@
                         <input
                             id='doctor'
                             name = 'doctor'
-                            class= 'doctor'
+                            class= 'doctor clear'
                             value = '<?php echo $hospital['doctor'] ?>' 
                             type='text'
                             >
@@ -196,7 +196,7 @@
                         <input
                             id='pet_name'
                             name = 'pet_name'
-                            class='pet_name' 
+                            class='pet_name clear' 
                             type='text'
                             value = '<?php echo $estimate['pet_name'] ?>' 
                             >
@@ -206,7 +206,7 @@
                         <input
                             id='owner'
                             name = 'owner'
-                            class='owner'
+                            class='owner clear'
                             type='text'
                             value = '<?php echo $estimate['owner'] ?>' 
                             >
@@ -227,7 +227,7 @@
                         <input
                             id='breed'
                             name = 'breed'
-                            class='breed' 
+                            class='breed clear' 
                             type='text'
                             value = '<?php echo $estimate['breed'] ?>' 
                             >
@@ -250,7 +250,7 @@
                         <input
                             id='age'
                             name = 'age'
-                            class='age' 
+                            class='age clear' 
                             type='number'
                             value = '<?php echo $estimate['age'] ?>' 
                             >
@@ -280,31 +280,31 @@
                             <!-- EUTHANIZED -->
                                 <label class='euthanized radio_label '>Euthanized?</label>
                                 <label  class='euthanized radio' for="euthanized_yes">Yes</label>
-                                <input  class='euthanized' type="radio" name="euthanized" id='euthanized_yes' value="Yes">
+                                <input  class='euthanized clear' type="radio" name="euthanized" id='euthanized_yes' value="Yes">
 
                                 <label class='euthanized radio' for="euthanized_no">No</label>
-                                <input  class='euthanized' type="radio" name="euthanized" id='euthanized_no' value="No">
+                                <input  class='euthanized clear' type="radio" name="euthanized" id='euthanized_no' value="No">
                             </div>
                             <!-- FROZEN -->
                             <div id='frozen'>
                                 <label class='frozen radio_label'>Is the body frozen?</label>
                                 <label class='frozen radio' for="frozen_yes">Yes</label>
-                                <input class='frozen' type="radio" name="frozen" id='frozen_yes' value="Yes">
+                                <input class='frozen clear' type="radio" name="frozen" id='frozen_yes' value="Yes">
 
                                 <label class='frozen radio' for="frozen_no">No</label>
-                                <input class='frozen' type="radio" name="frozen" id='frozen_no' value="No">
+                                <input class='frozen clear' type="radio" name="frozen" id='frozen_no' value="No">
                             </div>
                         <!-- DEATH DATE -->
                         <div class='death_date'  id='death_date'>
                             <label class='death_date'  for='date'>Date of death: </label>
-                            <input class='death_date'  name='death_date' id='date'type='date' value = '<?php echo $estimate['death_date']?>'>
+                            <input class='death_date clear'  name='death_date' id='date'type='date' value = '<?php echo $estimate['death_date']?>'>
                         </div>
             
 
                     <!--SUMMARY  -->
                     <section id='summary_section'>
                         <label id='summary_label' class='summary' for='summary'>A summarization of the history IS REQUIRED, Supplying medical records are not a sufficient substitue for this summarization which will be included verbatim as part of the final necropsy report. In this summary, please give the general timeline (with dates) from teh most recent presentation until the death or euthanasia. Include the reason for the most recent presentation, general treatments in that regard, and the most recent and terminal clinical signs. Any known PERTINANT chronic conditins should be indicated however general yearly health checkup information is nt necessary.</label>
-                        <textarea class='summary' id='summary' name='summary'><?php echo $estimate['summary'] ?></textarea>
+                        <textarea class='summary clear' id='summary' name='summary'><?php echo $estimate['summary'] ?></textarea>
                     </section>
                 </fieldset>
 

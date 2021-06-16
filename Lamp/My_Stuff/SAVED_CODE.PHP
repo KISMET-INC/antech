@@ -400,3 +400,12 @@ $this->form_validation->set_rules(
     border-radius: 10px;
     outline:none;
   }
+
+
+
+change Base URL
+no whitespace above PHP
+no echo before redirects
+array_helper with capital Array
+
+Clear function on Order pages clears hospital as well

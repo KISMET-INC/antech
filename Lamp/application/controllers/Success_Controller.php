@@ -1,4 +1,3 @@
-
 <?php 
 class Success_Controller extends CI_Controller {
 
@@ -9,7 +8,7 @@ class Success_Controller extends CI_Controller {
         {
             redirect('/');
         }
-        // $this->session->unset_userdata('logged_in');
+        $this->session->unset_userdata('logged_in');
         $estimate = $this->session->userdata('estimate');
         $view_data = array(
             'hospital'=> $this->session->userdata('hospital'),

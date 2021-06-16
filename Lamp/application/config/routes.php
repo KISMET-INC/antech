@@ -55,11 +55,11 @@ $route['submit'] = 'Order_Controller/submit';
 $route['lookup'] = 'Estimate_Controller/lookup';
 $route['calculate'] = 'Estimate_Controller/calculate';
 $route['start_order'] = 'Estimate_Controller/start_order';
-$route['clear'] = 'Estimate_Controller/clear';
+// $route['clear'] = 'Estimate_Controller/clear';
 $route['admin'] = 'Admin_Controller';
 $route['success'] = 'Success_Controller';
 $route['error'] = 'Error_Controller';
-$route['record/(:num)'] = 'Record_Controller/index/$1';
+$route['clear/(:any)'] = 'Estimate_Controller/clear/$1';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -291,7 +291,7 @@ button,
 .jumbo {
     object-fit: cover;
     width: 100%;
-    height: 700px;
+    height: 50%;
 }
 
 
@@ -418,6 +418,8 @@ form#start p {
 /********************************/
 #faq_blue{
     height: fit-content;
+    min-height: 700px;
+    padding-top: 50px;
 }
 
 .faq {
@@ -622,30 +624,6 @@ label.death_date {
 
 
 
-
-
-
-
-
-
-
-#pet_section {
-    width: 40%;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*********************************/
 /*  SUCCESS
 /********************************/
@@ -687,32 +665,19 @@ label.death_date {
     width: 65%;
 }
 
-
-
-
-
-
-
-
-.radio_label {
-    min-width: 15em;
+#pet_section {
+    width: 40%;
 }
 
-#history,
-#costs {
-    margin-top: 3em;
-}
 
-#costs {
-    width:30%;
-}
 
-.title {
-    position: absolute;
-    top: 300px;
-    left: 15%;
-    line-height: 3.3em;
-}
+
+
+
+
+
+
+
 #pet_section {
     margin-left: 7em;
 }
@@ -734,15 +699,30 @@ form div{
     justify-content: unset;
     width: 100%;
 }
-/* label.weight {
-    width: 5.5em;
-} */
 
 #weight_area {
     justify-content: unset;
 }
 
+.radio_label {
+    min-width: 15em;
+}
 
+#history,
+#costs {
+    margin-top: 3em;
+}
+
+#costs {
+    width:30%;
+}
+
+.title {
+    position: absolute;
+    top: 300px;
+    left: 15%;
+    line-height: 3.3em;
+}
 
 
 
@@ -756,14 +736,12 @@ form div{
     cursor: context-menu;
 }
 
-/* #form_content {
-    width: 100%;
-}
- */
 
 
 
-/* Spinner */
+/*********************************/
+/*  SPINNER
+/********************************/
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

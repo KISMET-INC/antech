@@ -178,36 +178,36 @@ class Record extends CI_Model {
         
 //         if($interval > 30 && $estimate['total_cost'] != $this->session->userdata('last_total') || $this->session->userdata('logged_in') == TRUE){
 //             //echo nl2br("\nADDING TO TEXT FILE...\n");
-//             $date = date("m-d-Y");
-//             $str =
+            $date = date("m-d-Y");
+            $str =
     
-// "************************************************
-// Date of Quote:           " . $date . "
-// Time of Quote:           " . $time . "
-// Hospital:                " . $hospital['hospital_name'] . "
-// Antech ID:               " . $hospital['antech_id']. "
-// CS Rep:                  N/A
-// Weight:                  " . $estimate['weight'] . "
-// Full Necropsy:           " . $estimate['necropsy_cost'] . "
-// Carcass Transport:       " . $estimate['delivery_cost'] . "
-//     Area Code:             " . $hospital['area_code']. "
-//     Transport Miles:       N/A
-// Cremation:               " . $estimate['cremation_cost'] . "
-// Full Necropsy Total:     " . $estimate['total_cost'] . "
-// ************************************************
-// ";
+"************************************************
+Date of Quote:           " . $date . "
+Time of Quote:           " . $time . "
+Hospital:                " . $hospital['hospital_name'] . "
+Antech ID:               " . $hospital['antech_id']. "
+CS Rep:                  N/A
+Weight:                  " . $estimate['weight'] . "
+Full Necropsy:           " . $estimate['necropsy_cost'] . "
+Carcass Transport:       " . $estimate['delivery_cost'] . "
+    Area Code:             " . $hospital['area_code']. "
+    Transport Miles:       N/A
+Cremation:               " . $estimate['cremation_cost'] . "
+Full Necropsy Total:     " . $estimate['total_cost'] . "
+************************************************
+";
 
-//             $file_data = $str;
-//             $file_data .= file_get_contents($filename);
+            $file_data = $str;
+            $file_data .= file_get_contents($filename);
 
 
-//             file_put_contents($filename, $file_data);
+            file_put_contents($filename, $file_data);
     
-//             $this->session->set_userdata('last_time', date('h:i:s A'));
-//             $this->session->set_userdata('last_total', $estimate['total_cost']);
+            $this->session->set_userdata('last_time', date('h:i:s A'));
+            $this->session->set_userdata('last_total', $estimate['total_cost']);
         
             
-       // }
+       }
 
     // echo nl2br("\nADD RECORD FUNCTION\n");
     // echo nl2br($this->session->userdata('last_total'). "\n");
@@ -219,5 +219,5 @@ class Record extends CI_Model {
     }
 
 
-}
+
 

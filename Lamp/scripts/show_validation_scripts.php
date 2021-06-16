@@ -48,7 +48,7 @@
             
                                 console.log('success')
                                 form.reset()
-                                var url = window.location.origin+'/Lamp/success';
+                                var url = window.location.origin+'/success';
                                 window.location.replace(url);
                             }).catch(error => {
                                 
@@ -103,30 +103,51 @@
 
     }
 
-function clearForm(){
-    var inputs = document.querySelectorAll("input");
-    fetch("clear")
-    .then(res => res.json())
+function clearForm(section){
+    
+    var clearURL = `clear/${section}`
+    fetch(clearURL)
     .then(results => {
-        for(input of inputs){
-            if(input.type === 'text' || input.type ==='number' || input.type==='hidden' ){
-                if(input.classList.contains('cost')){
-                input.value = '$0'
-                } else {
-                input.value = '';             
+
+        if(section ==='estimate'){
+            var elements = document.getElementsByClassName('clear')
+            for(element of elements){
+                if(element.type === 'radio'){
+                    element.checked = false;
+                } 
+                
+                
+                else{
+                    element.value = '';
+                }
+
             }
+        } else {
+
+            var inputs = document.querySelectorAll("input");
+            for(input of inputs){
+                if(input.type === 'text' || input.type ==='number' || input.type==='hidden' ){
+                    if(input.classList.contains('cost')){
+                        input.value = '$0'
+                    } else {
+                        input.value = '';             
+                    }
+                }
             }
+
+            error_list.innerHTML = '';
         }
-        error_list.innerHTML = '';
+        
     }).catch(error => console.log(error))
-        clearValidations();
+
+    clearValidations();
 }     
 
 
 function clearValidations() {
     var validations = document.querySelectorAll(".red");
     for(valid of validations ){
-            valid.classList.remove('red')
+        valid.classList.remove('red')
     }
 }
 

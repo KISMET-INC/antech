@@ -1,4 +1,3 @@
-
 <?php 
 class Error_Controller extends CI_Controller {
 

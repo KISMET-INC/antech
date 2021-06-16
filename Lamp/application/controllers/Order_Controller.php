@@ -1,14 +1,14 @@
-
 <?php 
 class Order_Controller extends CI_Controller {
 
     public function index() 
     {
         
-        // if(!array_key_exists('logged_in',$this->session->userdata()))
-        // {
-        //     redirect('/');
-        // }
+        if(!array_key_exists('logged_in',$this->session->userdata()))
+        {
+            $this->session->unset_userdata('estimate');
+            redirect('/');
+        }
 
         $view_data = array(
             'hospital'=> $this->session->userdata('hospital'),
@@ -25,7 +25,7 @@ class Order_Controller extends CI_Controller {
     //****************************************************** */
     // Populate Form with dummy data
     //****************************************************** */
-    public function populateForm ()
+    public function populateForm()
     {
         $hospital = array(
             'address'=> '26345 Cottonwood Ave, Moreno Valley. CA 92555',

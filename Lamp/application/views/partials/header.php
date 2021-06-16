@@ -11,22 +11,22 @@
     if (document.title == 'Antech Necropsy Service'){
 
         nav.innerHTML = 
-        "<a class='faq_link' href='#answers'>Frequently Asked Questions </br> (**Please Read!!**)</a>"
+        "<a class='faq_link' href='#answer_box'>Frequently Asked Questions </br> (**Please Read!!**)</a>"
         +"<p> More Info</p>"
         +"<a href='#calculator'> Estimate Necropsy</a>"
     }
     if (document.title == 'Order Approval'){
-
+        var estimate ='estimate'
         nav.innerHTML = 
-        "<a href='/Lamp/index.php/order_controller/populateForm'>Test Info</a>"
-        +"<p onclick='clearForm()'> Clear Form </p>"
-        +"<p><a href='/Lamp/#calculator'> Go Back To Estimate</a> </p>"
+        "<a href='/index.php/order_controller/populateForm'>Test Info</a>"
+        +"<p onclick='clearForm(estimate)'> Clear Form </p>"
+        +"<p><a href='/#calculator'> Go Back To Estimate</a> </p>"
     }
 
     if (document.title == 'SUCCESS'){
 
         nav.innerHTML = 
-        "<a href='/Lamp/success_controller/return_home'>Return Home </a>"
+        "<a href='/success_controller/return_home'>Return Home </a>"
         }
 
 </script>

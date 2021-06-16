@@ -28,7 +28,7 @@
             <div class = 'wrapper'>
                 <p>The Necropsy Service provides professional whole body necropsies by one of our staff pathologists and Necropsy Coordinator, Dr. Richard Moreland
                 </p>
-                <a class='faq_link' href='#answers'>>Frequently Asked Questions </a>
+                <a class='faq_link' href='#answer_box'>>Frequently Asked Questions </a>
             </div>
         </section>
     </section>
@@ -118,7 +118,7 @@
                 <div id='form_links' class='flexCenter'>
 
                     <!-- CLEAR SESSION DATA -->
-                    <p id='clear_form' onclick='clearForm()'>Clear Form</p>
+                    <p id='clear_form' onclick='clearForm("all")'>Clear Form</p>
 
                     <!-- CALCULATE BUTTON -->
                     <input id='calculate_button' type='submit' name = 'calculate' value="Calculate Necropsy Costs"/>
@@ -212,7 +212,7 @@
 
     <!-- FREQUENTLY ASKED QUESTIONS -->
     <section id='faq_blue' class = 'blue_bar'>
-        <div class = 'wrapper flex'>
+        <div class = 'wrapper flex3'>
             <div id ='answer_box'>
                 <p id='answer'></p>
                 <img src='/assets/colorbar.jpg' alt='colorful bar'>
