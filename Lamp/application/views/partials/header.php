@@ -10,10 +10,6 @@
 
     if (document.title == 'Antech Necropsy Service'){
 
-        nav.innerHTML = 
-        "<a class='faq_link' href='#answer_box'>Frequently Asked Questions </br> (**Please Read!!**)</a>"
-        +"<p> More Info</p>"
-        +"<a href='#calculator'> Estimate Necropsy</a>"
     }
     if (document.title == 'Order Approval'){
         var estimate ='estimate'

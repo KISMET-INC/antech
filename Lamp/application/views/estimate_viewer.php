@@ -22,23 +22,53 @@
     <!-- MAIN CONTENT -->
 
     <!-- mAIN JUMBOTRON AND BLUE BAR -->
-    <section id='main_jumbotron'>
-        <div class='title wrapper'>
+    <section id='main_jumbotron' class='title wrapper'>
             <hr>
             <h1>Antech <br> Necropsy <br> Service </h1>
-        </div>
+    </section>
         <img class='jumbo' src ='../../assets/lab2.jpg' alt='pathologist'>
 
-        <section class = 'blue_bar'>
-            <div class = 'wrapper'>
-                <p>The Necropsy Service provides professional whole body necropsies by one of our staff pathologists and Necropsy Coordinator, Dr. Richard Moreland
-                </p>
-                <a class='faq_link' href='#answer_box'>>Frequently Asked Questions </a>
-            </div>
-        </section>
-    </section>
+        <!-- <section class = 'blue_bar'>
+            <p class = 'wrapper'>The Necropsy Service provides professional whole body necropsies by one of our staff pathologists and Necropsy Coordinator, Dr. Richard Moreland
+            </p>
+        </section> -->
     
+     <!-- Jumbotron Display -->
+     <!-- <section id='faq_jumbotron' class='faq wrapper'>
+        <hr>
+        <h1>Frequently <br> Asked <br> Questions </h1>
+    </section> -->
+    <!-- <img class='jumbo faqImg' src ='../../assets/handscrop.jpg' alt='pathologist'> -->
 
+    <!-- FREQUENTLY ASKED QUESTIONS -->
+    <section id='faq_blue' class = 'blue_bar'>
+        <div class = 'wrapper flex3'>
+            <div id = 'questions'>
+                <hr>
+                <h3>Frequently Asked Questions </h3>
+                <div id='question_list'>
+                    <ul>
+                        <li id='q1' class='question' >What type of animals do you necropsy?</li>
+                        <li onclick='setFAQ(this)' id='q2' class='question' >How is the cost of the necropsy determined?</li>
+                        <li onclick='setFAQ(this)' id='q3' class='question' >What does a whole body necropsy include?</li>
+                        <li style='color: var(--bgreen)' onclick='setFAQ(this)' id='q4' ' class='question'>Post-Necropsy Carcass Disposal (**Importat - Please Read!**)</li>
+                        <li onclick='setFAQ(this)' id='q5' class='question' >Are there any other costs?</li>
+                        <li onclick='setFAQ(this)' id='q6' class='question' >How do we get the carcass?</li>
+                        <li onclick='setFAQ(this)' id='q7' class='question' >How do we preserve the carcass?</li>
+                        <li onclick='setFAQ(this)' id='q8' class='question' >How are we billed?</li>
+                        <li onclick='setFAQ(this)' id='q9' class='question' >How long will it take to recieve the report?</li>
+                        <li onclick='setFAQ(this)' id='q10' class='question'>Dio you guarantee teh necropsy will determine the cause of death?</li>
+                        <li onclick='setFAQ(this)' id='q11' class='question'  class='green'>Special Note about poisoning</li>
+                        <li id='q12' class='question' >See an example of an actual necropsy report</li>
+                    </ul>
+                </div>
+            </div>
+            <div id ='answer_box'>
+                <p id='answer'></p>
+                <img src='/assets/colorbar.jpg' alt='colorful bar'>
+            </div>
+        </div>
+    </section>
     <!-- BEGIN CALCULATOR SECTION -->
     <section id='calculator' class='estimate wrapper flex'>
 
@@ -128,6 +158,7 @@
 
                     <!-- CALCULATE BUTTON -->
                     <input id='calculate_button' type='submit' name = 'calculate' value="Calculate Necropsy Costs"/>
+                    <p id='print' onclick='window.print()'>Print </p>
 
                 </div>
                 </form>
@@ -203,49 +234,13 @@
 
                 <!-- SUBMIT BUTTON -->
                 <button id='approve_button' type='submit'>Proceed to Begin Order </button>
-                <p>*Optional costs can be declined on the next page </p>
+                <p class='optional'>*Optional costs can be declined on the next page </p>
             </form>
 
         </div>
     </section>
 
-    <!-- Jumbotron Display -->
-    <section id='faq_jumbotron' class='faq wrapper'>
-        <hr>
-        <h1>Frequently <br> Asked <br> Questions </h1>
-    </section>
-    <img class='jumbo' src ='../../assets/handscrop.jpg' alt='pathologist'>
-
-    <!-- FREQUENTLY ASKED QUESTIONS -->
-    <section id='faq_blue' class = 'blue_bar'>
-        <div class = 'wrapper flex3'>
-         
-            <div id = 'questions'>
-                <hr>
-                <h3>Frequently Asked Questions </h3>
-                <div id='question_list'>
-                    <ul>
-                        <li id='q1' class='question' >What type of animals do you necropsy?</li>
-                        <li onclick='setFAQ(this)' id='q2' class='question' >How is the cost of the necropsy determined?</li>
-                        <li onclick='setFAQ(this)' id='q3' class='question' >What does a whole body necropsy include?</li>
-                        <li style='color: var(--bgreen)' onclick='setFAQ(this)' id='q4' ' class='question'>Post-Necropsy Carcass Disposal (**Importat - Please Read!**)</li>
-                        <li onclick='setFAQ(this)' id='q5' class='question' >Are there any other costs?</li>
-                        <li onclick='setFAQ(this)' id='q6' class='question' >How do we get the carcass?</li>
-                        <li onclick='setFAQ(this)' id='q7' class='question' >How do we preserve the carcass?</li>
-                        <li onclick='setFAQ(this)' id='q8' class='question' >How are we billed?</li>
-                        <li onclick='setFAQ(this)' id='q9' class='question' >How long will it take to recieve the report?</li>
-                        <li onclick='setFAQ(this)' id='q10' class='question'>Dio you guarantee teh necropsy will determine the cause of death?</li>
-                        <li onclick='setFAQ(this)' id='q11' class='question'  class='green'>Special Note about poisoning</li>
-                        <li id='q12' class='question' >See an example of an actual necropsy report</li>
-                    </ul>
-                </div>
-            </div>
-            <div id ='answer_box'>
-                <p id='answer'></p>
-                <img src='/assets/colorbar.jpg' alt='colorful bar'>
-            </div>
-        </div>
-    </section>
+   
     
     <!-- FOOTER -->
     <? $this->load->view('./partials/footer.php') ?>
