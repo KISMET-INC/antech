@@ -411,7 +411,10 @@ array_helper with capital Array
 Clear function on Order pages clears hospital as well
 
 
-Submit auto approves (probably due to javascript)
+xSubmit auto approves (probably due to javascript)
 Spamming estimates
 Clean up vailidate and Fill function
-cleanup Style sheet
+xcleanup Style sheetx
+Find new photos
+
+refresh refreshes order costs

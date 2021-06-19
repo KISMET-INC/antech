@@ -1,4 +1,4 @@
-<script>
+    <script>
     //****************************************************** */
     // Add $ to all cost inputs on load
     //****************************************************** */
@@ -28,5 +28,4 @@
     function addSign(decimal){
         return '$'+ decimal
     }
-
 </script>

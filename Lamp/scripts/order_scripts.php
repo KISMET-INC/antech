@@ -12,7 +12,7 @@
     //****************************************************** */
 
     for (ship of delivery_costs){
-        if (delivery_cost.value == 0){
+        if (delivery_cost.value == "$0"){
             ship.classList.add('unchecked');
             ship.disabled == true;
             delivery_check.setAttribute('disabled','');

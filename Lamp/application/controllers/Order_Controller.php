@@ -85,6 +85,7 @@ class Order_Controller extends CI_Controller {
             $this->array_helper->updateSession('estimate', 'total_approved', 'FALSE');
         }
         $errors = array();
+        $full_estimate=array();
         
         // Run Validations
         $result = $this->Record->validate_submit();
@@ -141,6 +142,12 @@ class Order_Controller extends CI_Controller {
             // redirect('/order');
             
         };
+         //PRINT FUNCTION
+        // echo 'SUBMIT FUNCTION';
+        // $this->array_helper->printArr('FULL EST', $full_estimate);
+        // $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
+        // $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
+        // $this->array_helper->printArr('POST', $this->input->post());
         echo json_encode($errors);
     }
 }

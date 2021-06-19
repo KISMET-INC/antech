@@ -34,6 +34,7 @@ class Estimate_Controller extends CI_Controller {
 
         );
 
+
         $this->load->view('estimate_viewer',$view_data);
 	}
 
@@ -59,7 +60,7 @@ class Estimate_Controller extends CI_Controller {
         {
             if (!$this->Record->search_text($hospital['antech_id']) == TRUE)
             {
-                $errors = array( 
+                $results_arr = array( 
                     'not found' => "Previous data not found.",
                     
                 );
@@ -69,7 +70,7 @@ class Estimate_Controller extends CI_Controller {
             } else {
                 $hospital = $this->session->userdata('hospital');
                // echo nl2br("\n HOSPITAL FOUND AND STORED IN SESSION \n");
-                $errors = array( 
+                $results_arr = array( 
                     'found' => array(
                         'hospital_name' => $hospital['hospital_name'],
                         'area_code'=> $hospital['area_code']
@@ -78,7 +79,7 @@ class Estimate_Controller extends CI_Controller {
             }
         } else {
 
-            $errors = array( 
+            $results_arr = array( 
                 'antech_id' => form_error('antech_id'),
             );
 
@@ -87,7 +88,7 @@ class Estimate_Controller extends CI_Controller {
             //echo 'VALIDATION FAILED';
         }
         
-        echo json_encode($errors);
+        echo json_encode($results_arr);
 
 
     }
@@ -103,7 +104,7 @@ class Estimate_Controller extends CI_Controller {
         
         // Run Validations
         $result  = $this->Record->validate_calculate();
-        $errors = array();
+        $results_arr = array();
 
         // VALID RESULTS
         if($result == 'valid')
@@ -137,7 +138,7 @@ class Estimate_Controller extends CI_Controller {
             $this->Record->add_record($this->session->userdata('hospital'),$this->session->userdata('estimate'),'estimates.txt');
             $this->session->set_userdata('calculation_made',TRUE);
             //echo nl2br("\n CALCULATION  BEGUN \n");
-            $errors = array( 
+            $results_arr = array( 
                 'calculations' => array(
                     'necropsy_cost'=> "$" . $necropsy_cost,
                     'cremation_cost'=> "$" . $cremation_cost,
@@ -147,7 +148,7 @@ class Estimate_Controller extends CI_Controller {
             );
         } else {
 
-            $errors = array( 
+            $results_arr = array( 
                 'antech_id' => form_error('antech_id'),
                 'weight' => form_error('weight'),
                 'hospital_name' => form_error('hospital_name')
@@ -168,7 +169,7 @@ class Estimate_Controller extends CI_Controller {
         
     
         // Return to main page
-        echo json_encode($errors);
+        echo json_encode($results_arr);
 
     }
     
@@ -194,7 +195,7 @@ class Estimate_Controller extends CI_Controller {
         // Run validations
         $result = $this->Record->validate_start_order();
 
-        $errors = array();
+        $results_arr = array();
         // VALID RESULTS - route to order page
         if($result=='valid')
         {
@@ -202,14 +203,14 @@ class Estimate_Controller extends CI_Controller {
 
             // LOGIN USER
             $this->session->set_userdata('logged_in', TRUE);
-            $errors = array( 
-                'redirect' => 'order',
+            $results_arr = array( 
+                'order' => 'order',
             );
 
 
         } else {
 
-            $errors = array( 
+            $results_arr = array( 
                 'antech_id' => form_error('antech_id'),
                 'weight' => form_error('weight'),
                 'hospital_name' => form_error('hospital_name'),
@@ -222,7 +223,7 @@ class Estimate_Controller extends CI_Controller {
             // redirect('/');
         };
         
-        echo json_encode($errors);
+        echo json_encode($results_arr);
         // PRINT FUNCTIONS
         // echo 'START ORDER FUNCTION';
         // $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));

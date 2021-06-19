@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/style.css">
-      <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;500;600" rel="stylesheet">
+    <script type = 'text/javascript' src = "<?php echo base_url(); ?>scripts/show_validation_scripts.js"></script>
     
     <title>Order Approval</title>
 </head>
@@ -24,7 +25,7 @@
 
         <!-- BEGIN ORDER FORM -->
         <form id='submit' name='submit' onsubmit='validateAndFill(event)' method="POST" class='flex3'> 
-        <!-- <form id='approval_form' action='submit' method="POST" class='flex3'>  -->
+        <!-- <form id='submit' action='submit' method="POST" class='flex3'>  -->
             <section id='left_col' >
             <!-- HOSPITAL INFO -->
                 <fieldset id='hospital_info' c>
@@ -170,7 +171,7 @@
                         <label class='total_approved' >Total : </label>
                                 <input
                                     id='total_cost'
-                                    name = 'total_cost '
+                                    name = 'total_cost'
                                     class='total_cost total_approved cost'
                                     type='text'
                                     readonly
@@ -317,20 +318,19 @@
         <!-- Clear Session Data -->
         <!-- <a href='/Lamp/index.php/order_controller/populateForm'>Add Test Info </a><br>
         <button onclick="window.print()">print</button> -->
-         <!-- ERRORS -->
-         <div id='error_list' style='color:red' class ='error'></div>
-         <!-- SUBMIT -->
+            <!-- ERRORS -->
+        <div id='error_list' style='color:red' class ='error'></div>
+        <!-- SUBMIT -->
         <input form='submit' class='button' type='submit' value='Submit Neropsy Request'>
         
 
-     
+
     </main>
 
     <!-- FOOTER -->
     <?php $this->load->view('./partials/footer.php') ?>
 
     <?php include "scripts/order_scripts.php"?>
-    <?php include "scripts/show_validation_scripts.php"?>
     <?php include "scripts/dollar_scripts.php"?>
 
 </body>

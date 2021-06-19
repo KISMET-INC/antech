@@ -1,4 +1,382 @@
 ************************************************
+Date of Quote:           06-19-2021
+Time of Quote:           12:43:20 PM
+Hospital:                STENNER CREEK ANIMAL HOSPITAL
+Antech ID:               92220
+CS Rep:                  N/A
+Weight:                  22
+Full Necropsy:           $1525.00
+Carcass Transport:       $165.00
+    Area Code:             818
+    Transport Miles:       N/A
+Cremation:               $200.00
+Full Necropsy Total:     $1725.00
+************************************************
+************************************************
+Date of Quote:           06-19-2021
+Time of Quote:           12:42:26 PM
+Hospital:                STENNER CREEK ANIMAL HOSPITAL
+Antech ID:               92220
+CS Rep:                  N/A
+Weight:                  22
+Full Necropsy:           $1525.00
+Carcass Transport:       $165.00
+    Area Code:             818
+    Transport Miles:       N/A
+Cremation:               $200.00
+Full Necropsy Total:     $1525.00
+************************************************
+************************************************
+Date of Quote:           06-19-2021
+Time of Quote:           12:40:35 PM
+Hospital:                STENNER CREEK ANIMAL HOSPITAL
+Antech ID:               92220
+CS Rep:                  N/A
+Weight:                  22
+Full Necropsy:           $1525.00
+Carcass Transport:       $165.00
+    Area Code:             818
+    Transport Miles:       N/A
+Cremation:               $200.00
+Full Necropsy Total:     $1890.00
+************************************************
+************************************************
+Date of Quote:           06-19-2021
+Time of Quote:           12:40:14 PM
+Hospital:                STENNER CREEK ANIMAL HOSPITAL
+Antech ID:               92220
+CS Rep:                  N/A
+Weight:                  22
+Full Necropsy:           $1525.00
+Carcass Transport:       $165.00
+    Area Code:             818
+    Transport Miles:       N/A
+Cremation:               $200.00
+Full Necropsy Total:     $1890.00
+************************************************
+************************************************
+Date of Quote:           06-19-2021
+Time of Quote:           12:39:33 PM
+Hospital:                STENNER CREEK ANIMAL HOSPITAL
+Antech ID:               92220
+CS Rep:                  N/A
+Weight:                  223
+Full Necropsy:           $2616.00
+Carcass Transport:       $0
+    Area Code:             818
+    Transport Miles:       N/A
+Cremation:               $255.00
+Full Necropsy Total:     $2871.00
+************************************************
+************************************************
+Date of Quote:           06-19-2021
+Time of Quote:           12:38:24 PM
+Hospital:                STENNER CREEK ANIMAL HOSPITAL
+Antech ID:               92220
+CS Rep:                  N/A
+Weight:                  66
+Full Necropsy:           $2035.00
+Carcass Transport:       $165.00
+    Area Code:             818
+    Transport Miles:       N/A
+Cremation:               $235.00
+Full Necropsy Total:     $2435.00
+************************************************
+************************************************
+Date of Quote:           06-19-2021
+Time of Quote:           12:37:20 PM
+Hospital:                STENNER CREEK ANIMAL HOSPITAL
+Antech ID:               92220
+CS Rep:                  N/A
+Weight:                  66
+Full Necropsy:           $2035.00
+Carcass Transport:       $165.00
+    Area Code:             818
+    Transport Miles:       N/A
+Cremation:               $235.00
+Full Necropsy Total:     $2435.00
+************************************************
+************************************************
+Date of Quote:           06-19-2021
+Time of Quote:           12:34:55 PM
+Hospital:                STENNER CREEK ANIMAL HOSPITAL
+Antech ID:               92220
+CS Rep:                  N/A
+Weight:                  22
+Full Necropsy:           $1525.00
+Carcass Transport:       $165.00
+    Area Code:             818
+    Transport Miles:       N/A
+Cremation:               $200.00
+Full Necropsy Total:     $1890.00
+************************************************
+************************************************
+Date of Quote:           06-18-2021
+Time of Quote:           11:34:00 PM
+Hospital:                STENNER CREEK ANIMAL HOSPITAL
+Antech ID:               92220
+CS Rep:                  N/A
+Weight:                  233
+Full Necropsy:           $2616.00
+Carcass Transport:       $0
+    Area Code:             0
+    Transport Miles:       N/A
+Cremation:               $255.00
+Full Necropsy Total:     $2616.00
+************************************************
+************************************************
+Date of Quote:           06-18-2021
+Time of Quote:           11:33:25 PM
+Hospital:                STENNER CREEK ANIMAL HOSPITAL
+Antech ID:               92220
+CS Rep:                  N/A
+Weight:                  2
+Full Necropsy:           $1380.00
+Carcass Transport:       $0
+    Area Code:             0
+    Transport Miles:       N/A
+Cremation:               $165.00
+Full Necropsy Total:     $1380.00
+************************************************
+************************************************
+Date of Quote:           06-18-2021
+Time of Quote:           09:52:21 AM
+Hospital:                Animal Medical Center
+Antech ID:               9544
+CS Rep:                  N/A
+Weight:                  22
+Full Necropsy:           $1525.00
+Carcass Transport:       $0
+    Area Code:             0
+    Transport Miles:       N/A
+Cremation:               $200.00
+Full Necropsy Total:     $1525.00
+************************************************
+************************************************
+Date of Quote:           06-18-2021
+Time of Quote:           09:51:53 AM
+Hospital:                Animal Medical Center
+Antech ID:               9544
+CS Rep:                  N/A
+Weight:                  233
+Full Necropsy:           $2616.00
+Carcass Transport:       $0
+    Area Code:             0
+    Transport Miles:       N/A
+Cremation:               $255.00
+Full Necropsy Total:     $2616.00
+************************************************
+************************************************
+Date of Quote:           06-18-2021
+Time of Quote:           09:50:22 AM
+Hospital:                Animal Medical Center
+Antech ID:               9544
+CS Rep:                  N/A
+Weight:                  233
+Full Necropsy:           $2616.00
+Carcass Transport:       $0
+    Area Code:             0
+    Transport Miles:       N/A
+Cremation:               $255.00
+Full Necropsy Total:     $2616.00
+************************************************
+************************************************
+Date of Quote:           06-18-2021
+Time of Quote:           09:45:52 AM
+Hospital:                Animal Medical Center
+Antech ID:               9544
+CS Rep:                  N/A
+Weight:                  22
+Full Necropsy:           $1525.00
+Carcass Transport:       $0
+    Area Code:             0
+    Transport Miles:       N/A
+Cremation:               $200.00
+Full Necropsy Total:     $1525.00
+************************************************
+************************************************
+Date of Quote:           06-18-2021
+Time of Quote:           09:44:46 AM
+Hospital:                Animal Medical Center
+Antech ID:               9544
+CS Rep:                  N/A
+Weight:                  233
+Full Necropsy:           $2616.00
+Carcass Transport:       $0
+    Area Code:             0
+    Transport Miles:       N/A
+Cremation:               $255.00
+Full Necropsy Total:     $2616.00
+************************************************
+************************************************
+Date of Quote:           06-18-2021
+Time of Quote:           12:44:48 AM
+Hospital:                Kristens Animal Hospital
+Antech ID:               1333
+CS Rep:                  N/A
+Weight:                  233
+Full Necropsy:           $2616.00
+Carcass Transport:       $165.00
+    Area Code:             747
+    Transport Miles:       N/A
+Cremation:               $255.00
+Full Necropsy Total:     $2781.00
+************************************************
+************************************************
+Date of Quote:           06-18-2021
+Time of Quote:           12:43:51 AM
+Hospital:                Kristens Animal Hospital
+Antech ID:               1333
+CS Rep:                  N/A
+Weight:                  233
+Full Necropsy:           $2616.00
+Carcass Transport:       $165.00
+    Area Code:             747
+    Transport Miles:       N/A
+Cremation:               $255.00
+Full Necropsy Total:     $3036.00
+************************************************
+************************************************
+Date of Quote:           06-18-2021
+Time of Quote:           12:41:02 AM
+Hospital:                Kristens Animal Hospital
+Antech ID:               1333
+CS Rep:                  N/A
+Weight:                  233
+Full Necropsy:           $2616.00
+Carcass Transport:       $165.00
+    Area Code:             747
+    Transport Miles:       N/A
+Cremation:               $255.00
+Full Necropsy Total:     $2616.00
+************************************************
+************************************************
+Date of Quote:           06-17-2021
+Time of Quote:           09:19:08 PM
+Hospital:                Kristens Animal Hospital
+Antech ID:               1333
+CS Rep:                  N/A
+Weight:                  22
+Full Necropsy:           $1525.00
+Carcass Transport:       $165.00
+    Area Code:             747
+    Transport Miles:       N/A
+Cremation:               $200.00
+Full Necropsy Total:     $1890.00
+************************************************
+************************************************
+Date of Quote:           06-17-2021
+Time of Quote:           09:18:46 PM
+Hospital:                Kristens Animal Hospital
+Antech ID:               1333
+CS Rep:                  N/A
+Weight:                  22
+Full Necropsy:           $1525.00
+Carcass Transport:       $165.00
+    Area Code:             747
+    Transport Miles:       N/A
+Cremation:               $200.00
+Full Necropsy Total:     $1890.00
+************************************************
+************************************************
+Date of Quote:           06-17-2021
+Time of Quote:           09:13:38 PM
+Hospital:                Kristens Animal Hospital
+Antech ID:               1333
+CS Rep:                  N/A
+Weight:                  22
+Full Necropsy:           $1525.00
+Carcass Transport:       $165.00
+    Area Code:             747
+    Transport Miles:       N/A
+Cremation:               $200.00
+Full Necropsy Total:     $1890.00
+************************************************
+************************************************
+Date of Quote:           06-17-2021
+Time of Quote:           09:12:39 PM
+Hospital:                STENNER CREEK ANIMAL HOSPITAL
+Antech ID:               92220
+CS Rep:                  N/A
+Weight:                  233
+Full Necropsy:           $2616.00
+Carcass Transport:       $160.00
+    Area Code:             909
+    Transport Miles:       N/A
+Cremation:               $255.00
+Full Necropsy Total:     $3031.00
+************************************************
+************************************************
+Date of Quote:           06-17-2021
+Time of Quote:           09:11:57 PM
+Hospital:                STENNER CREEK ANIMAL HOSPITAL
+Antech ID:               92220
+CS Rep:                  N/A
+Weight:                  233
+Full Necropsy:           $2616.00
+Carcass Transport:       $160.00
+    Area Code:             909
+    Transport Miles:       N/A
+Cremation:               $255.00
+Full Necropsy Total:     $3031.00
+************************************************
+************************************************
+Date of Quote:           06-17-2021
+Time of Quote:           09:11:25 PM
+Hospital:                STENNER CREEK ANIMAL HOSPITAL
+Antech ID:               92220
+CS Rep:                  N/A
+Weight:                  233
+Full Necropsy:           $2616.00
+Carcass Transport:       $160.00
+    Area Code:             909
+    Transport Miles:       N/A
+Cremation:               $255.00
+Full Necropsy Total:     $3031.00
+************************************************
+************************************************
+Date of Quote:           06-17-2021
+Time of Quote:           09:11:11 PM
+Hospital:                STENNER CREEK ANIMAL HOSPITAL
+Antech ID:               92220
+CS Rep:                  N/A
+Weight:                  233
+Full Necropsy:           $2616.00
+Carcass Transport:       $160.00
+    Area Code:             909
+    Transport Miles:       N/A
+Cremation:               $255.00
+Full Necropsy Total:     $3031.00
+************************************************
+************************************************
+Date of Quote:           06-17-2021
+Time of Quote:           09:10:59 PM
+Hospital:                STENNER CREEK ANIMAL HOSPITAL
+Antech ID:               92220
+CS Rep:                  N/A
+Weight:                  233
+Full Necropsy:           $2616.00
+Carcass Transport:       $160.00
+    Area Code:             909
+    Transport Miles:       N/A
+Cremation:               $255.00
+Full Necropsy Total:     $3031.00
+************************************************
+************************************************
+Date of Quote:           06-17-2021
+Time of Quote:           09:10:38 PM
+Hospital:                STENNER CREEK ANIMAL HOSPITAL
+Antech ID:               92220
+CS Rep:                  N/A
+Weight:                  233
+Full Necropsy:           $2616.00
+Carcass Transport:       $160.00
+    Area Code:             909
+    Transport Miles:       N/A
+Cremation:               $255.00
+Full Necropsy Total:     $3031.00
+************************************************
+************************************************
 Date of Quote:           06-15-2021
 Time of Quote:           09:56:16 PM
 Hospital:                Kristens Animal Hospital

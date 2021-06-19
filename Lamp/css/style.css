@@ -352,6 +352,15 @@ button,
 /*********************************/
 /*  MAIN PAGE (ESTIMATE_VIEWER)
 /********************************/
+
+.title {
+    position: absolute;
+    top: 300px;
+    left: 15%;
+    line-height: 3.3em;
+}
+
+
 /*********************************/
 /*  CALCULATOR
 /********************************/
@@ -361,6 +370,12 @@ button,
 #calculator {
     margin-top: 5em;
 }
+/* .estimate h3 {
+    font-weight: lighter;
+    margin-bottom: 1em;
+    margin-top: 2em;
+} */
+
 #calc_form{
     border-right: 1px solid grey;
     padding-right: 100px;
@@ -390,6 +405,16 @@ button,
 #calc_form #error_list {
     text-align: right;
 }
+
+#weight_area {
+    justify-content: unset;
+}
+
+#clear_form {
+    margin-left: 100px;
+    cursor: context-menu;
+}
+
 
 /*********************************/
 /*  COSTS
@@ -511,6 +536,28 @@ form#start p {
     margin-bottom: 1em;
 }
 
+fieldset div {
+    display:flex;
+    align-items: center;
+    margin-top: 0.5em;
+}
+
+fieldset div label {
+    display:inline-block;
+    width: 13em;
+    min-width: 5em;
+}
+
+#history,
+#costs {
+    margin-top: 3em;
+}
+
+#costs {
+    width:30%;
+}
+
+
 
 #order_form #error_list{
     height: 5em;
@@ -523,6 +570,7 @@ form#start p {
     height: 1.2em;
     width: 6em;
 }
+
 form#submit {
     margin-top: 3em;
 }
@@ -535,23 +583,20 @@ form#submit {
     margin-top: 5em;
 }
 
-fieldset div {
-    display:flex;
-    align-items: center;
-    margin-top: 0.5em;
-}
 
-fieldset div label {
-    display:inline-block;
-    width: 13em;
-    min-width: 5em;
-}
+
+
+
 #order_form #error_list {
     height: fit-content;
 }
 /*********************************/
 /*  HOSPITAL INFORMATION
 /********************************/
+
+#order_form label {
+    font-size: 15px;
+}
 
 /*********************************/
 /*  ORDER COSTS
@@ -587,6 +632,11 @@ select.age_type {
 #order_form .weight {
     margin-right:15px;
 }
+
+#pet_section {
+    margin-left: 7em;
+}
+
 /*********************************/
 /*  PET HISTORY
 /********************************/
@@ -615,6 +665,11 @@ select.age_type {
     margin-top: 1.5em;
 }
 
+
+.radio_label {
+    min-width: 15em;
+}
+
 label.summary {
     display:block;
     width:100%;
@@ -625,66 +680,6 @@ input.death_date {
 }
 label.death_date {
     width:15em;
-}
-
-
-
-#pet_section {
-    margin-left: 7em;
-}
-
-
-
-
-
-.estimate h3 {
-    font-weight: lighter;
-    margin-bottom: 1em;
-    margin-top: 2em;
-}
-
-
-
-
-form div{
-    justify-content: unset;
-    width: 100%;
-}
-
-#weight_area {
-    justify-content: unset;
-}
-
-.radio_label {
-    min-width: 15em;
-}
-
-#history,
-#costs {
-    margin-top: 3em;
-}
-
-#costs {
-    width:30%;
-}
-
-.title {
-    position: absolute;
-    top: 300px;
-    left: 15%;
-    line-height: 3.3em;
-}
-
-
-
-#order_form label {
-    font-size: 15px;
-}
-
-
-#clear_form {
-    margin-left: 100px;
-    cursor: context-menu;
 }
 
 
@@ -735,8 +730,9 @@ form div{
     margin-top: 3em;
 }
 
-
-
+#success #pet_hist p {
+    font-size: 14px;
+}
 
 
 
