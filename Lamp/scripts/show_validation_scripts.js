@@ -42,7 +42,7 @@ function validateAndFill(e){
 
                             console.log('success')
                             //form.reset()
-                            var urls = window.location.origin+'/success';
+                            var url = window.location.origin+'/success';
                             window.location.href=(url);
                         })
                     .catch(error => {

@@ -1,6 +1,0 @@
-$wt >= 0 && $wt <= 10  		$dispocost = 165;
-$wt >= 10.1 && $wt <= 20  	$dispocost = 180;
-$wt >= 20.1 && $wt <= 50	$dispocost = 200;
-$wt >= 50.1 && $wt <= 70	$dispocost = 235;
-$wt >= 70.1 && $wt <= 150	$dispocost = 255;
-$wt >= 150.1 && $wt <= 250	$dispocost = 320;

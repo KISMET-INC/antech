@@ -179,8 +179,8 @@ class Record extends CI_Model {
 
         // };
         
-        // if($interval > 30 && $estimate['total_cost'] != $this->session->userdata('last_total') || $this->session->userdata('logged_in') == TRUE){
-            //echo nl2br("\nADDING TO TEXT FILE...\n");
+        if($interval > 30 || $estimate['total_cost'] != $this->session->userdata('last_total') || $this->session->userdata('logged_in') == TRUE){
+            echo nl2br("\nADDING TO TEXT FILE...\n");
             $date = date("m-d-Y");
             $str =
     
@@ -220,6 +220,7 @@ Full Necropsy Total:     " . $estimate['total_cost'] . "
    // $this->array_helper->printArr('HOSPITAL', $hospital);
     //echo "FILENAME :" . $filename;
     // }
+}
 }
 
 

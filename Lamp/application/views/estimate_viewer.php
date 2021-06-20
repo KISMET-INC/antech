@@ -8,9 +8,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;500;600" rel="stylesheet">
-    <script type = 'text/javascript' src = "<?php echo base_url(); ?>/scripts/faq_scripts.js"></script>
+  
     <script type = 'text/javascript' src = "<?php echo base_url(); ?>scripts/show_validation_scripts.js"></script>
-    <script type = 'text/javascript' src = "<?php echo base_url(); ?>scripts/dollar_scripts.js"></script>
+  
 
     <title>Antech Necropsy Service</title>
     <link rel = "stylesheet" type = "text/css" href = "<?php echo base_url(); ?>css/style.css">
@@ -26,7 +26,7 @@
             <hr>
             <h1>Antech <br> Necropsy <br> Service </h1>
     </section>
-        <img class='jumbo' src ='../../assets/lab2.jpg' alt='pathologist'>
+        <img class='jumbo' src ='../../assets/trim1.jpg' alt='pathologist'>
 
         <!-- <section class = 'blue_bar'>
             <p class = 'wrapper'>The Necropsy Service provides professional whole body necropsies by one of our staff pathologists and Necropsy Coordinator, Dr. Richard Moreland
@@ -81,9 +81,9 @@
                 <!-- <form class='flexColunn' id = 'lookup' name ='lookup' action='lookup' method='POST' > -->
                 <form class='flexColumn' id = 'lookup' name ='lookup' onsubmit='validateAndFill(event)' method='POST' >
                     <!-- antech id -->
-                    <div class='flex2' >
+                    <div class='flex2 ' >
                         <label class= 'antech_id' for='antech_id'>Antech ID </label>
-                        <div class='flex'>
+                        <div class='flex antech_input'>
                             <input 
                                 id='antech_id' 
                                 name = 'antech_id' 
@@ -134,7 +134,7 @@
                                 </select>
                             </div>
                             <!-- weight -->
-                            <div class='flex2'>
+                            <div class='flex2 antech_input'>
                                 <label class='weight' for='weight'>Pet Weight </label>
                                 <input 
                                 id ='weight'
@@ -158,8 +158,8 @@
 
                     <!-- CALCULATE BUTTON -->
                     <input id='calculate_button' type='submit' name = 'calculate' value="Calculate Necropsy Costs"/>
-                    <p id='print' onclick='window.print()'>Print </p>
-
+                 
+               
                 </div>
                 </form>
 
@@ -171,7 +171,7 @@
 
         <div id='calc_costs' class='right'>
             <!-- COSTS-->
-            <h3>Order Costs </h3>
+            <h3 class='ocosts'>Order Costs </h3>
             <div class='flex'>
                 <label for ='necropsy_cost' class= 'flex'>Necropsy:  </label>
                     <input
@@ -233,6 +233,7 @@
                 <input type='hidden' class='antech_id' name = 'antech_id' value='<?php echo $hospital['antech_id'] ?>'>
 
                 <!-- SUBMIT BUTTON -->
+                <button id='print_button' type='button' onclick='window.location.href=(`${window.location.origin}/print`)'>Print Estimate </button>
                 <button id='approve_button' type='submit'>Proceed to Begin Order </button>
                 <p class='optional'>*Optional costs can be declined on the next page </p>
             </form>
@@ -250,7 +251,7 @@
 
 
     <!-- SCRIPTS -->
-    <?php include "scripts/estimate_scripts.php"?>
+    <?php include "scripts/dollar_scripts.php"?>
     <?php include "scripts/faq_scripts.php"?>
     <?php include "scripts/estimate_scripts.php"?>
 

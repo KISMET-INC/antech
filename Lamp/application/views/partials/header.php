@@ -14,7 +14,7 @@
     if (document.title == 'Order Approval'){
         var estimate ='estimate'
         nav.innerHTML = 
-        "<a href='/index.php/order_controller/populateForm'>Test Info</a>"
+        "<a href='populate'>Test Info</a>"
         +"<p onclick='clearForm(estimate)'> Clear Form </p>"
         +"<p><a href='/#calculator'> Go Back To Estimate</a> </p>"
     }

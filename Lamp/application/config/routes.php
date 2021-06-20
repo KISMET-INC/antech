@@ -58,8 +58,10 @@ $route['start_order'] = 'Estimate_Controller/start_order';
 // $route['clear'] = 'Estimate_Controller/clear';
 $route['admin'] = 'Admin_Controller';
 $route['success'] = 'Success_Controller';
+$route['print'] = 'Estimate_Controller/print_view';
 $route['error'] = 'Error_Controller';
 $route['clear/(:any)'] = 'Estimate_Controller/clear/$1';
+$route['populate'] = 'Order_Controller/populateForm';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

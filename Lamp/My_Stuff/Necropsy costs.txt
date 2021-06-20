@@ -1,6 +1,0 @@
-wt <= 9 necrocost = 1380
-wt >= 10 and <= 39  necrocost = 1525
-wt >= 40 and <= 59  necrocost = 1670
-wt >= 60 and <= 89  necrocost = 2035
-wt >= 90) and  wt <= 114 necrocost = 2250
-wt > 114 necrocost = 2616

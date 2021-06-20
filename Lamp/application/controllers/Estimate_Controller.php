@@ -6,7 +6,18 @@ class Estimate_Controller extends CI_Controller {
     //************************************************* */
     // MAIN CALCULATOR VIEW 
     //************************************************* */
-    
+    public function print_view()
+	{
+        $view_data = array(
+            'hospital'=> $this->session->userdata('hospital'),
+            'estimate'=> $this->session->userdata('estimate'),
+            'errors' => $this->session->flashdata('errors'),
+
+        );
+
+
+        $this->load->view('print_viewer',$view_data);
+    }
     public function index()
 	{
 
