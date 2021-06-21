@@ -79,7 +79,7 @@
             <div id='form_content'>
                 <!-- LOOKUP FORM -->
                 <!-- <form class='flexColunn' id = 'lookup' name ='lookup' action='lookup' method='POST' > -->
-                <form class='flexColumn' id = 'lookup' name ='lookup' onsubmit='validateAndFill(event)' method='POST' >
+                <form class='flexColumn' id = 'lookup' name ='lookup' method='POST' >
                     <!-- antech id -->
                     <div class='flex2 ' >
                         <label class= 'antech_id' for='antech_id'>Antech ID </label>
@@ -94,7 +94,7 @@
                                 onchange='updateValue(event)'
                             >
                             <!-- LOOKUP BUTTON -->
-                            <input id='lookup_button' class='button' type='submit'value="Find by Id"/>
+                            <!-- <input id='lookup_button' class='button' type='submit'value="Find by Id"/> -->
 
                             <!-- hidden inputs -->
                             <input class='hospital_name' type='hidden' name = 'hospital_name' value='<?php echo $hospital['hospital_name'] ?>'>
@@ -121,7 +121,7 @@
                     </div>
                     <div id='weight_area' class='flex2' >
                         <!-- area code -> select -->
-                        <div class='flex2'>
+                        <div class='flex2 area_code'>
                             <label id='area' for="area_code">Area Code:</label>
                             <select 
                             id="area_code"  
@@ -132,21 +132,21 @@
                                     >    
                                     <option value ='0'>N/A</option>
                                 </select>
-                            </div>
-                            <!-- weight -->
-                            <div class='flex2 antech_input'>
-                                <label class='weight' for='weight'>Pet Weight </label>
-                                <input 
-                                id ='weight'
-                                name ='weight' 
-                                class='weight'
-                                onchange='updateValue(event)'
-                                onkeypress='updateValue(event)' 
-                                value='<?php echo $estimate['weight'] ;?>'
-                                type = 'number'
-                                >
-                                
-                            </div>
+                        </div>
+                        <!-- weight -->
+                        <div class='flex2 antech_input pet_weight'>
+                            <label class='weight' for='weight'>Pet Weight </label>
+                            <input 
+                            id ='weight'
+                            name ='weight' 
+                            class='weight'
+                            onchange='updateValue(event)'
+                            onkeypress='updateValue(event)' 
+                            value='<?php echo $estimate['weight'] ;?>'
+                            type = 'number'
+                            >
+                            
+                        </div>
                     </div>
                     <input class='antech_id' name='antech_id' type="hidden" value='<?php echo $hospital['antech_id'] ; ?>' />
                 </div> 

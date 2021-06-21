@@ -10,6 +10,7 @@ function validateAndFill(e){
     var form = `#${e.target.name}`;
     var data = new FormData(document.querySelector(form));
     clearValidations();
+    console.log(e.target.name)
 
     // Send to Validator
     fetch(e.target.name, {
@@ -19,14 +20,13 @@ function validateAndFill(e){
     
     .then(results_obj => {
 
-        for(var error in results_obj){
-            var elements = document.getElementsByClassName(error);
+        for(var result in results_obj){
+            var elements = document.getElementsByClassName(result);
 
             // // VALID DATA IF OBJECT
-            if(typeof results_obj[error] === 'object'){
-
+            if(typeof results_obj[result] === 'object'){
                 //SUBMIT EMAIL
-                if(error === 'submit'){
+                if(result === 'submit'){
                     var form = document.getElementById("submit");
                     var data = new FormData(e.target);
 
@@ -54,16 +54,16 @@ function validateAndFill(e){
                 // FILL DATA USING RESULTS OBJECT
                 } else {
 
-                    for(input in results_obj[error]){
+                    for(input in results_obj[result]){
 
                         var inputs = document.getElementsByClassName(input)
 
                         for(target of inputs){
-                            target.value = results_obj[error][input]
+                            target.value = results_obj[result][input]
                         }
 
-                        if (input == 'area_code'){
-                            document.getElementById('area_code').value = results_obj[error][input];
+                        if(input == 'area_code'){
+                            document.getElementById('area_code').value = results_obj[result][input];
                         }
                     }
                 }
@@ -71,19 +71,19 @@ function validateAndFill(e){
             }
 
                 // REDIRECT TO BEGIN ORDER
-                if (error =='order'){
+                if (result =='order'){
                     window.location.href=results_obj['order'];
                     break;
                 }
                 //************************************* */
-                // HANDLING ERRORS
+                // HANDLING ORDER
                 //************************************* */
-                if(results_obj[error]!= ''){
+                if(results_obj[result]!= ''){
                     // Add red to input box on everything but total cost
                     // for total cost error, highlight calculation box
                     console.log(results_obj)
                     for(item of elements){
-                        if(error != 'total_cost'){
+                        if(result != 'total_cost'){
                             item.classList.add('red')
                         } else {
                             calculate_button.classList.add('red');
@@ -104,7 +104,7 @@ function validateAndFill(e){
 
                     // else set validations list from results_obj
                     } else {
-                        error_list.innerHTML += results_obj[error];
+                        error_list.innerHTML += results_obj[result];
                     }
                 }
 

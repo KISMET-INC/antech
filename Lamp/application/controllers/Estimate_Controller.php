@@ -120,6 +120,7 @@ class Estimate_Controller extends CI_Controller {
         // VALID RESULTS
         if($result == 'valid')
         {
+            //echo 'VALID';
             // Get Data from Session
             $area_code = $this->session->userdata('hospital')['area_code'];
             $weight = $this->session->userdata('estimate')['weight'];
@@ -171,16 +172,17 @@ class Estimate_Controller extends CI_Controller {
         };
 
         //PRINT FUNCTION
-        // echo 'CALCULATE FUNCTION';
-        // echo $this->calc_necropsy($weight);
-        // $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
-        // $this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
+        //echo 'CALCULATE FUNCTION';
+        //$this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
+        //$this->array_helper->printArr('RESULTS', $results_arr);
+        //$this->array_helper->printArr('HOSPITAL', $this->session->userdata('hospital'));
+
         // $this->array_helper->printArr('POST', $this->input->post());
         
         
     
         // Return to main page
-        echo json_encode($results_arr);
+       echo json_encode($results_arr);
 
     }
     

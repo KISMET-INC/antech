@@ -402,6 +402,7 @@ button,
 
 #weight_area {
     justify-content: unset;
+
 }
 
 #clear_form {
@@ -409,6 +410,14 @@ button,
     cursor: context-menu;
 }
 .antech_input {
+    width: 100%;
+}
+#calc_form .area_code,
+#calc_form .pet_weight {
+    width:50%
+}
+
+#calc_form #area_code {
     width: 100%;
 }
 
