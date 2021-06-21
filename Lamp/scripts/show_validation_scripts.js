@@ -91,21 +91,21 @@ function validateAndFill(e){
                     }
 
                     // If page is Order Approval, set single validation
-                    if (document.title == 'Order Approval'){
-                        error_list.innerHTML = 'All Fields are Required.'
+                    // if (document.title == 'Order Approval'){
+                    //     error_list.innerHTML = 'All Fields are Required.'
                     
-                        if(results_obj['email'].includes('valid')){
-                            error_list.innerHTML += results_obj['email'];
-                        };
+                    //     if(results_obj['email'].includes('valid')){
+                    //         error_list.innerHTML += results_obj['email'];
+                    //     };
 
-                        if(results_obj['phone'].includes('valid')){
-                            error_list.innerHTML += results_obj['phone'];
-                        }
+                    //     if(results_obj['phone'].includes('valid')){
+                    //         error_list.innerHTML += results_obj['phone'];
+                    //     }
 
-                    // else set validations list from results_obj
-                    } else {
-                        error_list.innerHTML += results_obj[result];
-                    }
+                    // // else set validations list from results_obj
+                    // } else {
+                    //     error_list.innerHTML += results_obj[result];
+                    // }
                 }
 
         }
@@ -154,9 +154,7 @@ function clearForm(section){
 function clearValidations() {
     
     var validations = document.querySelectorAll(".red");
-    var error_list = document.getElementById('error_list');
-    // Clear Error Text
-    error_list.innerHTML = '';
+
     // Remove Red from Inputs 
     for(validation of validations ){
         validation.classList.remove('red')

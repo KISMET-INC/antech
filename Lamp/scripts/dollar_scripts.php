@@ -7,9 +7,10 @@
     for( var input of cost_inputs)
     {   
         if(input.value[0] != '$'){
-            input.value = addSign(input.value)
-        } else {
-            break;
+            if(input.value !='N/A'){
+                console.log(input.value)
+                input.value = addSign(input.value)
+            }
         }
     }
 

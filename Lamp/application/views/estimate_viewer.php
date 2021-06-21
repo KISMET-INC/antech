@@ -45,21 +45,21 @@
         <div class = 'wrapper flex3'>
             <div id = 'questions'>
                 <hr>
-                <h3>Frequently Asked Questions </h3>
+                <h3 id='faq_title'>Frequently Asked Questions </h3>
                 <div id='question_list'>
                     <ul>
-                        <li id='q1' class='question' >What type of animals do you necropsy?</li>
+                        <li onclick='setFAQ(this)' id='q1' class='question' >What type of animals do you necropsy?</li>
                         <li onclick='setFAQ(this)' id='q2' class='question' >How is the cost of the necropsy determined?</li>
                         <li onclick='setFAQ(this)' id='q3' class='question' >What does a whole body necropsy include?</li>
-                        <li style='color: var(--bgreen)' onclick='setFAQ(this)' id='q4' ' class='question'>Post-Necropsy Carcass Disposal (**Importat - Please Read!**)</li>
+                        <li onclick='setFAQ(this)' id='q4' ' class='question'>Post-Necropsy Body Disposal (**Important - Please Read!**)</li>
                         <li onclick='setFAQ(this)' id='q5' class='question' >Are there any other costs?</li>
-                        <li onclick='setFAQ(this)' id='q6' class='question' >How do we get the carcass?</li>
-                        <li onclick='setFAQ(this)' id='q7' class='question' >How do we preserve the carcass?</li>
+                        <li onclick='setFAQ(this)' id='q6' class='question' >How do we get the body?</li>
+                        <li onclick='setFAQ(this)' id='q7' class='question' >How do we preserve the body?</li>
                         <li onclick='setFAQ(this)' id='q8' class='question' >How are we billed?</li>
                         <li onclick='setFAQ(this)' id='q9' class='question' >How long will it take to recieve the report?</li>
-                        <li onclick='setFAQ(this)' id='q10' class='question'>Dio you guarantee teh necropsy will determine the cause of death?</li>
-                        <li onclick='setFAQ(this)' id='q11' class='question'  class='green'>Special Note about poisoning</li>
-                        <li id='q12' class='question' >See an example of an actual necropsy report</li>
+                        <li onclick='setFAQ(this)' id='q10' class='question'>Do you guarantee the necropsy will determine the cause of death?</li>
+                        <li onclick='setFAQ(this)' id='q11' class='question'  class='green'>Special Note about poisoning.</li>
+                        <li id='q12' class='question' ><a href ='http://www.antechnecropsy.com/example_necropsy.pdf' target='_blank' >See an example necropsy report</a></li>
                     </ul>
                 </div>
             </div>
@@ -75,7 +75,7 @@
         <section id='calc_form' class='left'>
             <hr>
             <h2> Full Body Necropsy Calculator </h2>
-            <p class= 'ambulance_note'>*Ambulance Pickup Limited by Area Code </p>
+            
             <div id='form_content'>
                 <!-- LOOKUP FORM -->
                 <!-- <form class='flexColunn' id = 'lookup' name ='lookup' action='lookup' method='POST' > -->
@@ -151,29 +151,34 @@
                     <input class='antech_id' name='antech_id' type="hidden" value='<?php echo $hospital['antech_id'] ; ?>' />
                 </div> 
                 <!-- BUTTONS -->
-                <div id='form_links' class='flexCenter'>
+                <div id='form_links' class='flex'>
 
                     <!-- CLEAR SESSION DATA -->
                     <p id='clear_form' onclick='clearForm("all")'>Clear Form</p>
+                    <p class= 'ambulance_note'>*Ambulance Pickup Limited by Area Code </p>
 
                     <!-- CALCULATE BUTTON -->
-                    <input id='calculate_button' type='submit' name = 'calculate' value="Calculate Necropsy Costs"/>
+                    <button class='small_btn' id='calculate_button' type='submit' name = 'calculate'>Calculate Necropsy Costs</button>
                  
                
                 </div>
                 </form>
 
                 <!-- ERRORS -->
-                <div id='error_list' style='color:red' class ='error'></div>
+                <div id='error_list' style='color:red' class ='error'>
+                    <p>A Pet Weight is required.</p>
+                    <p>A Hospital Name is required.</p>
+                    <p>An Antech Id is required.</p>
+                </div>
         </section>
 
 
 
         <div id='calc_costs' class='right'>
             <!-- COSTS-->
-            <h3 class='ocosts'>Order Costs </h3>
+            <h3 class='ocosts'>Services Quote </h3>
             <div class='flex'>
-                <label for ='necropsy_cost' class= 'flex'>Necropsy:  </label>
+                <label for ='necropsy_cost' class= 'flex cost_label'>Necropsy Cost:  </label>
                     <input
                         id='necropsy_cost'
                         name = 'necropsy_cost'
@@ -185,7 +190,7 @@
             </div>
             </br>
             <div class= 'flex'>
-                <label >Delivery:  </label>
+                <label id='delivery_label' class="cost_label" >Ambulance Delivery (optional*):  </label>
                     <input 
                         id='delivery_cost'
                         name = 'delivery_cost'
@@ -197,7 +202,7 @@
             </div>
             </br>
             <div class= 'flex'>
-                <label >Cremation:  </label>
+                <label class="cost_label"  >Private Cremation (optional*):  </label>
                 <input
                     id='cremation_cost'
                     name = 'cremation_cost'
@@ -209,7 +214,7 @@
             </div>
             </br>
             <div class='flex'>
-                <label >Total:  </label>
+                <label class="cost_label"  ><b> Total Cost:</b>  </label>
                 <input
                     id='total_cost'
                     name = 'total_cost'
@@ -233,7 +238,7 @@
                 <input type='hidden' class='antech_id' name = 'antech_id' value='<?php echo $hospital['antech_id'] ?>'>
 
                 <!-- SUBMIT BUTTON -->
-                <button id='print_button' type='button' onclick='window.location.href=(`${window.location.origin}/print`)'>Print Estimate </button>
+                <button class='small_btn' type='button' onclick='window.location.href=(`${window.location.origin}/print`)'>Print Quote </button>
                 <button id='approve_button' type='submit'>Proceed to Begin Order </button>
                 <p class='optional'>*Optional costs can be declined on the next page </p>
             </form>

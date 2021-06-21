@@ -268,13 +268,15 @@ button.red
 
 #calculate_button,
 #clear_form {
-    border:transparent;
+    width:30%;
+    overflow-wrap: normal;
+    /* border:transparent;
     color: var(--purple);
     font-weight: bold;
     font-size: 1em;
     width: unset;
     padding: 10px;
-    background-color: transparent;
+    background-color: var(--purple); */
 }
 
 button,
@@ -372,17 +374,21 @@ button,
 
 #calc_form{
     border-right: 1px solid grey;
-    padding-right: 100px;
+    padding-right: 75px;
     width: 60%
 }
+
+#calc_form h2 {
+    margin-bottom: 1.5em;
+}
+
 #calc_form label.weight {
     min-width:6em;
     margin-left:50px;
 }
 
 .ambulance_note {
-    padding-top: 1em;
-    margin-bottom:5em;
+    height:fit-content;
     font-weight:bold;
     font-size: 0.8em;
 }
@@ -390,15 +396,16 @@ button,
 #form_links {
     justify-content: space-between;
     margin-top: 1em;
+    margin-bottom: 2em;
 }
-#lookup_button {
+/* #lookup_button {
     width: 150px;
     margin-left: 20px;
+} */
+.small_btn {
+    font-size: 14px;
 }
 
-#calc_form #error_list {
-    text-align: right;
-}
 
 #weight_area {
     justify-content: unset;
@@ -429,12 +436,19 @@ button,
     width: 40%;
     margin-left: 10%;
 }
+#calc_costs .cost {
+    width:25%;
+}
 
+.cost_label {
+    width: 60%;
+}
 #approve_button {
     background-color: red;
     width: 200px;
     margin-bottom: 2em;
     text-align: center;
+    margin-top: 1em;
 
 }
 
@@ -501,7 +515,9 @@ form  p.optional {
     color: white;
     height: 0px;
 }
-
+#faq_title {
+    font-size: 30px;
+}
 
 .faq h1 {
     color: white;
@@ -549,7 +565,6 @@ form  p.optional {
 
 #answer {
     margin-bottom: 50px;
-    margin-top: 75px;
     line-height: 1.5em;
     font-size: 0.9em;
     width: 100%;
@@ -562,7 +577,9 @@ form  p.optional {
     display: block;
 }
 
-
+#question_list #q12 a {
+    font-size: 1em;
+}
 
 /*********************************/
 /*  ORDER FORM

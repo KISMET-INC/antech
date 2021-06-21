@@ -29,7 +29,7 @@
     }
 
 
-        document.getElementById('answer').innerHTML = answers['q4'];
+        //document.getElementById('answer').innerHTML = answers['q4'];
 
 
     function setFAQ(event){

@@ -128,8 +128,17 @@ class Estimate_Controller extends CI_Controller {
             // Calculations
             $necropsy_cost = number_format($this->calc_necropsy($weight), 2, '.', '');
             $cremation_cost = number_format($this->calc_cremation($weight), 2, '.', '');
-            $delivery_cost = $area_code != '0' ? number_format($this->calc_delivery($area_code),2, '.', ''): '0';
-            $total_cost = number_format($delivery_cost + $necropsy_cost + $cremation_cost, 2, '.', '');
+            $delivery_cost = $area_code != '0' ? number_format($this->calc_delivery($area_code),2, '.', ''): 'N/A';
+            $total_cost = 0;
+            
+            if ($delivery_cost == 'N/A'){
+                $total_cost = number_format($necropsy_cost + $cremation_cost, 2, '.', '');
+
+            } else {
+                $total_cost = number_format($delivery_cost + $necropsy_cost + $cremation_cost, 2, '.', '');
+                
+
+            }
 
             
             
