@@ -58,7 +58,8 @@
                         <li onclick='setFAQ(this)' id='q8' class='question' >How are we billed?</li>
                         <li onclick='setFAQ(this)' id='q9' class='question' >How long will it take to recieve the report?</li>
                         <li onclick='setFAQ(this)' id='q10' class='question'>Do you guarantee the necropsy will determine the cause of death?</li>
-                        <li onclick='setFAQ(this)' id='q11' class='question'  class='green'>Special Note about poisoning.</li>
+                        <li onclick='setFAQ(this)' id='q11' class='question'>Special Note about poisoning.</li>
+                        <li onclick='setFAQ(this)' id='q13' class='question'>Contact with Pet Owners</li>
                         <li id='q12' class='question' ><a href ='http://www.antechnecropsy.com/example_necropsy.pdf' target='_blank' >See an example necropsy report</a></li>
                     </ul>
                 </div>
@@ -144,10 +145,11 @@
                             onkeypress='updateValue(event)' 
                             value='<?php echo $estimate['weight'] ;?>'
                             type = 'number'
-                            >
+                            >   lbs
                             
                         </div>
                     </div>
+                        <p class= 'ambulance_note'>*Ambulance Pickup Limited by Area Code </p>
                     <input class='antech_id' name='antech_id' type="hidden" value='<?php echo $hospital['antech_id'] ; ?>' />
                 </div> 
                 <!-- BUTTONS -->
@@ -155,7 +157,7 @@
 
                     <!-- CLEAR SESSION DATA -->
                     <p id='clear_form' onclick='clearForm("all")'>Clear Form</p>
-                    <p class= 'ambulance_note'>*Ambulance Pickup Limited by Area Code </p>
+                   
 
                     <!-- CALCULATE BUTTON -->
                     <button class='small_btn' id='calculate_button' type='submit' name = 'calculate'>Calculate Necropsy Costs</button>
@@ -166,9 +168,9 @@
 
                 <!-- ERRORS -->
                 <div id='error_list' style='color:red' class ='error'>
-                    <p>A Pet Weight is required.</p>
-                    <p>A Hospital Name is required.</p>
                     <p>An Antech Id is required.</p>
+                    <p>A Hospital Name is required.</p>
+                    <p>A Pet Weight is required.</p>
                 </div>
         </section>
 

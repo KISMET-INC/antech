@@ -22,7 +22,7 @@ function validateAndFill(e){
 
         for(var result in results_obj){
             var elements = document.getElementsByClassName(result);
-
+            console.log(results_obj)
             // // VALID DATA IF OBJECT
             if(typeof results_obj[result] === 'object'){
                 //SUBMIT EMAIL
@@ -142,7 +142,6 @@ function clearForm(section){
             }
             document.getElementById('area_code').value ='0';
 
-            error_list.innerHTML = '';
         }
 
     }).catch(error => console.log(error))

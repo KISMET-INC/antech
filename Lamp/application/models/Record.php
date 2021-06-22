@@ -95,6 +95,7 @@ class Record extends CI_Model {
         $this->form_validation->set_rules('euthanized', 'euthanized', 'trim|required');
         $this->form_validation->set_rules('summary', 'summary', 'trim|required');
         $this->form_validation->set_rules('total_approved', 'totalApproved', 'trim|required');
+        $this->form_validation->set_rules('delivery_approved', 'delivery_approved', 'trim|required');
         $this->form_validation->set_rules('death_date', 'death', 'trim|required');
         // HOSPITAL
         $this->form_validation->set_rules('address', 'Address', 'trim|required');

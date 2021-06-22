@@ -20,7 +20,11 @@
 
     <main id= 'order_form' class='wrapper'>
         <h1> Full Body Necropsy Order Form </h1>
-        <p>*All fields are required.</p>
+        <div id='error_list' style='color:red' class ='error'>
+            <p> All Fields are Required</p>
+            <p> Phone number must be valid (xxx)-xxxx</p>
+            <p> Email must be in a valid format</p>
+        </div>
 
 
         <!-- BEGIN ORDER FORM -->
@@ -95,10 +99,10 @@
 
                 <fieldset id='costs' >
                     <hr>
-                    <h3>Order Costs </h3>
+                    <h3>Service Costs </h3>
                     <!-- NECROPSY -->
                     <div id='necropsy'  class='flex'>
-                        <label>Necropsy:  </label>
+                        <label>Necropsy Cost:  </label>
                             <input
                                 id='necropsy_cost'
                                 name = 'necropsy_cost'
@@ -107,13 +111,14 @@
                                 readonly
                                 value = '<?php echo $estimate['necropsy_cost'] ?>' 
                                 >
-                        
-                        <label  class='necro_cost approved'> Approved</label><br>
-                        <input checked disabled type="checkbox" id="necro" name="necro" value=" Necropsy Cost Approved">
+                        <div>
+                            <label  class='necro_cost approved'> Approved</label><br>
+                            <input checked disabled type="checkbox" id="necro" name="necro" value=" Necropsy Cost Approved">
+                        </div>      
                     </div>
                     <!-- SHIPPING  -->
                     <div id='shipping' class='flex'>
-                        <label class='delivery_cost'>Delivery:  </label>
+                        <label class='delivery_cost'>Ambulance Delivery (optional):  </label>
                             <input
                                 id='delivery_cost'
                                 class = 'delivery_cost cost'
@@ -123,25 +128,34 @@
                                 value = '<?php echo $estimate['delivery_cost'] ?>' 
                                 >
                         <!-- CHECKBOX -->
-                        <label class='delivery_cost approved' for="ship_check"> Approved</label><br>
-                        <input 
-                            id="ship_check"
-                            class = 'delivery_cost check'
-                            name="delivery_approved" 
-                            type="checkbox" 
-                            onchange="toggleChecks(this)"
-                            value="TRUE"
+                        <div>
+                            <label class='delivery_cost approved' for="ship_check">
                             <?php 
-                                if($estimate['delivery_approved']=== "TRUE"){
-                                    echo 'checked';
-                                }
-                            ?>
-                        >
+                                    if($estimate['delivery_cost'] === "\$N/A"){
+                                        echo ' <a href="http://www.antechnecropsy.com/shipping_guidelines.pdf" target="_blank" id="instructions"> Shipping Instructions </a>';
+                                    }
+                                ?>
+                            </label><br>
+                            <input 
+                                id="ship_check"
+                                class = 'delivery_cost check'
+                                name="delivery_approved" 
+                                type="checkbox" 
+                                onchange="toggleChecks(this)"
+                                value="TRUE"
+                                <?php 
+                                    if($estimate['delivery_approved']=== "TRUE"){
+                                        echo 'checked';
+                                    }
+                                ?>
+                            >
+                        </div>
                     </div>
                     <!-- CREMATION -->
                     <div id='cremation' class='flex'>
-                        <label  class ='cremation_cost' name= 'cremation_cost'>Cremation:  </label>
+                        <label  class ='cremation_cost' name= 'cremation_cost'>Private Cremation (optional):  </label>
                             <input
+
                                 id='cremation_cost'
                                 name = 'cremation_cost'
                                 class='cremation_cost cost'
@@ -151,24 +165,26 @@
                                 >
                         
                         <!-- CHECKBOX -->
-                        <label class='cremation_cost approved' for="crem_check"> Approved</label><br>
-                        <input 
-                            id="crem_check" 
-                            name="cremation_approved" 
-                            class='cremation_cost check' 
-                            type="checkbox"
-                            value="TRUE"
-                            onchange="toggleChecks(this)"
-                            <?php 
-                                if($estimate['cremation_approved']=== "TRUE"){
-                                    echo 'checked';
-                                }
-                            ?>
-                            >
+                        <div>
+                            <label class='cremation_cost approved' for="crem_check"> Approved</label><br>
+                            <input 
+                                id="crem_check" 
+                                name="cremation_approved" 
+                                class='cremation_cost check' 
+                                type="checkbox"
+                                value="TRUE"
+                                onchange="toggleChecks(this)"
+                                <?php 
+                                    if($estimate['cremation_approved']=== "TRUE"){
+                                        echo 'checked';
+                                    }
+                                ?>
+                                >
+                            </div>
                     </div>
                     <!-- TOTAL -->
                     <div id='total' class='flex'>
-                        <label class='total_approved' >Total : </label>
+                        <label class='total_approved' >TOTAL COST </label>
                                 <input
                                     id='total_cost'
                                     name = 'total_cost'
@@ -177,16 +193,23 @@
                                     readonly
                                     value = '<?php echo $estimate['total_cost'] ?>'
                                 >
-                        <label class='total_approved approved' for="total_check">Approved</label><br>
-                            <input 
-                                id="total_check" 
-                                name="total_approved"
-                                type="checkbox" 
-                                value="TRUE"
-                                >
+                        <div>
+                            <label  class='total_approved approved' for="total_check">Approved</label><br>
+                                <input 
+                                    id="total_check" 
+                                    name="total_approved"
+                                    type="checkbox" 
+                                    value="TRUE"
+                                    >
+                            </div>
                     </div>
                 </fieldset>
 
+                  <!-- SUBMIT -->
+                <div class= 'flexColumn'>
+                <input id='order_button' form='submit' class='button' type='submit' value='Approve Costs and Order Necropsy'>
+                <p id='approve_notice'>Clicking this button will send your information to the laboratory to start the necropsy registration process. You will be contacted by the lab shortly after.
+                </div>             
             </section>
 
 
@@ -195,23 +218,23 @@
                 <fieldset id='pet_information'>
                     <h3> Pet Info </h3>
                     <div>
-                        <label class='pet_name' for='pet_name'>Pet's Name</label>
-                        <input
-                            id='pet_name'
-                            name = 'pet_name'
-                            class='pet_name clear' 
-                            type='text'
-                            value = '<?php echo $estimate['pet_name'] ?>' 
-                            >
-                    </div>
-                    <div>
-                        <label class='owner'for='owner'>Owner's Name</label>
+                        <label class='owner'for='owner'>Owner's Name:</label>
                         <input
                             id='owner'
                             name = 'owner'
                             class='owner clear'
                             type='text'
                             value = '<?php echo $estimate['owner'] ?>' 
+                            >
+                    </div>
+                    <div>
+                        <label class='pet_name' for='pet_name'>Pet's Name:</label>
+                        <input
+                            id='pet_name'
+                            name = 'pet_name'
+                            class='pet_name clear' 
+                            type='text'
+                            value = '<?php echo $estimate['pet_name'] ?>' 
                             >
                     </div>
                     <div>
@@ -226,17 +249,7 @@
                         </select>
                     </div>
                     <div>
-                        <label class='breed' for='breed'>Breed</label>
-                        <input
-                            id='breed'
-                            name = 'breed'
-                            class='breed clear' 
-                            type='text'
-                            value = '<?php echo $estimate['breed'] ?>' 
-                            >
-                    </div>
-                    <div>
-                        <label class='sex' for='sex'>Sex</label>
+                        <label class='sex' for='sex'>Sex:</label>
                         <select
                             id='sex' 
                             name = 'sex'
@@ -248,65 +261,82 @@
                             <option>Neutered Female</option>
                         </select>
                     </div>
+                    <div id='age_select'>
+                        <label class='age' for='age'>Age:</label>
+                        <div>
+                            <input
+                                id='age'
+                                name = 'age'
+                                class='age clear' 
+                                type='number'
+                                value = '<?php echo $estimate['age'] ?>' 
+                                >
+                            <select id='age_type' class = 'age_type' name='age_type'>
+                                <option>years</option>
+                                <option>months</option>
+                                <option>weeks</option>
+                                <option>days</option>
+                            </select>
+                        </div>
+                    </div>
                     <div>
-                        <label class='age' for='age'>Age</label>
+                        <label class='breed' for='breed'>Breed:</label>
                         <input
-                            id='age'
-                            name = 'age'
-                            class='age clear' 
-                            type='number'
-                            value = '<?php echo $estimate['age'] ?>' 
+                            id='breed'
+                            name = 'breed'
+                            class='breed clear' 
+                            type='text'
+                            value = '<?php echo $estimate['breed'] ?>' 
                             >
-                        <select class = 'age_type' name='age_type'>
-                            <option selected >years</option>
-                            <option>months</option>
-                        </select>
                     </div>
                     <div>
-                        <label class='weight' for='weight'>Weight</label>
-                        <input
-                            id='weight'
-                            name ='weight'
-                            class='weight  read_only' 
-                            type='number'
-                            readonly
-                            value = '<?php echo $estimate['weight'] ?>' 
-                            >lbs
+                        <label class='weight' for='weight'>Weight:</label>
+                        <div id='weight_div'>
+                            <input
+                                id='weight'
+                                name ='weight'
+                                class='weight  read_only' 
+                                type='number'
+                                readonly
+                                value = '<?php echo $estimate['weight'] ?>' 
+                                >lbs
+                        </div>
                     </div>
+                     <!-- FROZEN -->
+                     <div id='frozen'>
+                                <label class='frozen radio_label'>Is the body frozen?</label>
+                                <input class='frozen clear' type="radio" name="frozen" id='frozen_yes' value="Yes">
+                                <label class='frozen radio' for="frozen_yes">Yes</label>
+
+                                <input class='frozen clear' type="radio" name="frozen" id='frozen_no' value="No">
+                                <label class='frozen radio' for="frozen_no">No</label>
+                            </div>
                 </fieldset>
 
                 <!-- PET HISTORY-->
                 <fieldset id='history'>
                     <h3>Pet History</h3>
-                            
-                            <div id='euthanized'>
-                            <!-- EUTHANIZED -->
-                                <label class='euthanized radio_label '>Euthanized?</label>
-                                <label  class='euthanized radio' for="euthanized_yes">Yes</label>
-                                <input  class='euthanized clear' type="radio" name="euthanized" id='euthanized_yes' value="Yes">
+                    <!-- DEATH DATE -->
+                    <div class='death_date'  id='death_date'>
+                        <label class='death_date'  for='date'>Date of death: </label>
+                        <input class='death_date clear'  name='death_date' id='date'type='date' value = '<?php echo $estimate['death_date']?>'>
+                    </div>      
+                    <div id='euthanized'>
+                    <!-- EUTHANIZED -->
+                        <label class='euthanized radio_label '>Euthanized?</label>
+                        <input  class='euthanized clear' type="radio" name="euthanized" id='euthanized_yes' value="Yes">
+                        <label  class='euthanized radio' for="euthanized_yes">Yes</label>
+                        
+                        <input  class='euthanized clear' type="radio" name="euthanized" id='euthanized_no' value="No">
+                        <label class='euthanized radio' for="euthanized_no">No</label>
+                    </div>
 
-                                <label class='euthanized radio' for="euthanized_no">No</label>
-                                <input  class='euthanized clear' type="radio" name="euthanized" id='euthanized_no' value="No">
-                            </div>
-                            <!-- FROZEN -->
-                            <div id='frozen'>
-                                <label class='frozen radio_label'>Is the body frozen?</label>
-                                <label class='frozen radio' for="frozen_yes">Yes</label>
-                                <input class='frozen clear' type="radio" name="frozen" id='frozen_yes' value="Yes">
-
-                                <label class='frozen radio' for="frozen_no">No</label>
-                                <input class='frozen clear' type="radio" name="frozen" id='frozen_no' value="No">
-                            </div>
-                        <!-- DEATH DATE -->
-                        <div class='death_date'  id='death_date'>
-                            <label class='death_date'  for='date'>Date of death: </label>
-                            <input class='death_date clear'  name='death_date' id='date'type='date' value = '<?php echo $estimate['death_date']?>'>
-                        </div>
+                       
             
 
                     <!--SUMMARY  -->
                     <section id='summary_section'>
-                        <label id='summary_label' class='summary' for='summary'>A summarization of the history IS REQUIRED, Supplying medical records are not a sufficient substitue for this summarization which will be included verbatim as part of the final necropsy report. In this summary, please give the general timeline (with dates) from teh most recent presentation until the death or euthanasia. Include the reason for the most recent presentation, general treatments in that regard, and the most recent and terminal clinical signs. Any known PERTINANT chronic conditins should be indicated however general yearly health checkup information is nt necessary.</label>
+                        <label id='summary_label' class='summary' for='summary'>A <span class='underline'>summarization</span> of the history IS REQUIRED, <span class='bold'>Simply supplying medical records is not a sufficient substitute for this summarization,</span> as this summarization will be included verbatim as part of the final necropsy report. In this summary, please give the general timeline (with dates) from the most recent presentation until the death or euthanasia. Include the reason for the most recent presentation, general treatments in that regard, and the most recent and terminal clinical signs. Any known PERTINANT chronic conditions should be indicated however general yearly health checkup information is not necessary.</label>
                         <textarea class='summary clear' id='summary' name='summary'><?php echo $estimate['summary'] ?></textarea>
                     </section>
                 </fieldset>
@@ -319,9 +349,8 @@
         <!-- <a href='/Lamp/index.php/order_controller/populateForm'>Add Test Info </a><br>
         <button onclick="window.print()">print</button> -->
             <!-- ERRORS -->
-        <div id='error_list' style='color:red' class ='error'></div>
-        <!-- SUBMIT -->
-        <input form='submit' class='button' type='submit' value='Submit Neropsy Request'>
+      
+      
         
 
 

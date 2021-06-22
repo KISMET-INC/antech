@@ -206,8 +206,8 @@ class Estimate_Controller extends CI_Controller {
         $this->array_helper->buildPostArray('estimate', $this->input->post());
     
         // SET BOOLEANS TO TRUE IF CALCULATION VALUES ARE GREATER THAN 0
-        if(strlen($this->input->post('delivery_cost')) > 2){
-            $this->array_helper->updateSession('estimate', 'delivery_approved', "TRUE");
+        if(strlen($this->input->post('delivery_cost')) >= 4){
+            $this->array_helper->updateSession('estimate', 'delivery_approved', "FALSE");
         }
 
         if(strlen($this->input->post('cremation_cost')) > 2){

@@ -78,6 +78,7 @@ class Order_Controller extends CI_Controller {
         if(!array_key_exists('delivery_approved', $this->input->post())){
             $this->array_helper->updateSession('estimate', 'delivery_approved', 'FALSE');
         }
+        
         if(!array_key_exists('cremation_approved',$this->input->post())){
             $this->array_helper->updateSession('estimate', 'cremation_approved', 'FALSE');
         }

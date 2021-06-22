@@ -21,7 +21,7 @@
 
 .cost {
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.2em;
     margin: 0.2em;
     padding: 0;
     height: fit-content;
@@ -180,6 +180,7 @@ input {
     height: 2.5em;
     padding-left: 10px;
     width:100%;
+    overflow:visible; 
 }
 
 label {
@@ -187,6 +188,8 @@ label {
     width: 120px;
     min-width: 120px;
 }
+
+
 
 hr {
     box-sizing: content-box;
@@ -291,6 +294,15 @@ button,
     font-weight: bold;
 }
 
+#approve_button {
+    background-color: red;
+    width: 75%;
+    margin-bottom: 2em;
+    text-align: center;
+    margin-top: 1em;
+
+}
+
 /*********************/
 /*  IMAGES
 /*********************/
@@ -375,7 +387,7 @@ button,
 #calc_form{
     border-right: 1px solid grey;
     padding-right: 75px;
-    width: 60%
+    width: 50%
 }
 
 #calc_form h2 {
@@ -384,13 +396,17 @@ button,
 
 #calc_form label.weight {
     min-width:6em;
-    margin-left:50px;
+    margin-left:20px;
+}
+#calc_form #weight {
+    margin-right: 10px;
 }
 
 .ambulance_note {
     height:fit-content;
     font-weight:bold;
     font-size: 0.8em;
+    margin-top: -20px;
 }
 
 #form_links {
@@ -425,7 +441,7 @@ button,
 }
 
 #calc_form #area_code {
-    width: 100%;
+    width: 95px;
 }
 
 /*********************************/
@@ -434,7 +450,7 @@ button,
 
 #calc_costs {
     width: 40%;
-    margin-left: 10%;
+    margin-left: 5%;
 }
 #calc_costs .cost {
     width:25%;
@@ -443,14 +459,7 @@ button,
 .cost_label {
     width: 60%;
 }
-#approve_button {
-    background-color: red;
-    width: 200px;
-    margin-bottom: 2em;
-    text-align: center;
-    margin-top: 1em;
 
-}
 
 form#start_order {
     justify-content: center;
@@ -584,7 +593,9 @@ form  p.optional {
 /*********************************/
 /*  ORDER FORM
 /********************************/
-
+#order_form hr {
+    margin-bottom: 2em;
+}
 #order_form h1 {
     color: var(--purple);
     font-size: 2em;
@@ -602,11 +613,11 @@ fieldset div {
     margin-top: 0.5em;
 }
 
-fieldset div label {
+/* fieldset div label {
     display:inline-block;
     width: 13em;
     min-width: 5em;
-}
+} */
 
 #history,
 #costs {
@@ -614,7 +625,7 @@ fieldset div label {
 }
 
 #costs {
-    width:30%;
+    width:100%;
 }
 
 
@@ -624,18 +635,22 @@ fieldset div label {
 }
 
 
-#order_form input[type='checkbox'],
-#order_form input[type='radio']
-{
+#order_form input[type='checkbox']{
     height: 1.2em;
-    width: 6em;
+    font-size: 15px;
+
 }
 
+#order_form input[type='radio']{
+    height: 1.2em;
+    width:2em;
+}
 form#submit {
     margin-top: 3em;
 }
 
 #left_col {
+    flex-direction: column;
     justify-content: space-around;
     width: 40%;
 }
@@ -655,7 +670,7 @@ form#submit {
 /********************************/
 
 #order_form label {
-    font-size: 15px;
+    font-size: 13px;
 }
 
 /*********************************/
@@ -667,12 +682,12 @@ form#submit {
 }
 #order_form .approved {
     text-align: right;
-    width:10em;
+    width:12em;
 }
 
 #order_form .cost {
     border: none;
-    min-width: 1.5em;
+    min-width: 4.5em;
     font-size: 1.2em;
     width:25%;
 }
@@ -681,7 +696,32 @@ form#submit {
     color:red;
 }
 
+#approve_notice {
+    color: red;
+    font-size: 12px;
+}
+#order_button {
+    background-color: red;
+    margin:auto;
+    margin-bottom: 15px;
+}
+label#approve_label {
+    width:139px;
+}
 
+#necropsy label,
+#shipping label,
+#cremation label,
+#total label{
+    width: 139px;
+    min-width: 104px;
+}
+
+#instructions {
+    color: var(--purple);
+    text-decoration: underline;
+    font-size: 1.1em;
+}
 /*********************************/
 /*  PET INFO
 /********************************/
@@ -689,19 +729,38 @@ form#submit {
 #pet_section #sex {
     width: 100%;
 }
-input.age {
-    width:50%;
+input.age,
+input.weight {
+    width:75px;
 }
 
 select.age_type {
-    width:50%;
+    width:75px;
+    margin-left:5px;
+}
+/* label.age {
+    width:200px;
+} */
+
+#age_select {
+    justify-content: flex-start;
+}
+#age_select div{
+    margin-top: 0px;
 }
 #order_form .weight {
     margin-right:15px;
 }
+ #weight_div {
+    margin-left:-15px;
+    margin-top:0px;
+}
+
 
 #pet_section {
-    margin-left: 7em;
+    margin-left: 4em;
+    width: 44%;
+    margin-top: -100px;
 }
 /*********************************/
 /*  PET HISTORY
@@ -713,11 +772,11 @@ select.age_type {
 #summary_section {
     margin-top: 2em;
     width:100%;
-    font-weight: bold;
 }
 
 #summary_section #summary_label {
     font-size: 13px;
+    width:100%;
 }
 
 #order_form textarea {
@@ -729,8 +788,9 @@ select.age_type {
 
 #death_date {
     margin-top: 1.5em;
+    flex-direction:column;
+    align-items: flex-start;
 }
-
 
 .radio_label {
     min-width: 15em;
@@ -739,6 +799,15 @@ select.age_type {
 label.summary {
     display:block;
     width:100%;
+}
+
+span.underline {
+    text-decoration: underline;
+    font-size:13px;
+}
+span.bold {
+    font-weight:bold;
+    font-size: 13px;
 }
 
 input.death_date {
