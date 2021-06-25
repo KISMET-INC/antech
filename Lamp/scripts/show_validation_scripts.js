@@ -113,7 +113,6 @@ function validateAndFill(e){
 }
 
 function clearForm(section){
-    
     var clearURL = `clear/${section}`
     fetch(clearURL)
     .then(results => {
@@ -122,27 +121,30 @@ function clearForm(section){
             var elements = document.getElementsByClassName('clear')
             for(element of elements){
                 if(element.type === 'radio'){
+
                     element.checked = false;
                 } 
                 else {
                     element.value = '';
                 }
 
+                document.getElementById('Dog').selected = true;
+                document.getElementById('years').selected = true;
             }
         } else {
-            var inputs = document.querySelectorAll("input");
-            for(input of inputs){
-                if(input.type === 'text' || input.type ==='number' || input.type==='hidden' ){
-                    if(input.classList.contains('cost')){
-                        input.value = '$0'
-                    } else {
-                        input.value = '';             
-                    }
+        var inputs = document.querySelectorAll("input");
+        for(input of inputs){
+            if(input.type === 'text' || input.type ==='number' || input.type==='hidden' ){
+                if(input.classList.contains('cost')){
+                    input.value = '$0'
+                } else {
+                    
+                    input.value = '';             
                 }
             }
-            document.getElementById('area_code').value ='0';
-
         }
+
+    }
 
     }).catch(error => console.log(error))
 

@@ -259,8 +259,8 @@
                             class='species'
                             onchange='updateValue(event)'
                             >
-                            <option>Dog</option>
-                            <option>Cat</option>
+                            <option id='Dog'>Dog</option>
+                            <option id='Cat'>Cat</option>
                         </select>
                     </div>
                     <div>
@@ -271,10 +271,10 @@
                             class='sex'
                             onchange='updateValue(event)' 
                             >
-                            <option>Intact Male</option>
-                            <option>Intact Female</option>
-                            <option>Neutered Male</option>
-                            <option>Neutered Female</option>
+                            <option id='Intact Male'>Intact Male</option>
+                            <option id='Intact Female'>Intact Female</option>
+                            <option id='Neuterd Male'>Neutered Male</option>
+                            <option id='Neuterd Female'>Neutered Female</option>
                         </select>
                     </div>
                     <div id='age_select'>
@@ -289,11 +289,11 @@
                                 onkeypress='updateValue(event)'
                                 value = '<?php echo $estimate['age'] ?>' 
                                 >
-                            <select id='age_type' class = 'age_type' name='age_type' onchange='updateValue(event)'>
-                                <option>years</option>
-                                <option>months</option>
-                                <option>weeks</option>
-                                <option>days</option>
+                            <select id='age_type' class = 'age_type clear' name='age_type' onchange='updateValue(event)'>
+                                <option id='years'>years</option>
+                                <option id='months'>months</option>
+                                <option id='weeks'>weeks</option>
+                                <option id='days'>days</option>
                             </select>
                         </div>
                     </div>
@@ -376,10 +376,10 @@
         <input class='clear' type='hidden' name='doctor' value='<?php echo $hospital['doctor'] ?>' >
         <input class='clear' type='hidden' name='owner' value='<?php echo $estimate['owner'] ?>' >
         <input class='clear' type='hidden' name='pet_name' value='<?php echo $estimate['pet_name'] ?>' >
-        <input class='clear' type='hidden' name='species' value='<?php echo $estimate['species'] ?>' >
+        <input class='clear select' type='hidden' name='species' value='<?php echo $estimate['species'] ?>' >
         <input class='clear' type='hidden' name='sex' value='<?php echo $estimate['sex'] ?>' >
         <input class='clear' type='hidden' name='age' value='<?php echo $estimate['age'] ?>' >
-        <input class='clear' type='hidden' name='age_type' value='<?php echo $estimate['age_type'] ?>' >
+        <input class='clear select' type='hidden' name='age_type' value='<?php echo $estimate['age_type'] ?>' >
         <input class='clear' type='hidden' name='breed' value='<?php echo $estimate['breed'] ?>' >
         <input class='clear' type='hidden' name='frozen' value='<?php echo $estimate['frozen'] ?>' >
         <input class='clear' type='hidden' name='death_date' value='<?php echo $estimate['death_date'] ?>' >
@@ -394,7 +394,7 @@
     <?php $this->load->view('./partials/footer.php') ?>
 
     <?php include "scripts/order_scripts.php"?>
-    <?php include "scripts/estimate_scripts.php"?>
+    <?php include "scripts/update_scripts.php"?>
     <?php include "scripts/dollar_scripts.php"?>
 
 </body>

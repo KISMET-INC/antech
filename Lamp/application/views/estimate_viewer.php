@@ -156,7 +156,7 @@
                 <div id='form_links' class='flex'>
 
                     <!-- CLEAR SESSION DATA -->
-                    <button class='small_btn' id='clear_form' onclick='clearForm("all")'>Clear Form</button>
+                    <button type='button' id='clear_form' onclick='clearForm("all")'>Clear Form</button>
                    
 
                     <!-- CALCULATE BUTTON -->
@@ -259,6 +259,7 @@
 
     <!-- SCRIPTS -->
     <?php include "scripts/dollar_scripts.php"?>
+    <?php include "scripts/update_scripts.php"?>
     <?php include "scripts/faq_scripts.php"?>
     <?php include "scripts/estimate_scripts.php"?>
 

@@ -3,9 +3,10 @@
     var total_check = document.getElementById('total_check');
     var delivery_costs = document.getElementsByClassName('delivery_cost')
     var delivery_check = document.getElementById('ship_check')
-
+    var options = document.getElementsByTagName('option')
     var euthanized = "<?php echo $estimate['euthanized'] ?>"
     var frozen = "<?php echo $estimate['frozen'] ?>"
+    var hidden_inputs = document.getElementsByClassName('select')
     
     //****************************************************** */
     // Disable Delivery Cost  checkbox if value is 0
@@ -24,7 +25,16 @@
         console.log(delivery_check);
     }
 
-
+    //****************************************************** */
+    // Update Select Dropdowns on Return from estimate
+    //****************************************************** */
+    console.log(hidden_inputs)
+    for (var input of hidden_inputs){
+        if(input.value !=  ''){
+            console.log(input.value)
+            document.getElementById(input.value).selected = true;
+        }
+    }
 
     
     //****************************************************** */   
@@ -74,11 +84,13 @@
             cost.style.color = 'unset';
 
         } else {
-            // Remove element value from total cost
-            var total = parseFloat(removeSign(total_cost.value)) - parseFloat(removeSign(cost.value))
-            total_cost.value = addSign(total.toFixed(2))
-            cost.style.textDecoration = 'line-through';
-            cost.style.color = 'grey';
+            if(cost.value != '$N/A'){
+                // Remove element value from total cost
+                var total = parseFloat(removeSign(total_cost.value)) - parseFloat(removeSign(cost.value))
+                total_cost.value = addSign(total.toFixed(2))
+                cost.style.textDecoration = 'line-through';
+                cost.style.color = 'grey';
+            }
 
             // add grey styling on all appropriate text elements
             var texts = document.getElementsByClassName(element.classList[0]);
@@ -92,9 +104,6 @@
         }
         
     }
-
-  
-
 
 
 </script>
