@@ -16,7 +16,7 @@
         nav.innerHTML = 
         "<a href='populate'>Test Info</a>"
         +"<p onclick='clearForm(estimate)'> Clear Form </p>"
-        +"<p><a href='/#calculator'> Go Back To Estimate</a> </p>"
+        +"<button type='submit' form='hidden_inputs'>Go Back to Estimate </button>"
     }
 
     if (document.title == 'SUCCESS'){

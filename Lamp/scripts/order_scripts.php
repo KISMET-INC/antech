@@ -59,8 +59,10 @@
 
         // Checked element add to Total_Cost
         if(element.checked){
-            var total = parseFloat(removeSign(total_cost.value)) + parseFloat(removeSign(cost.value))
-            total_cost.value = addSign(total.toFixed(2));
+            if(cost.value != '$N/A'){
+                var total = parseFloat(removeSign(total_cost.value)) + parseFloat(removeSign(cost.value))
+                total_cost.value = addSign(total.toFixed(2));
+            }
         
             // remove grey styling on all appropriate text elements
             var texts = document.getElementsByClassName(element.classList[0]);
@@ -91,6 +93,7 @@
         
     }
 
+  
 
 
 

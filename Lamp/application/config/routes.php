@@ -62,6 +62,7 @@ $route['print'] = 'Estimate_Controller/print_view';
 $route['error'] = 'Error_Controller';
 $route['clear/(:any)'] = 'Estimate_Controller/clear/$1';
 $route['populate'] = 'Order_Controller/populateForm';
+$route['goBack'] = 'Order_Controller/goBack';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -151,6 +151,13 @@ class Order_Controller extends CI_Controller {
         // $this->array_helper->printArr('POST', $this->input->post());
         echo json_encode($errors);
     }
+
+    function goBack(){
+        $this->array_helper->buildPostArray('hospital', $this->input->post());
+        $this->array_helper->buildPostArray('estimate', $this->input->post());
+
+        redirect('/#calculator');
+    }
 }
 
 ?>

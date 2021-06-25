@@ -5,7 +5,7 @@
 var value = '';
 function updateValue(e){
     var input_list = document.getElementsByName(e.target.name)
-    
+    console.log(input_list)
     switch(e.type){
         
         case "keypress":

@@ -156,7 +156,7 @@
                 <div id='form_links' class='flex'>
 
                     <!-- CLEAR SESSION DATA -->
-                    <p id='clear_form' onclick='clearForm("all")'>Clear Form</p>
+                    <button class='small_btn' id='clear_form' onclick='clearForm("all")'>Clear Form</button>
                    
 
                     <!-- CALCULATE BUTTON -->

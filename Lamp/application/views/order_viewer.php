@@ -61,6 +61,8 @@
                             id='address'
                             name = 'address'
                             class='address clear'
+                            onchange='updateValue(event)'
+                            onkeypress='updateValue(event)'
                             value = '<?php echo $hospital['address'] ?>' 
                             type='text' 
                             >
@@ -70,7 +72,9 @@
                         <input 
                             id='phone'
                             name = 'phone'
-                            class='phone clear' 
+                            class='phone clear'
+                            onchange='updateValue(event)'
+                            onkeypress='updateValue(event)'
                             type='text' 
                             value = '<?php echo $hospital['phone'] ?>' 
                             >
@@ -81,6 +85,8 @@
                             id='email' 
                             name = 'email'
                             class='email clear'
+                            onchange='updateValue(event)'
+                            onkeypress='updateValue(event)'
                             type='text'
                             value = '<?php echo $hospital['email'] ?>' 
                             >
@@ -91,6 +97,8 @@
                             id='doctor'
                             name = 'doctor'
                             class= 'doctor clear'
+                            onchange='updateValue(event)'
+                            onkeypress='updateValue(event)'
                             value = '<?php echo $hospital['doctor'] ?>' 
                             type='text'
                             >
@@ -133,6 +141,8 @@
                             <?php 
                                     if($estimate['delivery_cost'] === "\$N/A"){
                                         echo ' <a href="http://www.antechnecropsy.com/shipping_guidelines.pdf" target="_blank" id="instructions"> Shipping Instructions </a>';
+                                    } else {
+                                        echo 'Approved';
                                     }
                                 ?>
                             </label><br>
@@ -205,7 +215,7 @@
                     </div>
                 </fieldset>
 
-                  <!-- SUBMIT -->
+                <!-- SUBMIT -->
                 <div class= 'flexColumn'>
                 <input id='order_button' form='submit' class='button' type='submit' value='Approve Costs and Order Necropsy'>
                 <p id='approve_notice'>Clicking this button will send your information to the laboratory to start the necropsy registration process. You will be contacted by the lab shortly after.
@@ -223,6 +233,8 @@
                             id='owner'
                             name = 'owner'
                             class='owner clear'
+                            onchange='updateValue(event)'
+                            onkeypress='updateValue(event)'
                             type='text'
                             value = '<?php echo $estimate['owner'] ?>' 
                             >
@@ -232,7 +244,9 @@
                         <input
                             id='pet_name'
                             name = 'pet_name'
-                            class='pet_name clear' 
+                            class='pet_name clear'
+                            onchange='updateValue(event)'
+                            onkeypress='updateValue(event)'
                             type='text'
                             value = '<?php echo $estimate['pet_name'] ?>' 
                             >
@@ -242,7 +256,8 @@
                         <select
                             id='species' 
                             name = 'species'
-                            class='species' 
+                            class='species'
+                            onchange='updateValue(event)'
                             >
                             <option>Dog</option>
                             <option>Cat</option>
@@ -253,7 +268,8 @@
                         <select
                             id='sex' 
                             name = 'sex'
-                            class='sex' 
+                            class='sex'
+                            onchange='updateValue(event)' 
                             >
                             <option>Intact Male</option>
                             <option>Intact Female</option>
@@ -269,9 +285,11 @@
                                 name = 'age'
                                 class='age clear' 
                                 type='number'
+                                onchange='updateValue(event)'
+                                onkeypress='updateValue(event)'
                                 value = '<?php echo $estimate['age'] ?>' 
                                 >
-                            <select id='age_type' class = 'age_type' name='age_type'>
+                            <select id='age_type' class = 'age_type' name='age_type' onchange='updateValue(event)'>
                                 <option>years</option>
                                 <option>months</option>
                                 <option>weeks</option>
@@ -284,7 +302,9 @@
                         <input
                             id='breed'
                             name = 'breed'
-                            class='breed clear' 
+                            class='breed clear'
+                            onchange='updateValue(event)'
+                            onkeypress='updateValue(event)'
                             type='text'
                             value = '<?php echo $estimate['breed'] ?>' 
                             >
@@ -305,10 +325,10 @@
                      <!-- FROZEN -->
                      <div id='frozen'>
                                 <label class='frozen radio_label'>Is the body frozen?</label>
-                                <input class='frozen clear' type="radio" name="frozen" id='frozen_yes' value="Yes">
+                                <input class='frozen clear' type="radio" name="frozen" id='frozen_yes' value="Yes" onchange='updateValue(event)'>
                                 <label class='frozen radio' for="frozen_yes">Yes</label>
 
-                                <input class='frozen clear' type="radio" name="frozen" id='frozen_no' value="No">
+                                <input class='frozen clear' type="radio" name="frozen" id='frozen_no' value="No" onchange='updateValue(event)'>
                                 <label class='frozen radio' for="frozen_no">No</label>
                             </div>
                 </fieldset>
@@ -319,25 +339,23 @@
                     <!-- DEATH DATE -->
                     <div class='death_date'  id='death_date'>
                         <label class='death_date'  for='date'>Date of death: </label>
-                        <input class='death_date clear'  name='death_date' id='date'type='date' value = '<?php echo $estimate['death_date']?>'>
+                        <input class='death_date clear'  name='death_date' id='date'type='date' value = '<?php echo $estimate['death_date']?>' onchange='updateValue(event)'>
                     </div>      
                     <div id='euthanized'>
                     <!-- EUTHANIZED -->
                         <label class='euthanized radio_label '>Euthanized?</label>
-                        <input  class='euthanized clear' type="radio" name="euthanized" id='euthanized_yes' value="Yes">
+                        <input  class='euthanized clear' type="radio" name="euthanized" id='euthanized_yes' value="Yes" onchange='updateValue(event)'>
                         <label  class='euthanized radio' for="euthanized_yes">Yes</label>
                         
-                        <input  class='euthanized clear' type="radio" name="euthanized" id='euthanized_no' value="No">
+                        <input  class='euthanized clear' type="radio" name="euthanized" id='euthanized_no' value="No" onchange='updateValue(event)'>
                         <label class='euthanized radio' for="euthanized_no">No</label>
                     </div>
 
-                       
-            
 
                     <!--SUMMARY  -->
                     <section id='summary_section'>
                         <label id='summary_label' class='summary' for='summary'>A <span class='underline'>summarization</span> of the history IS REQUIRED, <span class='bold'>Simply supplying medical records is not a sufficient substitute for this summarization,</span> as this summarization will be included verbatim as part of the final necropsy report. In this summary, please give the general timeline (with dates) from the most recent presentation until the death or euthanasia. Include the reason for the most recent presentation, general treatments in that regard, and the most recent and terminal clinical signs. Any known PERTINANT chronic conditions should be indicated however general yearly health checkup information is not necessary.</label>
-                        <textarea class='summary clear' id='summary' name='summary'><?php echo $estimate['summary'] ?></textarea>
+                        <textarea class='summary clear' id='summary' name='summary' onchange='updateValue(event)' onkeypress='updateValue(event)'><?php echo $estimate['summary'] ?></textarea>
                     </section>
                 </fieldset>
 
@@ -349,9 +367,25 @@
         <!-- <a href='/Lamp/index.php/order_controller/populateForm'>Add Test Info </a><br>
         <button onclick="window.print()">print</button> -->
             <!-- ERRORS -->
-      
-      
-        
+
+
+    <form name='hidden_inputs' id='hidden_inputs' action='goBack' method='post'>
+        <input class='clear' type='hidden' name='address' value='<?php echo $hospital['address'] ?>' >
+        <input class='clear' type='hidden' name='phone' value='<?php echo $hospital['phone'] ?>' >
+        <input class='clear' type='hidden' name='email' value='<?php echo $hospital['email'] ?>' >
+        <input class='clear' type='hidden' name='doctor' value='<?php echo $hospital['doctor'] ?>' >
+        <input class='clear' type='hidden' name='owner' value='<?php echo $estimate['owner'] ?>' >
+        <input class='clear' type='hidden' name='pet_name' value='<?php echo $estimate['pet_name'] ?>' >
+        <input class='clear' type='hidden' name='species' value='<?php echo $estimate['species'] ?>' >
+        <input class='clear' type='hidden' name='sex' value='<?php echo $estimate['sex'] ?>' >
+        <input class='clear' type='hidden' name='age' value='<?php echo $estimate['age'] ?>' >
+        <input class='clear' type='hidden' name='age_type' value='<?php echo $estimate['age_type'] ?>' >
+        <input class='clear' type='hidden' name='breed' value='<?php echo $estimate['breed'] ?>' >
+        <input class='clear' type='hidden' name='frozen' value='<?php echo $estimate['frozen'] ?>' >
+        <input class='clear' type='hidden' name='death_date' value='<?php echo $estimate['death_date'] ?>' >
+        <input class='clear' type='hidden' name='euthanized' value='<?php echo $estimate['euthanized'] ?>' >
+        <input class='clear' type='hidden' name='summary' value='<?php echo $estimate['summary'] ?>' >
+    </form>
 
 
     </main>
@@ -360,6 +394,7 @@
     <?php $this->load->view('./partials/footer.php') ?>
 
     <?php include "scripts/order_scripts.php"?>
+    <?php include "scripts/estimate_scripts.php"?>
     <?php include "scripts/dollar_scripts.php"?>
 
 </body>
