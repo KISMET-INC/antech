@@ -322,8 +322,8 @@
                                 >lbs
                         </div>
                     </div>
-                     <!-- FROZEN -->
-                     <div id='frozen'>
+                    <!-- FROZEN -->
+                    <div id='frozen'>
                                 <label class='frozen radio_label'>Is the body frozen?</label>
                                 <input class='frozen clear' type="radio" name="frozen" id='frozen_yes' value="Yes" onchange='updateValue(event)'>
                                 <label class='frozen radio' for="frozen_yes">Yes</label>

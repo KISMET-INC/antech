@@ -161,9 +161,19 @@ ul li {
 }
 
 ol li {
+    font-size: 0.9em;
+}
+ol {
     margin-left: 50px;
     margin-bottom: 10px;
 }
+
+#answer a {
+    font-size: 1em;
+    text-decoration: underline;
+    color: var(--bgreen)
+}
+
 /*********************/
 /* DISABLED 
 /*********************/

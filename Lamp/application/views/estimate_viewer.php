@@ -61,6 +61,7 @@
                         <li onclick='setFAQ(this)' id='q11' class='question'>Special Note about poisoning.</li>
                         <li onclick='setFAQ(this)' id='q13' class='question'>Contact with Pet Owners</li>
                         <li id='q12' class='question' ><a href ='http://www.antechnecropsy.com/example_necropsy.pdf' target='_blank' >See an example necropsy report</a></li>
+                        <li id='q12' class='question' ><a href ='http://www.antechnecropsy.com/example_necropsy.pdf' download>Download these FAQs</a></li>
                     </ul>
                 </div>
             </div>
@@ -157,12 +158,10 @@
 
                     <!-- CLEAR SESSION DATA -->
                     <button type='button' id='clear_form' onclick='clearForm("all")'>Clear Form</button>
-                   
-
+        
                     <!-- CALCULATE BUTTON -->
                     <button class='small_btn' id='calculate_button' type='submit' name = 'calculate'>Calculate Necropsy Costs</button>
-                 
-               
+
                 </div>
                 </form>
 
