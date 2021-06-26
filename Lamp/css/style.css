@@ -70,6 +70,9 @@ header a {
     font-weight: bold;
     color: white;
 }
+header button {
+    font-size:15px;
+}
 
 #logo {
     width: 199px;
@@ -80,6 +83,10 @@ header a {
     grid-column-start: 2;
     margin-left:-2em;
     
+}
+
+#nav p {
+    cursor: context-menu;
 }
 
 .faq_link {

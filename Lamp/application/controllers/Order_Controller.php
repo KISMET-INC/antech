@@ -155,7 +155,12 @@ class Order_Controller extends CI_Controller {
     function goBack(){
         $this->array_helper->buildPostArray('hospital', $this->input->post());
         $this->array_helper->buildPostArray('estimate', $this->input->post());
+        $this->array_helper->updateSession('estimate', 'total_cost', '0');
+        $this->array_helper->updateSession('estimate', 'necropsy_cost', '0');
+        $this->array_helper->updateSession('estimate', 'cremation_cost', '0');
+        $this->array_helper->updateSession('estimate', 'delivery_cost', '0');
 
+        // $this->array_helper->printArr('ESTIMATE', $this->session->userdata('estimate'));
         redirect('/#calculator');
     }
 }

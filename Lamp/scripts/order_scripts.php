@@ -69,7 +69,7 @@
 
         // Checked element add to Total_Cost
         if(element.checked){
-            if(cost.value != '$N/A'){
+            if(cost.value != 'N/A'){
                 var total = parseFloat(removeSign(total_cost.value)) + parseFloat(removeSign(cost.value))
                 total_cost.value = addSign(total.toFixed(2));
             }
@@ -84,7 +84,7 @@
             cost.style.color = 'unset';
 
         } else {
-            if(cost.value != '$N/A'){
+            if(cost.value != 'N/A'){
                 // Remove element value from total cost
                 var total = parseFloat(removeSign(total_cost.value)) - parseFloat(removeSign(cost.value))
                 total_cost.value = addSign(total.toFixed(2))

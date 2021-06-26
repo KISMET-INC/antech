@@ -139,7 +139,7 @@
                         <div>
                             <label class='delivery_cost approved' for="ship_check">
                             <?php 
-                                    if($estimate['delivery_cost'] === "\$N/A"){
+                                    if($estimate['delivery_cost'] === "N/A"){
                                         echo ' <a href="http://www.antechnecropsy.com/shipping_guidelines.pdf" target="_blank" id="instructions"> Shipping Instructions </a>';
                                     } else {
                                         echo 'Approved';

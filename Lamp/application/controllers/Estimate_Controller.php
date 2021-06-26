@@ -159,11 +159,12 @@ class Estimate_Controller extends CI_Controller {
             $this->Record->add_record($this->session->userdata('hospital'),$this->session->userdata('estimate'),'estimates.txt');
             $this->session->set_userdata('calculation_made',TRUE);
             //echo nl2br("\n CALCULATION  BEGUN \n");
+            $delivery_cost == 'N/A' ? $delivery_cost = $delivery_cost : $delivery_cost = "$" . $delivery_cost;
             $results_arr = array( 
                 'calculations' => array(
                     'necropsy_cost'=> "$" . $necropsy_cost,
                     'cremation_cost'=> "$" . $cremation_cost,
-                    'delivery_cost' => "$" . $delivery_cost,
+                    'delivery_cost' => $delivery_cost,
                     'total_cost' => "$" . $total_cost,
                 )
             );
