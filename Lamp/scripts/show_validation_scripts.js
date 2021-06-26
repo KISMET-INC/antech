@@ -130,6 +130,7 @@ function clearForm(section){
 
                 document.getElementById('Dog').selected = true;
                 document.getElementById('years').selected = true;
+                document.getElementById('IM').selected = true;
             }
         } else {
         var inputs = document.querySelectorAll("input");

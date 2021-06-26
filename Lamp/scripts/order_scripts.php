@@ -21,20 +21,26 @@
             ship.disabled == false;
             delivery_check.removeAttribute('disabled','');
         }
-        console.log(delivery_cost.value);
-        console.log(delivery_check);
     }
 
     //****************************************************** */
     // Update Select Dropdowns on Return from estimate
     //****************************************************** */
-    console.log(hidden_inputs)
     for (var input of hidden_inputs){
-        if(input.value !=  ''){
-            console.log(input.value)
-            document.getElementById(input.value).selected = true;
+        if(input.value != ' '){
+            var idValue;
+            switch(input.value){
+                case 'Intact Male': idValue ='IM'; break;
+                case 'Intact Female': idValue ='IF'; break;
+                case 'Neutered Male': idValue ='NM'; break;
+                case 'Neutered Female': idValue ='NF'; break;  
+                default: idValue = input.value; break; 
+            } 
+            document.getElementById(idValue).selected = true;
         }
+    
     }
+    
 
     
     //****************************************************** */   

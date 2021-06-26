@@ -271,10 +271,10 @@
                             class='sex'
                             onchange='updateValue(event)' 
                             >
-                            <option id='Intact Male'>Intact Male</option>
-                            <option id='Intact Female'>Intact Female</option>
-                            <option id='Neuterd Male'>Neutered Male</option>
-                            <option id='Neuterd Female'>Neutered Female</option>
+                            <option id='IM'>Intact Male</option>
+                            <option id='IF'>Intact Female</option>
+                            <option id='NM'>Neutered Male</option>
+                            <option id='NF'>Neutered Female</option>
                         </select>
                     </div>
                     <div id='age_select'>
@@ -377,7 +377,7 @@
         <input class='clear' type='hidden' name='owner' value='<?php echo $estimate['owner'] ?>' >
         <input class='clear' type='hidden' name='pet_name' value='<?php echo $estimate['pet_name'] ?>' >
         <input class='clear select' type='hidden' name='species' value='<?php echo $estimate['species'] ?>' >
-        <input class='clear' type='hidden' name='sex' value='<?php echo $estimate['sex'] ?>' >
+        <input class='clear select' type='text' name='sex' value='<?php echo $estimate['sex'] ?>' >
         <input class='clear' type='hidden' name='age' value='<?php echo $estimate['age'] ?>' >
         <input class='clear select' type='hidden' name='age_type' value='<?php echo $estimate['age_type'] ?>' >
         <input class='clear' type='hidden' name='breed' value='<?php echo $estimate['breed'] ?>' >
