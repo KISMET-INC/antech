@@ -22,14 +22,13 @@ function validateAndFill(e){
 
         for(var result in results_obj){
             var elements = document.getElementsByClassName(result);
-            console.log(results_obj)
             // // VALID DATA IF OBJECT
             if(typeof results_obj[result] === 'object'){
                 //SUBMIT EMAIL
                 if(result === 'submit'){
                     var form = document.getElementById("submit");
                     var data = new FormData(e.target);
-
+                    console.log('SUBMIT')
                     data.append('name_address', results_obj['submit']['hospital_name'] +  "  -  " + results_obj['submit']['address']) 
 
                     fetch('https://formspree.io/f/mzbyeakg', {
@@ -40,7 +39,7 @@ function validateAndFill(e){
                         }})
                     .then(response => {
 
-                            console.log('success')
+                            console.log(response)
                             //form.reset()
                             var url = window.location.origin+'/success';
                             window.location.href=(url);
@@ -89,23 +88,6 @@ function validateAndFill(e){
                             calculate_button.classList.add('red');
                         }
                     }
-
-                    // If page is Order Approval, set single validation
-                    // if (document.title == 'Order Approval'){
-                    //     error_list.innerHTML = 'All Fields are Required.'
-                    
-                    //     if(results_obj['email'].includes('valid')){
-                    //         error_list.innerHTML += results_obj['email'];
-                    //     };
-
-                    //     if(results_obj['phone'].includes('valid')){
-                    //         error_list.innerHTML += results_obj['phone'];
-                    //     }
-
-                    // // else set validations list from results_obj
-                    // } else {
-                    //     error_list.innerHTML += results_obj[result];
-                    // }
                 }
 
         }
@@ -144,6 +126,7 @@ function clearForm(section){
                 }
             }
         }
+        document.getElementById('N/A').selected = true;
 
     }
 
@@ -163,3 +146,25 @@ function clearValidations() {
     }
 }
 
+// function justEmail(e) {
+//     var form = document.getElementById("submit");
+//     var data = new FormData(e.target);
+    
+//     fetch('https://formspree.io/f/mzbyeakg', {
+//         method: form.method,
+//         body: data,
+//         headers: {
+//             'Accept': 'application/json'
+//         }})
+//     .then(response => {
+
+//             console.log(response)
+//             //form.reset()
+//             // var url = window.location.origin+'/success';
+//             // window.location.href=(url);
+//         })
+//     .catch(error => {
+//         console.log(error)
+      
+//     });    
+// }

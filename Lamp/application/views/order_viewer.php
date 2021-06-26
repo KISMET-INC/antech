@@ -377,7 +377,7 @@
         <input class='clear' type='hidden' name='owner' value='<?php echo $estimate['owner'] ?>' >
         <input class='clear' type='hidden' name='pet_name' value='<?php echo $estimate['pet_name'] ?>' >
         <input class='clear select' type='hidden' name='species' value='<?php echo $estimate['species'] ?>' >
-        <input class='clear select' type='text' name='sex' value='<?php echo $estimate['sex'] ?>' >
+        <input class='clear select' type='hidden' name='sex' value='<?php echo $estimate['sex'] ?>' >
         <input class='clear' type='hidden' name='age' value='<?php echo $estimate['age'] ?>' >
         <input class='clear select' type='hidden' name='age_type' value='<?php echo $estimate['age_type'] ?>' >
         <input class='clear' type='hidden' name='breed' value='<?php echo $estimate['breed'] ?>' >

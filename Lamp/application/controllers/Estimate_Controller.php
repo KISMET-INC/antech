@@ -192,7 +192,7 @@ class Estimate_Controller extends CI_Controller {
         
     
         // Return to main page
-       echo json_encode($results_arr);
+        echo json_encode($results_arr);
 
     }
     

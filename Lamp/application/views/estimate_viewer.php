@@ -28,18 +28,6 @@
     </section>
         <img class='jumbo' src ='../../assets/trim1.jpg' alt='pathologist'>
 
-        <!-- <section class = 'blue_bar'>
-            <p class = 'wrapper'>The Necropsy Service provides professional whole body necropsies by one of our staff pathologists and Necropsy Coordinator, Dr. Richard Moreland
-            </p>
-        </section> -->
-    
-     <!-- Jumbotron Display -->
-     <!-- <section id='faq_jumbotron' class='faq wrapper'>
-        <hr>
-        <h1>Frequently <br> Asked <br> Questions </h1>
-    </section> -->
-    <!-- <img class='jumbo faqImg' src ='../../assets/handscrop.jpg' alt='pathologist'> -->
-
     <!-- FREQUENTLY ASKED QUESTIONS -->
     <section id='faq_blue' class = 'blue_bar'>
         <div class = 'wrapper flex3'>
@@ -132,7 +120,7 @@
                                     onchange='updateValue(event)'
                                     type = 'number'
                                     >    
-                                    <option value ='0'>N/A</option>
+                                    <option id='N/A' value ='0'>N/A</option>
                                 </select>
                         </div>
                         <!-- weight -->

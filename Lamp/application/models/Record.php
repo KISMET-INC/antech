@@ -166,28 +166,22 @@ class Record extends CI_Model {
 
     public function add_record( $hospital, $estimate, $filename) 
     {
-        $interval = 100;
-        $this->session->set_userdata('last_total', 0);
 
-        $time = date("h:i:s A");
+        if(!array_key_exists('last_total', $this->session->userdata)){
+            //echo nl2br("\nNOT EXISTS\n");
+            $this->session->set_userdata('last_total', 0);
+        }
 
-        // if(array_key_exists('last_time',$this->session->userdata))
-        // {
-        //     //echo nl2br("\nKEY EXISTS\n");
-        //     $last_time = date_create(date($this->session->userdata('last_time')));
-        //     $new_time = date_create($time);
-        //     $interval = date_diff($last_time,$new_time)->format("%s");
 
-        // };
         
-        if($interval > 30 || $estimate['total_cost'] != $this->session->userdata('last_total') || $this->session->userdata('logged_in') == TRUE){
+        if($estimate['total_cost'] != $this->session->userdata('last_total') || $this->session->userdata('logged_in') == TRUE){
            // echo nl2br("\nADDING TO TEXT FILE...\n");
             $date = date("m-d-Y");
             $str =
     
 "************************************************
 Date of Quote:           " . $date . "
-Time of Quote:           " . $time . "
+Time of Quote:           " . date("h:i:s A") . "
 Hospital:                " . $hospital['hospital_name'] . "
 Antech ID:               " . $hospital['antech_id']. "
 CS Rep:                  N/A
@@ -213,14 +207,15 @@ Full Necropsy Total:     " . $estimate['total_cost'] . "
             
     }
 
-    // echo nl2br("\nADD RECORD FUNCTION\n");
-    // echo nl2br($this->session->userdata('last_total'). "\n");
-    // echo nl2br($estimate['total_cost'] . "\n");
-    // echo nl2br($interval . "\n");
-   // $this->array_helper->printArr('ESTIMATE', $estimate);
-   // $this->array_helper->printArr('HOSPITAL', $hospital);
-    //echo "FILENAME :" . $filename;
-    // }
+//     echo nl2br("\nADD RECORD FUNCTION\n");
+//     echo nl2br($this->session->userdata('last_total'). "\n");
+//     echo nl2br($estimate['total_cost'] . "\n");
+
+//     echo nl2br($interval . "\n");
+//    $this->array_helper->printArr('ESTIMATE', $estimate);
+//    $this->array_helper->printArr('HOSPITAL', $hospital);
+//     echo "FILENAME :" . $filename;
+    
 }
 }
 
