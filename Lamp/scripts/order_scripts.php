@@ -27,7 +27,7 @@
     // Update Select Dropdowns on Return from estimate
     //****************************************************** */
     for (var input of hidden_inputs){
-        if(input.value != ' '){
+        if(input.value != '' ){
             var idValue;
             switch(input.value){
                 case 'Intact Male': idValue ='IM'; break;
@@ -36,7 +36,11 @@
                 case 'Neutered Female': idValue ='NF'; break;  
                 default: idValue = input.value; break; 
             } 
-            document.getElementById(idValue).selected = true;
+
+            if (document.getElementById(idValue)){
+                document.getElementById(idValue).selected = true;
+            }
+        
         }
     
     }
@@ -110,6 +114,10 @@
         }
         
     }
+
+    setTimeout(function () {
+        window.location.href= 'http://www.google.com'; // the redirect goes here
+    },7.2e+6);
 
 
 </script>

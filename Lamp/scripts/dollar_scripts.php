@@ -7,7 +7,6 @@
     for( var input of cost_inputs)
     {   
         if(input.value[0] != '$'){
-            console.log(input.value[0])
             input.value = addSign(input.value)
         }
     }
@@ -25,7 +24,6 @@
     // add $ sign to decimal and return string
     //****************************************************** */
     function addSign(decimal){
-        console.log(decimal)
         if(decimal != 'N/A'){
             return '$'+ decimal
         } else {

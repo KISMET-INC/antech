@@ -19,9 +19,10 @@ function validateAndFill(e){
     }).then(res =>  res.json())
     
     .then(results_obj => {
-
+        console.log(results_obj)
         for(var result in results_obj){
             var elements = document.getElementsByClassName(result);
+            console.log(result)
             // // VALID DATA IF OBJECT
             if(typeof results_obj[result] === 'object'){
                 //SUBMIT EMAIL
@@ -75,13 +76,13 @@ function validateAndFill(e){
                     break;
                 }
                 //************************************* */
-                // HANDLING ORDER
+                // HANDLING ERRORS
                 //************************************* */
                 if(results_obj[result]!= ''){
                     // Add red to input box on everything but total cost
                     // for total cost error, highlight calculation box
-                    console.log(results_obj)
                     for(item of elements){
+                        console.log(item)
                         if(result != 'total_cost'){
                             item.classList.add('red')
                         } else {

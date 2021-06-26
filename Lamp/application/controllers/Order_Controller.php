@@ -127,6 +127,7 @@ class Order_Controller extends CI_Controller {
                 'euthanized' => form_error('euthanized'),
                 'summary' => form_error('summary'),
                 'total_approved' => form_error('total_approved'),
+                'delivery_approved' => form_error('delivery_approved'),
                 'death_date' => form_error('death_date'),
                 'antech_id' => form_error('antech_id'),
                 'hospital_name' => form_error('hospital_name'),

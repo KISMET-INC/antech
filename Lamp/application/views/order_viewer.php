@@ -126,7 +126,7 @@
                     </div>
                     <!-- SHIPPING  -->
                     <div id='shipping' class='flex'>
-                        <label class='delivery_cost'>Ambulance Delivery (optional):  </label>
+                        <label class='delivery_cost delivery_approved'>Ambulance Delivery (optional):  </label>
                             <input
                                 id='delivery_cost'
                                 class = 'delivery_cost cost'
@@ -140,7 +140,7 @@
                             <label class='delivery_cost approved' for="ship_check">
                             <?php 
                                     if($estimate['delivery_cost'] === "N/A"){
-                                        echo ' <a href="http://www.antechnecropsy.com/shipping_guidelines.pdf" target="_blank" id="instructions"> Shipping Instructions </a>';
+                                        echo ' <a class="delivery_approved" href="http://www.antechnecropsy.com/shipping_guidelines.pdf" target="_blank" id="instructions"> Shipping Instructions </a>';
                                     } else {
                                         echo 'Approved';
                                     }
@@ -204,7 +204,7 @@
                                     value = '<?php echo $estimate['total_cost'] ?>'
                                 >
                         <div>
-                            <label  class='total_approved approved' for="total_check">Approved</label><br>
+                            <label class='total_approved approved' for="total_check">Approved</label><br>
                                 <input 
                                     id="total_check" 
                                     name="total_approved"

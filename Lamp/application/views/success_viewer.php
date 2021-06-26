@@ -19,8 +19,8 @@
 
 <div id= 'success' class='wrapper'>
     <div id= 'thanks'>
-        <h2> Thank you for your order! </h2>
-        <p> Your email has been sent succesfully <p>
+        <h2> Thank you!</h2>
+        <p style='width:60%'>Your information has been sent to the laboratory to start the necropsy registration process. You will be contated by the laboratory shortly. <p>
     </div>
     
     <button type='button' class='red' onclick="window.print()">Print for your records</button>
